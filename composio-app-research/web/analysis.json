@@ -1,41 +1,44 @@
 {
-  "total_apps": 101,
+  "total_apps": 200,
   "auth_distribution": {
-    "unknown": 80,
-    "bearer_token": 9,
-    "api_key": 8,
-    "oauth2": 6
+    "unknown": 158,
+    "bearer_token": 17,
+    "api_key": 17,
+    "oauth2": 12,
+    "other": 1,
+    "basic": 1
   },
   "credential_access": {
-    "unknown": 70,
+    "unknown": 137,
     "paid_plan_required": 1,
-    "self_serve": 19,
-    "self_serve_with_trial": 11
+    "self_serve": 41,
+    "self_serve_with_trial": 21
   },
   "api_types": {
-    "unknown": 66,
-    "rest": 22,
-    "webhooks": 11,
-    "mcp": 11,
-    "graphql": 8,
-    "other": 1
+    "unknown": 123,
+    "rest": 47,
+    "webhooks": 23,
+    "mcp": 24,
+    "graphql": 16,
+    "other": 3,
+    "soap": 1
   },
   "api_breadth": {
-    "unknown": 68,
-    "broad": 33
+    "unknown": 132,
+    "broad": 68
   },
   "mcp_public": {
-    "unknown": 89,
-    "yes": 12
+    "unknown": 179,
+    "yes": 21
   },
   "composio_supported": {
-    "no": 97,
-    "yes": 4
+    "no": 191,
+    "yes": 9
   },
   "buildability": {
-    "unknown": 62,
-    "ready": 32,
-    "buildable_with_caveat": 7
+    "unknown": 118,
+    "ready": 70,
+    "buildable_with_caveat": 12
   },
   "by_category": {
     "Test": {
@@ -59,308 +62,320 @@
       "avg_confidence": 0.008333333333333325
     },
     "Support and Helpdesk": {
-      "count": 10,
+      "count": 20,
       "auth": {
-        "unknown": 8,
-        "bearer_token": 1
+        "unknown": 17,
+        "bearer_token": 2
       },
       "credential": {
-        "unknown": 8,
-        "self_serve_with_trial": 2
+        "unknown": 16,
+        "self_serve_with_trial": 3,
+        "self_serve": 1
       },
       "api": {
-        "unknown": 5,
-        "rest": 2,
-        "webhooks": 1,
-        "graphql": 1,
+        "unknown": 11,
+        "rest": 4,
+        "webhooks": 3,
+        "graphql": 2,
         "mcp": 1
       },
       "buildability": {
-        "unknown": 6,
-        "ready": 4
+        "unknown": 11,
+        "ready": 9
       },
       "mcp_public": {
-        "unknown": 9,
-        "yes": 1
+        "unknown": 18,
+        "yes": 2
       },
       "composio": {
-        "no": 10
+        "no": 20
       },
-      "avg_confidence": 0.07083333333333333
+      "avg_confidence": 0.06874999999999999
     },
     "Finance and Fintech": {
-      "count": 10,
+      "count": 20,
       "auth": {
-        "unknown": 9,
-        "api_key": 1
+        "unknown": 16,
+        "api_key": 2
       },
       "credential": {
-        "unknown": 8,
-        "self_serve": 2
+        "unknown": 16,
+        "self_serve": 4
       },
       "api": {
-        "unknown": 9,
-        "rest": 1,
-        "webhooks": 1
+        "unknown": 14,
+        "rest": 2,
+        "webhooks": 2
       },
       "buildability": {
-        "unknown": 9,
-        "ready": 1
+        "unknown": 18,
+        "ready": 2
       },
       "mcp_public": {
-        "unknown": 10
+        "unknown": 20
       },
       "composio": {
-        "no": 10
+        "no": 20
       },
-      "avg_confidence": 0.09166666666666665
+      "avg_confidence": 0.09708333333333333
     },
     "Data, SEO and Scraping": {
-      "count": 10,
+      "count": 19,
       "auth": {
-        "unknown": 7,
-        "bearer_token": 3,
-        "api_key": 1
+        "unknown": 13,
+        "bearer_token": 6,
+        "api_key": 2
       },
       "credential": {
         "paid_plan_required": 1,
+        "self_serve": 6,
+        "unknown": 8,
+        "self_serve_with_trial": 4
+      },
+      "api": {
+        "unknown": 8,
+        "rest": 7,
+        "webhooks": 2,
+        "mcp": 7,
+        "other": 1,
+        "soap": 1
+      },
+      "buildability": {
+        "buildable_with_caveat": 2,
+        "ready": 11,
+        "unknown": 6
+      },
+      "mcp_public": {
+        "yes": 6,
+        "unknown": 13
+      },
+      "composio": {
+        "no": 18,
+        "yes": 1
+      },
+      "avg_confidence": 0.18421052631578946
+    },
+    "Communications and Messaging": {
+      "count": 20,
+      "auth": {
+        "unknown": 16,
+        "api_key": 2
+      },
+      "credential": {
         "self_serve": 3,
-        "unknown": 4,
+        "unknown": 15,
         "self_serve_with_trial": 2
       },
       "api": {
-        "unknown": 5,
+        "unknown": 14,
+        "rest": 3
+      },
+      "buildability": {
+        "ready": 6,
+        "unknown": 14
+      },
+      "mcp_public": {
+        "unknown": 20
+      },
+      "composio": {
+        "yes": 2,
+        "no": 18
+      },
+      "avg_confidence": 0.1075
+    },
+    "AI, Research and Media-native": {
+      "count": 20,
+      "auth": {
+        "unknown": 16,
+        "api_key": 2,
+        "bearer_token": 4
+      },
+      "credential": {
+        "unknown": 14,
+        "self_serve": 5,
+        "self_serve_with_trial": 1
+      },
+      "api": {
+        "unknown": 16,
         "rest": 4,
-        "webhooks": 1,
+        "mcp": 4
+      },
+      "buildability": {
+        "unknown": 16,
+        "ready": 4
+      },
+      "mcp_public": {
+        "unknown": 16,
+        "yes": 4
+      },
+      "composio": {
+        "no": 20
+      },
+      "avg_confidence": 0.13499999999999998
+    },
+    "CRM and Sales": {
+      "count": 20,
+      "auth": {
+        "oauth2": 4,
+        "unknown": 14,
+        "api_key": 2,
+        "bearer_token": 2
+      },
+      "credential": {
+        "self_serve": 3,
+        "self_serve_with_trial": 5,
+        "unknown": 12
+      },
+      "api": {
+        "rest": 7,
+        "webhooks": 8,
+        "mcp": 5,
+        "graphql": 2,
+        "unknown": 10,
+        "other": 1
+      },
+      "buildability": {
+        "ready": 11,
+        "unknown": 8,
+        "buildable_with_caveat": 1
+      },
+      "mcp_public": {
+        "yes": 4,
+        "unknown": 16
+      },
+      "composio": {
+        "no": 20
+      },
+      "avg_confidence": 0.16624999999999998
+    },
+    "Developer, Infra and Data platforms": {
+      "count": 20,
+      "auth": {
+        "unknown": 18,
+        "bearer_token": 1,
+        "other": 1
+      },
+      "credential": {
+        "unknown": 14,
+        "self_serve": 6
+      },
+      "api": {
+        "unknown": 16,
+        "rest": 2,
+        "mcp": 2,
+        "other": 1
+      },
+      "buildability": {
+        "unknown": 15,
+        "buildable_with_caveat": 2,
+        "ready": 3
+      },
+      "mcp_public": {
+        "unknown": 19,
+        "yes": 1
+      },
+      "composio": {
+        "yes": 2,
+        "no": 18
+      },
+      "avg_confidence": 0.05874999999999999
+    },
+    "Marketing, Ads, Email and Social": {
+      "count": 20,
+      "auth": {
+        "unknown": 16,
+        "api_key": 4,
+        "oauth2": 2
+      },
+      "credential": {
+        "unknown": 11,
+        "self_serve_with_trial": 4,
+        "self_serve": 5
+      },
+      "api": {
+        "unknown": 13,
+        "rest": 7,
+        "graphql": 2,
+        "mcp": 1
+      },
+      "buildability": {
+        "unknown": 9,
+        "buildable_with_caveat": 2,
+        "ready": 9
+      },
+      "mcp_public": {
+        "unknown": 19,
+        "yes": 1
+      },
+      "composio": {
+        "no": 20
+      },
+      "avg_confidence": 0.18083333333333332
+    },
+    "Productivity and Project Management": {
+      "count": 20,
+      "auth": {
+        "unknown": 14,
+        "oauth2": 6,
+        "api_key": 3
+      },
+      "credential": {
+        "unknown": 14,
+        "self_serve": 6
+      },
+      "api": {
+        "unknown": 11,
+        "graphql": 4,
+        "rest": 5,
+        "webhooks": 4,
         "mcp": 3
       },
       "buildability": {
         "buildable_with_caveat": 2,
-        "ready": 5,
-        "unknown": 3
+        "unknown": 11,
+        "ready": 7
       },
       "mcp_public": {
-        "yes": 3,
-        "unknown": 7
+        "unknown": 17,
+        "yes": 3
       },
       "composio": {
-        "no": 10
+        "yes": 4,
+        "no": 16
       },
-      "avg_confidence": 0.17916666666666664
-    },
-    "Communications and Messaging": {
-      "count": 10,
-      "auth": {
-        "unknown": 7,
-        "api_key": 1
-      },
-      "credential": {
-        "self_serve": 2,
-        "unknown": 7,
-        "self_serve_with_trial": 1
-      },
-      "api": {
-        "unknown": 7,
-        "rest": 1
-      },
-      "buildability": {
-        "ready": 3,
-        "unknown": 7
-      },
-      "mcp_public": {
-        "unknown": 10
-      },
-      "composio": {
-        "yes": 1,
-        "no": 9
-      },
-      "avg_confidence": 0.11750000000000001
-    },
-    "AI, Research and Media-native": {
-      "count": 10,
-      "auth": {
-        "unknown": 8,
-        "api_key": 1,
-        "bearer_token": 2
-      },
-      "credential": {
-        "unknown": 7,
-        "self_serve": 3
-      },
-      "api": {
-        "unknown": 8,
-        "rest": 2,
-        "mcp": 2
-      },
-      "buildability": {
-        "unknown": 8,
-        "ready": 2
-      },
-      "mcp_public": {
-        "unknown": 8,
-        "yes": 2
-      },
-      "composio": {
-        "no": 10
-      },
-      "avg_confidence": 0.13999999999999999
-    },
-    "CRM and Sales": {
-      "count": 10,
-      "auth": {
-        "oauth2": 2,
-        "unknown": 7,
-        "api_key": 1,
-        "bearer_token": 1
-      },
-      "credential": {
-        "self_serve": 2,
-        "self_serve_with_trial": 2,
-        "unknown": 6
-      },
-      "api": {
-        "rest": 3,
-        "webhooks": 4,
-        "mcp": 2,
-        "graphql": 1,
-        "unknown": 5
-      },
-      "buildability": {
-        "ready": 5,
-        "unknown": 5
-      },
-      "mcp_public": {
-        "yes": 2,
-        "unknown": 8
-      },
-      "composio": {
-        "no": 10
-      },
-      "avg_confidence": 0.1675
-    },
-    "Developer, Infra and Data platforms": {
-      "count": 10,
-      "auth": {
-        "unknown": 9,
-        "bearer_token": 1
-      },
-      "credential": {
-        "unknown": 8,
-        "self_serve": 2
-      },
-      "api": {
-        "unknown": 8,
-        "rest": 1,
-        "mcp": 1,
-        "other": 1
-      },
-      "buildability": {
-        "unknown": 9,
-        "buildable_with_caveat": 1
-      },
-      "mcp_public": {
-        "unknown": 9,
-        "yes": 1
-      },
-      "composio": {
-        "yes": 1,
-        "no": 9
-      },
-      "avg_confidence": 0.04833333333333333
-    },
-    "Marketing, Ads, Email and Social": {
-      "count": 10,
-      "auth": {
-        "unknown": 8,
-        "api_key": 2,
-        "oauth2": 1
-      },
-      "credential": {
-        "unknown": 5,
-        "self_serve_with_trial": 3,
-        "self_serve": 2
-      },
-      "api": {
-        "unknown": 7,
-        "rest": 3,
-        "graphql": 1,
-        "mcp": 1
-      },
-      "buildability": {
-        "unknown": 5,
-        "buildable_with_caveat": 1,
-        "ready": 4
-      },
-      "mcp_public": {
-        "unknown": 9,
-        "yes": 1
-      },
-      "composio": {
-        "no": 10
-      },
-      "avg_confidence": 0.18
-    },
-    "Productivity and Project Management": {
-      "count": 10,
-      "auth": {
-        "unknown": 7,
-        "oauth2": 3,
-        "api_key": 1
-      },
-      "credential": {
-        "unknown": 7,
-        "self_serve": 3
-      },
-      "api": {
-        "unknown": 6,
-        "graphql": 2,
-        "rest": 2,
-        "webhooks": 2,
-        "mcp": 1
-      },
-      "buildability": {
-        "buildable_with_caveat": 1,
-        "unknown": 5,
-        "ready": 4
-      },
-      "mcp_public": {
-        "unknown": 8,
-        "yes": 2
-      },
-      "composio": {
-        "yes": 2,
-        "no": 8
-      },
-      "avg_confidence": 0.205
+      "avg_confidence": 0.18125000000000002
     },
     "Ecommerce": {
-      "count": 10,
+      "count": 20,
       "auth": {
-        "unknown": 9,
-        "bearer_token": 1
+        "unknown": 17,
+        "bearer_token": 2,
+        "basic": 1
       },
       "credential": {
-        "unknown": 9,
-        "self_serve_with_trial": 1
+        "unknown": 16,
+        "self_serve_with_trial": 2,
+        "self_serve": 2
       },
       "api": {
-        "graphql": 3,
-        "webhooks": 2,
-        "rest": 3,
-        "unknown": 6
+        "graphql": 6,
+        "webhooks": 4,
+        "rest": 6,
+        "unknown": 10,
+        "mcp": 1
       },
       "buildability": {
-        "ready": 4,
-        "buildable_with_caveat": 2,
-        "unknown": 4
+        "ready": 8,
+        "buildable_with_caveat": 3,
+        "unknown": 9
       },
       "mcp_public": {
-        "unknown": 10
+        "unknown": 20
       },
       "composio": {
-        "no": 10
+        "no": 20
       },
-      "avg_confidence": 0.19666666666666666
+      "avg_confidence": 0.20708333333333334
     }
   },
   "top_blockers": [
@@ -371,16 +386,24 @@
     [
       "Missing documentation for developer/rest-api endpoints",
       1
+    ],
+    [
+      "Documentation pages for REST API endpoints are missing or return 404, indicating incomplete docs.",
+      1
+    ],
+    [
+      "Unknown credential acquisition process",
+      1
     ]
   ],
   "confidence_distribution": {
-    "0.0": 61,
-    "0.1": 12,
-    "0.2": 9,
-    "0.3": 5,
-    "0.4": 7,
-    "0.5": 5,
-    "0.7": 2
+    "0.0": 120,
+    "0.1": 25,
+    "0.2": 16,
+    "0.3": 15,
+    "0.4": 13,
+    "0.5": 7,
+    "0.7": 4
   },
   "opportunities": [
     {
@@ -423,6 +446,96 @@
         "api_breadth": 25,
         "agent_suitability": 25,
         "doc_quality": 20,
+        "blocker_penalty": 0
+      },
+      "buildability": "ready",
+      "credential_access": "self_serve"
+    },
+    {
+      "app": "Telegram",
+      "category": "Communications and Messaging",
+      "score": 100,
+      "segment": "quick_win",
+      "factors": {
+        "credential_access": 30,
+        "api_breadth": 25,
+        "agent_suitability": 25,
+        "doc_quality": 20,
+        "blocker_penalty": 0
+      },
+      "buildability": "ready",
+      "credential_access": "self_serve"
+    },
+    {
+      "app": "Klaviyo",
+      "category": "Marketing, Ads, Email and Social",
+      "score": 100,
+      "segment": "quick_win",
+      "factors": {
+        "credential_access": 30,
+        "api_breadth": 25,
+        "agent_suitability": 25,
+        "doc_quality": 20,
+        "blocker_penalty": 0
+      },
+      "buildability": "ready",
+      "credential_access": "self_serve"
+    },
+    {
+      "app": "SendGrid",
+      "category": "Marketing, Ads, Email and Social",
+      "score": 100,
+      "segment": "quick_win",
+      "factors": {
+        "credential_access": 30,
+        "api_breadth": 25,
+        "agent_suitability": 25,
+        "doc_quality": 20,
+        "blocker_penalty": 0
+      },
+      "buildability": "ready",
+      "credential_access": "self_serve"
+    },
+    {
+      "app": "Linear",
+      "category": "Productivity and Project Management",
+      "score": 100,
+      "segment": "quick_win",
+      "factors": {
+        "credential_access": 30,
+        "api_breadth": 25,
+        "agent_suitability": 25,
+        "doc_quality": 20,
+        "blocker_penalty": 0
+      },
+      "buildability": "ready",
+      "credential_access": "self_serve"
+    },
+    {
+      "app": "Jira",
+      "category": "Productivity and Project Management",
+      "score": 98,
+      "segment": "quick_win",
+      "factors": {
+        "credential_access": 30,
+        "api_breadth": 25,
+        "agent_suitability": 25,
+        "doc_quality": 18,
+        "blocker_penalty": 0
+      },
+      "buildability": "ready",
+      "credential_access": "self_serve"
+    },
+    {
+      "app": "YouTube Transcript",
+      "category": "AI, Research and Media-native",
+      "score": 98,
+      "segment": "quick_win",
+      "factors": {
+        "credential_access": 30,
+        "api_breadth": 25,
+        "agent_suitability": 25,
+        "doc_quality": 18,
         "blocker_penalty": 0
       },
       "buildability": "ready",
@@ -504,6 +617,51 @@
       "credential_access": "self_serve"
     },
     {
+      "app": "Reducto",
+      "category": "AI, Research and Media-native",
+      "score": 92,
+      "segment": "quick_win",
+      "factors": {
+        "credential_access": 30,
+        "api_breadth": 25,
+        "agent_suitability": 25,
+        "doc_quality": 12,
+        "blocker_penalty": 0
+      },
+      "buildability": "ready",
+      "credential_access": "self_serve"
+    },
+    {
+      "app": "WooCommerce",
+      "category": "Ecommerce",
+      "score": 88,
+      "segment": "quick_win",
+      "factors": {
+        "credential_access": 30,
+        "api_breadth": 25,
+        "agent_suitability": 13,
+        "doc_quality": 20,
+        "blocker_penalty": 0
+      },
+      "buildability": "ready",
+      "credential_access": "self_serve"
+    },
+    {
+      "app": "Bright Data",
+      "category": "Data, SEO and Scraping",
+      "score": 87,
+      "segment": "quick_win",
+      "factors": {
+        "credential_access": 25,
+        "api_breadth": 25,
+        "agent_suitability": 25,
+        "doc_quality": 12,
+        "blocker_penalty": 0
+      },
+      "buildability": "ready",
+      "credential_access": "self_serve_with_trial"
+    },
+    {
       "app": "Bright Data",
       "category": "Data, SEO and Scraping",
       "score": 87,
@@ -547,6 +705,66 @@
       },
       "buildability": "ready",
       "credential_access": "self_serve"
+    },
+    {
+      "app": "Firecrawl",
+      "category": "Data, SEO and Scraping",
+      "score": 86,
+      "segment": "quick_win",
+      "factors": {
+        "credential_access": 30,
+        "api_breadth": 25,
+        "agent_suitability": 25,
+        "doc_quality": 6,
+        "blocker_penalty": 0
+      },
+      "buildability": "ready",
+      "credential_access": "self_serve"
+    },
+    {
+      "app": "Apify",
+      "category": "Data, SEO and Scraping",
+      "score": 86,
+      "segment": "quick_win",
+      "factors": {
+        "credential_access": 30,
+        "api_breadth": 25,
+        "agent_suitability": 25,
+        "doc_quality": 6,
+        "blocker_penalty": 0
+      },
+      "buildability": "ready",
+      "credential_access": "self_serve"
+    },
+    {
+      "app": "Plaid",
+      "category": "Finance and Fintech",
+      "score": 86,
+      "segment": "quick_win",
+      "factors": {
+        "credential_access": 30,
+        "api_breadth": 25,
+        "agent_suitability": 25,
+        "doc_quality": 6,
+        "blocker_penalty": 0
+      },
+      "buildability": "ready",
+      "credential_access": "self_serve"
+    },
+    {
+      "app": "BigCommerce",
+      "category": "Ecommerce",
+      "score": 84,
+      "segment": "quick_win",
+      "factors": {
+        "credential_access": 25,
+        "api_breadth": 25,
+        "agent_suitability": 25,
+        "doc_quality": 9,
+        "blocker_penalty": 0
+      },
+      "buildability": "ready",
+      "credential_access": "self_serve_with_trial"
     },
     {
       "app": "BigCommerce",
@@ -609,6 +827,36 @@
       "credential_access": "self_serve"
     },
     {
+      "app": "Pinterest",
+      "category": "Marketing, Ads, Email and Social",
+      "score": 83,
+      "segment": "quick_win",
+      "factors": {
+        "credential_access": 30,
+        "api_breadth": 25,
+        "agent_suitability": 13,
+        "doc_quality": 15,
+        "blocker_penalty": 0
+      },
+      "buildability": "ready",
+      "credential_access": "self_serve"
+    },
+    {
+      "app": "Asana",
+      "category": "Productivity and Project Management",
+      "score": 83,
+      "segment": "quick_win",
+      "factors": {
+        "credential_access": 30,
+        "api_breadth": 25,
+        "agent_suitability": 25,
+        "doc_quality": 3,
+        "blocker_penalty": 0
+      },
+      "buildability": "ready",
+      "credential_access": "self_serve"
+    },
+    {
       "app": "Twenty",
       "category": "CRM and Sales",
       "score": 81,
@@ -639,6 +887,81 @@
       "credential_access": "self_serve_with_trial"
     },
     {
+      "app": "Twenty",
+      "category": "CRM and Sales",
+      "score": 81,
+      "segment": "quick_win",
+      "factors": {
+        "credential_access": 25,
+        "api_breadth": 25,
+        "agent_suitability": 25,
+        "doc_quality": 6,
+        "blocker_penalty": 0
+      },
+      "buildability": "ready",
+      "credential_access": "self_serve_with_trial"
+    },
+    {
+      "app": "Shopify",
+      "category": "Ecommerce",
+      "score": 77,
+      "segment": "quick_win",
+      "factors": {
+        "credential_access": 30,
+        "api_breadth": 25,
+        "agent_suitability": 13,
+        "doc_quality": 9,
+        "blocker_penalty": 0
+      },
+      "buildability": "ready",
+      "credential_access": "self_serve"
+    },
+    {
+      "app": "Twilio",
+      "category": "Communications and Messaging",
+      "score": 75,
+      "segment": "quick_win",
+      "factors": {
+        "credential_access": 25,
+        "api_breadth": 25,
+        "agent_suitability": 13,
+        "doc_quality": 12,
+        "blocker_penalty": 0
+      },
+      "buildability": "ready",
+      "credential_access": "self_serve_with_trial"
+    },
+    {
+      "app": "Intercom",
+      "category": "Support and Helpdesk",
+      "score": 74,
+      "segment": "high_value_gated",
+      "factors": {
+        "credential_access": 30,
+        "api_breadth": 25,
+        "agent_suitability": 13,
+        "doc_quality": 6,
+        "blocker_penalty": 0
+      },
+      "buildability": "ready",
+      "credential_access": "self_serve"
+    },
+    {
+      "app": "Attio",
+      "category": "CRM and Sales",
+      "score": 72,
+      "segment": "high_value_gated",
+      "factors": {
+        "credential_access": 10,
+        "api_breadth": 25,
+        "agent_suitability": 25,
+        "doc_quality": 12,
+        "blocker_penalty": 0
+      },
+      "buildability": "ready",
+      "credential_access": "unknown"
+    },
+    {
       "app": "MrScraper",
       "category": "Data, SEO and Scraping",
       "score": 71,
@@ -656,6 +979,21 @@
     {
       "app": "Pipedrive",
       "category": "CRM and Sales",
+      "score": 71,
+      "segment": "high_value_gated",
+      "factors": {
+        "credential_access": 30,
+        "api_breadth": 25,
+        "agent_suitability": 13,
+        "doc_quality": 3,
+        "blocker_penalty": 0
+      },
+      "buildability": "ready",
+      "credential_access": "self_serve"
+    },
+    {
+      "app": "MrScraper",
+      "category": "Data, SEO and Scraping",
       "score": 71,
       "segment": "high_value_gated",
       "factors": {
@@ -714,8 +1052,38 @@
       "credential_access": "self_serve_with_trial"
     },
     {
+      "app": "Zendesk",
+      "category": "Support and Helpdesk",
+      "score": 69,
+      "segment": "high_value_gated",
+      "factors": {
+        "credential_access": 25,
+        "api_breadth": 25,
+        "agent_suitability": 13,
+        "doc_quality": 6,
+        "blocker_penalty": 0
+      },
+      "buildability": "ready",
+      "credential_access": "self_serve_with_trial"
+    },
+    {
       "app": "Monday.com",
       "category": "Productivity and Project Management",
+      "score": 68,
+      "segment": "high_value_gated",
+      "factors": {
+        "credential_access": 10,
+        "api_breadth": 25,
+        "agent_suitability": 13,
+        "doc_quality": 20,
+        "blocker_penalty": 0
+      },
+      "buildability": "ready",
+      "credential_access": "unknown"
+    },
+    {
+      "app": "Mailchimp",
+      "category": "Marketing, Ads, Email and Social",
       "score": 68,
       "segment": "high_value_gated",
       "factors": {
@@ -744,8 +1112,53 @@
       "credential_access": "self_serve_with_trial"
     },
     {
+      "app": "Close",
+      "category": "CRM and Sales",
+      "score": 66,
+      "segment": "high_value_gated",
+      "factors": {
+        "credential_access": 25,
+        "api_breadth": 25,
+        "agent_suitability": 13,
+        "doc_quality": 3,
+        "blocker_penalty": 0
+      },
+      "buildability": "ready",
+      "credential_access": "self_serve_with_trial"
+    },
+    {
+      "app": "SE Ranking",
+      "category": "Data, SEO and Scraping",
+      "score": 66,
+      "segment": "high_value_gated",
+      "factors": {
+        "credential_access": 25,
+        "api_breadth": 25,
+        "agent_suitability": 13,
+        "doc_quality": 3,
+        "blocker_penalty": 0
+      },
+      "buildability": "ready",
+      "credential_access": "self_serve_with_trial"
+    },
+    {
       "app": "DealCloud",
       "category": "CRM and Sales",
+      "score": 63,
+      "segment": "high_value_gated",
+      "factors": {
+        "credential_access": 10,
+        "api_breadth": 25,
+        "agent_suitability": 25,
+        "doc_quality": 3,
+        "blocker_penalty": 0
+      },
+      "buildability": "ready",
+      "credential_access": "unknown"
+    },
+    {
+      "app": "Plain",
+      "category": "Support and Helpdesk",
       "score": 63,
       "segment": "high_value_gated",
       "factors": {
@@ -772,6 +1185,21 @@
       },
       "buildability": "ready",
       "credential_access": "self_serve_with_trial"
+    },
+    {
+      "app": "Vercel",
+      "category": "Developer, Infra and Data platforms",
+      "score": 58,
+      "segment": "high_value_gated",
+      "factors": {
+        "credential_access": 30,
+        "api_breadth": 5,
+        "agent_suitability": 13,
+        "doc_quality": 20,
+        "blocker_penalty": -10
+      },
+      "buildability": "buildable_with_caveat",
+      "credential_access": "self_serve"
     },
     {
       "app": "Shopify",
@@ -819,6 +1247,21 @@
       "credential_access": "unknown"
     },
     {
+      "app": "Amazon Selling Partner",
+      "category": "Ecommerce",
+      "score": 55,
+      "segment": "high_value_gated",
+      "factors": {
+        "credential_access": 10,
+        "api_breadth": 25,
+        "agent_suitability": 0,
+        "doc_quality": 20,
+        "blocker_penalty": 0
+      },
+      "buildability": "unknown",
+      "credential_access": "unknown"
+    },
+    {
       "app": "Intercom",
       "category": "Support and Helpdesk",
       "score": 54,
@@ -828,6 +1271,36 @@
         "api_breadth": 25,
         "agent_suitability": 13,
         "doc_quality": 6,
+        "blocker_penalty": 0
+      },
+      "buildability": "ready",
+      "credential_access": "unknown"
+    },
+    {
+      "app": "DealCloud",
+      "category": "CRM and Sales",
+      "score": 53,
+      "segment": "high_effort",
+      "factors": {
+        "credential_access": 10,
+        "api_breadth": 25,
+        "agent_suitability": 25,
+        "doc_quality": 3,
+        "blocker_penalty": -10
+      },
+      "buildability": "buildable_with_caveat",
+      "credential_access": "unknown"
+    },
+    {
+      "app": "Magento",
+      "category": "Ecommerce",
+      "score": 51,
+      "segment": "high_effort",
+      "factors": {
+        "credential_access": 10,
+        "api_breadth": 25,
+        "agent_suitability": 13,
+        "doc_quality": 3,
         "blocker_penalty": 0
       },
       "buildability": "ready",
@@ -849,6 +1322,21 @@
       "credential_access": "unknown"
     },
     {
+      "app": "Pipedrive",
+      "category": "CRM and Sales",
+      "score": 51,
+      "segment": "high_effort",
+      "factors": {
+        "credential_access": 30,
+        "api_breadth": 5,
+        "agent_suitability": 13,
+        "doc_quality": 3,
+        "blocker_penalty": 0
+      },
+      "buildability": "ready",
+      "credential_access": "self_serve"
+    },
+    {
       "app": "Gladly",
       "category": "Support and Helpdesk",
       "score": 44,
@@ -866,6 +1354,21 @@
     {
       "app": "Slack",
       "category": "Communications and Messaging",
+      "score": 44,
+      "segment": "high_effort",
+      "factors": {
+        "credential_access": 30,
+        "api_breadth": 5,
+        "agent_suitability": 0,
+        "doc_quality": 9,
+        "blocker_penalty": 0
+      },
+      "buildability": "ready",
+      "credential_access": "self_serve"
+    },
+    {
+      "app": "GitHub",
+      "category": "Developer, Infra and Data platforms",
       "score": 44,
       "segment": "high_effort",
       "factors": {
@@ -924,6 +1427,81 @@
       "credential_access": "self_serve"
     },
     {
+      "app": "Clay",
+      "category": "Data, SEO and Scraping",
+      "score": 41,
+      "segment": "high_effort",
+      "factors": {
+        "credential_access": 10,
+        "api_breadth": 25,
+        "agent_suitability": 0,
+        "doc_quality": 6,
+        "blocker_penalty": 0
+      },
+      "buildability": "ready",
+      "credential_access": "unknown"
+    },
+    {
+      "app": "ClickUp",
+      "category": "Productivity and Project Management",
+      "score": 41,
+      "segment": "high_effort",
+      "factors": {
+        "credential_access": 10,
+        "api_breadth": 25,
+        "agent_suitability": 13,
+        "doc_quality": 3,
+        "blocker_penalty": -10
+      },
+      "buildability": "buildable_with_caveat",
+      "credential_access": "unknown"
+    },
+    {
+      "app": "Stripe",
+      "category": "Finance and Fintech",
+      "score": 41,
+      "segment": "high_effort",
+      "factors": {
+        "credential_access": 30,
+        "api_breadth": 5,
+        "agent_suitability": 0,
+        "doc_quality": 6,
+        "blocker_penalty": 0
+      },
+      "buildability": "unknown",
+      "credential_access": "self_serve"
+    },
+    {
+      "app": "Front",
+      "category": "Support and Helpdesk",
+      "score": 41,
+      "segment": "high_effort",
+      "factors": {
+        "credential_access": 10,
+        "api_breadth": 25,
+        "agent_suitability": 0,
+        "doc_quality": 6,
+        "blocker_penalty": 0
+      },
+      "buildability": "ready",
+      "credential_access": "unknown"
+    },
+    {
+      "app": "Salesforce",
+      "category": "CRM and Sales",
+      "score": 39,
+      "segment": "high_effort",
+      "factors": {
+        "credential_access": 25,
+        "api_breadth": 5,
+        "agent_suitability": 0,
+        "doc_quality": 9,
+        "blocker_penalty": 0
+      },
+      "buildability": "ready",
+      "credential_access": "self_serve_with_trial"
+    },
+    {
       "app": "Neo4j",
       "category": "Developer, Infra and Data platforms",
       "score": 38,
@@ -963,6 +1541,141 @@
         "api_breadth": 25,
         "agent_suitability": 0,
         "doc_quality": 3,
+        "blocker_penalty": 0
+      },
+      "buildability": "unknown",
+      "credential_access": "unknown"
+    },
+    {
+      "app": "Google Ads",
+      "category": "Marketing, Ads, Email and Social",
+      "score": 38,
+      "segment": "high_effort",
+      "factors": {
+        "credential_access": 10,
+        "api_breadth": 25,
+        "agent_suitability": 0,
+        "doc_quality": 3,
+        "blocker_penalty": 0
+      },
+      "buildability": "ready",
+      "credential_access": "unknown"
+    },
+    {
+      "app": "Supabase",
+      "category": "Developer, Infra and Data platforms",
+      "score": 38,
+      "segment": "high_effort",
+      "factors": {
+        "credential_access": 30,
+        "api_breadth": 5,
+        "agent_suitability": 0,
+        "doc_quality": 3,
+        "blocker_penalty": 0
+      },
+      "buildability": "ready",
+      "credential_access": "self_serve"
+    },
+    {
+      "app": "Neo4j",
+      "category": "Developer, Infra and Data platforms",
+      "score": 38,
+      "segment": "high_effort",
+      "factors": {
+        "credential_access": 30,
+        "api_breadth": 5,
+        "agent_suitability": 0,
+        "doc_quality": 3,
+        "blocker_penalty": 0
+      },
+      "buildability": "ready",
+      "credential_access": "self_serve"
+    },
+    {
+      "app": "Copper",
+      "category": "CRM and Sales",
+      "score": 38,
+      "segment": "high_effort",
+      "factors": {
+        "credential_access": 10,
+        "api_breadth": 25,
+        "agent_suitability": 0,
+        "doc_quality": 3,
+        "blocker_penalty": 0
+      },
+      "buildability": "ready",
+      "credential_access": "unknown"
+    },
+    {
+      "app": "DataForSEO",
+      "category": "Data, SEO and Scraping",
+      "score": 38,
+      "segment": "high_effort",
+      "factors": {
+        "credential_access": 10,
+        "api_breadth": 25,
+        "agent_suitability": 0,
+        "doc_quality": 3,
+        "blocker_penalty": 0
+      },
+      "buildability": "unknown",
+      "credential_access": "unknown"
+    },
+    {
+      "app": "fanbasis",
+      "category": "Ecommerce",
+      "score": 38,
+      "segment": "high_effort",
+      "factors": {
+        "credential_access": 10,
+        "api_breadth": 5,
+        "agent_suitability": 13,
+        "doc_quality": 20,
+        "blocker_penalty": -10
+      },
+      "buildability": "buildable_with_caveat",
+      "credential_access": "unknown"
+    },
+    {
+      "app": "Grain",
+      "category": "AI, Research and Media-native",
+      "score": 36,
+      "segment": "high_effort",
+      "factors": {
+        "credential_access": 25,
+        "api_breadth": 5,
+        "agent_suitability": 0,
+        "doc_quality": 6,
+        "blocker_penalty": 0
+      },
+      "buildability": "unknown",
+      "credential_access": "self_serve_with_trial"
+    },
+    {
+      "app": "Podio",
+      "category": "CRM and Sales",
+      "score": 35,
+      "segment": "high_effort",
+      "factors": {
+        "credential_access": 10,
+        "api_breadth": 5,
+        "agent_suitability": 0,
+        "doc_quality": 20,
+        "blocker_penalty": 0
+      },
+      "buildability": "unknown",
+      "credential_access": "unknown"
+    },
+    {
+      "app": "iPayX",
+      "category": "Finance and Fintech",
+      "score": 35,
+      "segment": "high_effort",
+      "factors": {
+        "credential_access": 10,
+        "api_breadth": 5,
+        "agent_suitability": 0,
+        "doc_quality": 20,
         "blocker_penalty": 0
       },
       "buildability": "unknown",
@@ -1014,6 +1727,36 @@
       "credential_access": "unknown"
     },
     {
+      "app": "Ramp",
+      "category": "Finance and Fintech",
+      "score": 33,
+      "segment": "needs_partnership",
+      "factors": {
+        "credential_access": 10,
+        "api_breadth": 5,
+        "agent_suitability": 0,
+        "doc_quality": 18,
+        "blocker_penalty": 0
+      },
+      "buildability": "unknown",
+      "credential_access": "unknown"
+    },
+    {
+      "app": "Smartsheet",
+      "category": "Productivity and Project Management",
+      "score": 31,
+      "segment": "needs_partnership",
+      "factors": {
+        "credential_access": 10,
+        "api_breadth": 5,
+        "agent_suitability": 13,
+        "doc_quality": 3,
+        "blocker_penalty": 0
+      },
+      "buildability": "unknown",
+      "credential_access": "unknown"
+    },
+    {
       "app": "Lark",
       "category": "Communications and Messaging",
       "score": 30,
@@ -1027,6 +1770,36 @@
       },
       "buildability": "unknown",
       "credential_access": "unknown"
+    },
+    {
+      "app": "Lark",
+      "category": "Communications and Messaging",
+      "score": 30,
+      "segment": "needs_partnership",
+      "factors": {
+        "credential_access": 10,
+        "api_breadth": 5,
+        "agent_suitability": 0,
+        "doc_quality": 15,
+        "blocker_penalty": 0
+      },
+      "buildability": "unknown",
+      "credential_access": "unknown"
+    },
+    {
+      "app": "GoHighLevel",
+      "category": "Marketing, Ads, Email and Social",
+      "score": 29,
+      "segment": "needs_partnership",
+      "factors": {
+        "credential_access": 25,
+        "api_breadth": 5,
+        "agent_suitability": 0,
+        "doc_quality": 9,
+        "blocker_penalty": -10
+      },
+      "buildability": "buildable_with_caveat",
+      "credential_access": "self_serve_with_trial"
     },
     {
       "app": "GoHighLevel",
@@ -1119,6 +1892,66 @@
       "credential_access": "unknown"
     },
     {
+      "app": "Slack",
+      "category": "Communications and Messaging",
+      "score": 24,
+      "segment": "needs_partnership",
+      "factors": {
+        "credential_access": 10,
+        "api_breadth": 5,
+        "agent_suitability": 0,
+        "doc_quality": 9,
+        "blocker_penalty": 0
+      },
+      "buildability": "ready",
+      "credential_access": "unknown"
+    },
+    {
+      "app": "Gladly",
+      "category": "Support and Helpdesk",
+      "score": 24,
+      "segment": "needs_partnership",
+      "factors": {
+        "credential_access": 10,
+        "api_breadth": 5,
+        "agent_suitability": 0,
+        "doc_quality": 9,
+        "blocker_penalty": 0
+      },
+      "buildability": "ready",
+      "credential_access": "unknown"
+    },
+    {
+      "app": "Zoho CRM",
+      "category": "CRM and Sales",
+      "score": 24,
+      "segment": "needs_partnership",
+      "factors": {
+        "credential_access": 10,
+        "api_breadth": 5,
+        "agent_suitability": 0,
+        "doc_quality": 9,
+        "blocker_penalty": 0
+      },
+      "buildability": "unknown",
+      "credential_access": "unknown"
+    },
+    {
+      "app": "QuickBooks",
+      "category": "Finance and Fintech",
+      "score": 24,
+      "segment": "needs_partnership",
+      "factors": {
+        "credential_access": 10,
+        "api_breadth": 5,
+        "agent_suitability": 0,
+        "doc_quality": 9,
+        "blocker_penalty": 0
+      },
+      "buildability": "unknown",
+      "credential_access": "unknown"
+    },
+    {
       "app": "Aircall",
       "category": "Communications and Messaging",
       "score": 21,
@@ -1166,6 +1999,66 @@
     {
       "app": "Front",
       "category": "Support and Helpdesk",
+      "score": 21,
+      "segment": "needs_partnership",
+      "factors": {
+        "credential_access": 10,
+        "api_breadth": 5,
+        "agent_suitability": 0,
+        "doc_quality": 6,
+        "blocker_penalty": 0
+      },
+      "buildability": "unknown",
+      "credential_access": "unknown"
+    },
+    {
+      "app": "Aircall",
+      "category": "Communications and Messaging",
+      "score": 21,
+      "segment": "needs_partnership",
+      "factors": {
+        "credential_access": 10,
+        "api_breadth": 5,
+        "agent_suitability": 0,
+        "doc_quality": 6,
+        "blocker_penalty": 0
+      },
+      "buildability": "unknown",
+      "credential_access": "unknown"
+    },
+    {
+      "app": "Notion",
+      "category": "Productivity and Project Management",
+      "score": 21,
+      "segment": "needs_partnership",
+      "factors": {
+        "credential_access": 10,
+        "api_breadth": 5,
+        "agent_suitability": 0,
+        "doc_quality": 6,
+        "blocker_penalty": 0
+      },
+      "buildability": "unknown",
+      "credential_access": "unknown"
+    },
+    {
+      "app": "Threads",
+      "category": "Marketing, Ads, Email and Social",
+      "score": 21,
+      "segment": "needs_partnership",
+      "factors": {
+        "credential_access": 10,
+        "api_breadth": 5,
+        "agent_suitability": 0,
+        "doc_quality": 6,
+        "blocker_penalty": 0
+      },
+      "buildability": "unknown",
+      "credential_access": "unknown"
+    },
+    {
+      "app": "Squarespace",
+      "category": "Ecommerce",
       "score": 21,
       "segment": "needs_partnership",
       "factors": {
@@ -1450,6 +2343,216 @@
     },
     {
       "app": "Freshdesk",
+      "category": "Support and Helpdesk",
+      "score": 18,
+      "segment": "blocked",
+      "factors": {
+        "credential_access": 10,
+        "api_breadth": 5,
+        "agent_suitability": 0,
+        "doc_quality": 3,
+        "blocker_penalty": 0
+      },
+      "buildability": "unknown",
+      "credential_access": "unknown"
+    },
+    {
+      "app": "Zoho Cliq",
+      "category": "Communications and Messaging",
+      "score": 18,
+      "segment": "blocked",
+      "factors": {
+        "credential_access": 10,
+        "api_breadth": 5,
+        "agent_suitability": 0,
+        "doc_quality": 3,
+        "blocker_penalty": 0
+      },
+      "buildability": "unknown",
+      "credential_access": "unknown"
+    },
+    {
+      "app": "NotebookLM",
+      "category": "AI, Research and Media-native",
+      "score": 18,
+      "segment": "blocked",
+      "factors": {
+        "credential_access": 10,
+        "api_breadth": 5,
+        "agent_suitability": 0,
+        "doc_quality": 3,
+        "blocker_penalty": 0
+      },
+      "buildability": "unknown",
+      "credential_access": "unknown"
+    },
+    {
+      "app": "Fathom",
+      "category": "AI, Research and Media-native",
+      "score": 18,
+      "segment": "blocked",
+      "factors": {
+        "credential_access": 10,
+        "api_breadth": 5,
+        "agent_suitability": 0,
+        "doc_quality": 3,
+        "blocker_penalty": 0
+      },
+      "buildability": "unknown",
+      "credential_access": "unknown"
+    },
+    {
+      "app": "Pumble",
+      "category": "Communications and Messaging",
+      "score": 18,
+      "segment": "blocked",
+      "factors": {
+        "credential_access": 10,
+        "api_breadth": 5,
+        "agent_suitability": 0,
+        "doc_quality": 3,
+        "blocker_penalty": 0
+      },
+      "buildability": "unknown",
+      "credential_access": "unknown"
+    },
+    {
+      "app": "Consensus",
+      "category": "AI, Research and Media-native",
+      "score": 18,
+      "segment": "blocked",
+      "factors": {
+        "credential_access": 10,
+        "api_breadth": 5,
+        "agent_suitability": 0,
+        "doc_quality": 3,
+        "blocker_penalty": 0
+      },
+      "buildability": "unknown",
+      "credential_access": "unknown"
+    },
+    {
+      "app": "higgsfield",
+      "category": "AI, Research and Media-native",
+      "score": 18,
+      "segment": "blocked",
+      "factors": {
+        "credential_access": 10,
+        "api_breadth": 5,
+        "agent_suitability": 0,
+        "doc_quality": 3,
+        "blocker_penalty": 0
+      },
+      "buildability": "unknown",
+      "credential_access": "unknown"
+    },
+    {
+      "app": "Cloudflare",
+      "category": "Developer, Infra and Data platforms",
+      "score": 18,
+      "segment": "blocked",
+      "factors": {
+        "credential_access": 10,
+        "api_breadth": 5,
+        "agent_suitability": 0,
+        "doc_quality": 3,
+        "blocker_penalty": 0
+      },
+      "buildability": "unknown",
+      "credential_access": "unknown"
+    },
+    {
+      "app": "Snowflake",
+      "category": "Developer, Infra and Data platforms",
+      "score": 18,
+      "segment": "blocked",
+      "factors": {
+        "credential_access": 10,
+        "api_breadth": 5,
+        "agent_suitability": 0,
+        "doc_quality": 3,
+        "blocker_penalty": 0
+      },
+      "buildability": "unknown",
+      "credential_access": "unknown"
+    },
+    {
+      "app": "Airtable",
+      "category": "Productivity and Project Management",
+      "score": 18,
+      "segment": "blocked",
+      "factors": {
+        "credential_access": 10,
+        "api_breadth": 5,
+        "agent_suitability": 0,
+        "doc_quality": 3,
+        "blocker_penalty": 0
+      },
+      "buildability": "unknown",
+      "credential_access": "unknown"
+    },
+    {
+      "app": "HubSpot",
+      "category": "CRM and Sales",
+      "score": 18,
+      "segment": "blocked",
+      "factors": {
+        "credential_access": 10,
+        "api_breadth": 5,
+        "agent_suitability": 0,
+        "doc_quality": 3,
+        "blocker_penalty": 0
+      },
+      "buildability": "unknown",
+      "credential_access": "unknown"
+    },
+    {
+      "app": "Ecwid",
+      "category": "Ecommerce",
+      "score": 18,
+      "segment": "blocked",
+      "factors": {
+        "credential_access": 10,
+        "api_breadth": 5,
+        "agent_suitability": 0,
+        "doc_quality": 3,
+        "blocker_penalty": 0
+      },
+      "buildability": "unknown",
+      "credential_access": "unknown"
+    },
+    {
+      "app": "Freshdesk",
+      "category": "Support and Helpdesk",
+      "score": 18,
+      "segment": "blocked",
+      "factors": {
+        "credential_access": 10,
+        "api_breadth": 5,
+        "agent_suitability": 0,
+        "doc_quality": 3,
+        "blocker_penalty": 0
+      },
+      "buildability": "unknown",
+      "credential_access": "unknown"
+    },
+    {
+      "app": "Gumroad",
+      "category": "Ecommerce",
+      "score": 18,
+      "segment": "blocked",
+      "factors": {
+        "credential_access": 10,
+        "api_breadth": 5,
+        "agent_suitability": 0,
+        "doc_quality": 3,
+        "blocker_penalty": 0
+      },
+      "buildability": "unknown",
+      "credential_access": "unknown"
+    },
+    {
+      "app": "Gorgias",
       "category": "Support and Helpdesk",
       "score": 18,
       "segment": "blocked",
@@ -1869,6 +2972,411 @@
       "credential_access": "unknown"
     },
     {
+      "app": "Brex",
+      "category": "Finance and Fintech",
+      "score": 15,
+      "segment": "blocked",
+      "factors": {
+        "credential_access": 10,
+        "api_breadth": 5,
+        "agent_suitability": 0,
+        "doc_quality": 0,
+        "blocker_penalty": 0
+      },
+      "buildability": "unknown",
+      "credential_access": "unknown"
+    },
+    {
+      "app": "PitchBook",
+      "category": "Finance and Fintech",
+      "score": 15,
+      "segment": "blocked",
+      "factors": {
+        "credential_access": 10,
+        "api_breadth": 5,
+        "agent_suitability": 0,
+        "doc_quality": 0,
+        "blocker_penalty": 0
+      },
+      "buildability": "unknown",
+      "credential_access": "unknown"
+    },
+    {
+      "app": "Sherlock",
+      "category": "Data, SEO and Scraping",
+      "score": 15,
+      "segment": "blocked",
+      "factors": {
+        "credential_access": 10,
+        "api_breadth": 5,
+        "agent_suitability": 0,
+        "doc_quality": 0,
+        "blocker_penalty": 0
+      },
+      "buildability": "unknown",
+      "credential_access": "unknown"
+    },
+    {
+      "app": "Discord",
+      "category": "Communications and Messaging",
+      "score": 15,
+      "segment": "blocked",
+      "factors": {
+        "credential_access": 10,
+        "api_breadth": 5,
+        "agent_suitability": 0,
+        "doc_quality": 0,
+        "blocker_penalty": 0
+      },
+      "buildability": "unknown",
+      "credential_access": "unknown"
+    },
+    {
+      "app": "Waterfall.io",
+      "category": "Data, SEO and Scraping",
+      "score": 15,
+      "segment": "blocked",
+      "factors": {
+        "credential_access": 10,
+        "api_breadth": 5,
+        "agent_suitability": 0,
+        "doc_quality": 0,
+        "blocker_penalty": 0
+      },
+      "buildability": "unknown",
+      "credential_access": "unknown"
+    },
+    {
+      "app": "Otter AI",
+      "category": "AI, Research and Media-native",
+      "score": 15,
+      "segment": "blocked",
+      "factors": {
+        "credential_access": 10,
+        "api_breadth": 5,
+        "agent_suitability": 0,
+        "doc_quality": 0,
+        "blocker_penalty": 0
+      },
+      "buildability": "unknown",
+      "credential_access": "unknown"
+    },
+    {
+      "app": "Devin",
+      "category": "AI, Research and Media-native",
+      "score": 15,
+      "segment": "blocked",
+      "factors": {
+        "credential_access": 10,
+        "api_breadth": 5,
+        "agent_suitability": 0,
+        "doc_quality": 0,
+        "blocker_penalty": 0
+      },
+      "buildability": "unknown",
+      "credential_access": "unknown"
+    },
+    {
+      "app": "WhatsApp Business",
+      "category": "Communications and Messaging",
+      "score": 15,
+      "segment": "blocked",
+      "factors": {
+        "credential_access": 10,
+        "api_breadth": 5,
+        "agent_suitability": 0,
+        "doc_quality": 0,
+        "blocker_penalty": 0
+      },
+      "buildability": "unknown",
+      "credential_access": "unknown"
+    },
+    {
+      "app": "Netlify",
+      "category": "Developer, Infra and Data platforms",
+      "score": 15,
+      "segment": "blocked",
+      "factors": {
+        "credential_access": 10,
+        "api_breadth": 5,
+        "agent_suitability": 0,
+        "doc_quality": 0,
+        "blocker_penalty": 0
+      },
+      "buildability": "unknown",
+      "credential_access": "unknown"
+    },
+    {
+      "app": "Vonage",
+      "category": "Communications and Messaging",
+      "score": 15,
+      "segment": "blocked",
+      "factors": {
+        "credential_access": 10,
+        "api_breadth": 5,
+        "agent_suitability": 0,
+        "doc_quality": 0,
+        "blocker_penalty": 0
+      },
+      "buildability": "unknown",
+      "credential_access": "unknown"
+    },
+    {
+      "app": "Mermaid CLI",
+      "category": "AI, Research and Media-native",
+      "score": 15,
+      "segment": "blocked",
+      "factors": {
+        "credential_access": 10,
+        "api_breadth": 5,
+        "agent_suitability": 0,
+        "doc_quality": 0,
+        "blocker_penalty": 0
+      },
+      "buildability": "unknown",
+      "credential_access": "unknown"
+    },
+    {
+      "app": "Meta Ads",
+      "category": "Marketing, Ads, Email and Social",
+      "score": 15,
+      "segment": "blocked",
+      "factors": {
+        "credential_access": 10,
+        "api_breadth": 5,
+        "agent_suitability": 0,
+        "doc_quality": 0,
+        "blocker_penalty": 0
+      },
+      "buildability": "unknown",
+      "credential_access": "unknown"
+    },
+    {
+      "app": "LinkedIn Ads",
+      "category": "Marketing, Ads, Email and Social",
+      "score": 15,
+      "segment": "blocked",
+      "factors": {
+        "credential_access": 10,
+        "api_breadth": 5,
+        "agent_suitability": 0,
+        "doc_quality": 0,
+        "blocker_penalty": 0
+      },
+      "buildability": "unknown",
+      "credential_access": "unknown"
+    },
+    {
+      "app": "MongoDB Atlas",
+      "category": "Developer, Infra and Data platforms",
+      "score": 15,
+      "segment": "blocked",
+      "factors": {
+        "credential_access": 10,
+        "api_breadth": 5,
+        "agent_suitability": 0,
+        "doc_quality": 0,
+        "blocker_penalty": 0
+      },
+      "buildability": "unknown",
+      "credential_access": "unknown"
+    },
+    {
+      "app": "Datadog",
+      "category": "Developer, Infra and Data platforms",
+      "score": 15,
+      "segment": "blocked",
+      "factors": {
+        "credential_access": 10,
+        "api_breadth": 5,
+        "agent_suitability": 0,
+        "doc_quality": 0,
+        "blocker_penalty": 0
+      },
+      "buildability": "unknown",
+      "credential_access": "unknown"
+    },
+    {
+      "app": "Sentry",
+      "category": "Developer, Infra and Data platforms",
+      "score": 15,
+      "segment": "blocked",
+      "factors": {
+        "credential_access": 10,
+        "api_breadth": 5,
+        "agent_suitability": 0,
+        "doc_quality": 0,
+        "blocker_penalty": 0
+      },
+      "buildability": "unknown",
+      "credential_access": "unknown"
+    },
+    {
+      "app": "systeme.io",
+      "category": "Marketing, Ads, Email and Social",
+      "score": 15,
+      "segment": "blocked",
+      "factors": {
+        "credential_access": 10,
+        "api_breadth": 5,
+        "agent_suitability": 0,
+        "doc_quality": 0,
+        "blocker_penalty": 0
+      },
+      "buildability": "unknown",
+      "credential_access": "unknown"
+    },
+    {
+      "app": "Monday.com",
+      "category": "Productivity and Project Management",
+      "score": 15,
+      "segment": "blocked",
+      "factors": {
+        "credential_access": 10,
+        "api_breadth": 5,
+        "agent_suitability": 0,
+        "doc_quality": 0,
+        "blocker_penalty": 0
+      },
+      "buildability": "unknown",
+      "credential_access": "unknown"
+    },
+    {
+      "app": "Coda",
+      "category": "Productivity and Project Management",
+      "score": 15,
+      "segment": "blocked",
+      "factors": {
+        "credential_access": 10,
+        "api_breadth": 5,
+        "agent_suitability": 0,
+        "doc_quality": 0,
+        "blocker_penalty": 0
+      },
+      "buildability": "unknown",
+      "credential_access": "unknown"
+    },
+    {
+      "app": "Salesforce Commerce Cloud",
+      "category": "Ecommerce",
+      "score": 15,
+      "segment": "blocked",
+      "factors": {
+        "credential_access": 10,
+        "api_breadth": 5,
+        "agent_suitability": 0,
+        "doc_quality": 0,
+        "blocker_penalty": 0
+      },
+      "buildability": "unknown",
+      "credential_access": "unknown"
+    },
+    {
+      "app": "Harvest",
+      "category": "Productivity and Project Management",
+      "score": 15,
+      "segment": "blocked",
+      "factors": {
+        "credential_access": 10,
+        "api_breadth": 5,
+        "agent_suitability": 0,
+        "doc_quality": 0,
+        "blocker_penalty": 0
+      },
+      "buildability": "unknown",
+      "credential_access": "unknown"
+    },
+    {
+      "app": "Pylon",
+      "category": "Support and Helpdesk",
+      "score": 15,
+      "segment": "blocked",
+      "factors": {
+        "credential_access": 10,
+        "api_breadth": 5,
+        "agent_suitability": 0,
+        "doc_quality": 0,
+        "blocker_penalty": 0
+      },
+      "buildability": "unknown",
+      "credential_access": "unknown"
+    },
+    {
+      "app": "LiveAgent",
+      "category": "Support and Helpdesk",
+      "score": 15,
+      "segment": "blocked",
+      "factors": {
+        "credential_access": 10,
+        "api_breadth": 5,
+        "agent_suitability": 0,
+        "doc_quality": 0,
+        "blocker_penalty": 0
+      },
+      "buildability": "unknown",
+      "credential_access": "unknown"
+    },
+    {
+      "app": "Binance",
+      "category": "Finance and Fintech",
+      "score": 15,
+      "segment": "blocked",
+      "factors": {
+        "credential_access": 10,
+        "api_breadth": 5,
+        "agent_suitability": 0,
+        "doc_quality": 0,
+        "blocker_penalty": 0
+      },
+      "buildability": "unknown",
+      "credential_access": "unknown"
+    },
+    {
+      "app": "Help Scout",
+      "category": "Support and Helpdesk",
+      "score": 15,
+      "segment": "blocked",
+      "factors": {
+        "credential_access": 10,
+        "api_breadth": 5,
+        "agent_suitability": 0,
+        "doc_quality": 0,
+        "blocker_penalty": 0
+      },
+      "buildability": "unknown",
+      "credential_access": "unknown"
+    },
+    {
+      "app": "Xero",
+      "category": "Finance and Fintech",
+      "score": 15,
+      "segment": "blocked",
+      "factors": {
+        "credential_access": 10,
+        "api_breadth": 5,
+        "agent_suitability": 0,
+        "doc_quality": 0,
+        "blocker_penalty": 0
+      },
+      "buildability": "unknown",
+      "credential_access": "unknown"
+    },
+    {
+      "app": "Paygent Connect",
+      "category": "Finance and Fintech",
+      "score": 15,
+      "segment": "blocked",
+      "factors": {
+        "credential_access": 10,
+        "api_breadth": 5,
+        "agent_suitability": 0,
+        "doc_quality": 0,
+        "blocker_penalty": 0
+      },
+      "buildability": "unknown",
+      "credential_access": "unknown"
+    },
+    {
       "app": "Ahrefs",
       "category": "Data, SEO and Scraping",
       "score": 13,
@@ -1900,12 +3408,12 @@
     }
   ],
   "summary": {
-    "total_apps": 101,
-    "buildable_pct": 38.6,
-    "self_serve_pct": 29.7,
-    "oauth_pct": 5.9,
-    "mcp_public_pct": 11.9,
-    "composio_pct": 4.0,
+    "total_apps": 200,
+    "buildable_pct": 41.0,
+    "self_serve_pct": 31.0,
+    "oauth_pct": 6.0,
+    "mcp_public_pct": 10.5,
+    "composio_pct": 4.5,
     "top_blocker": "Unknown authentication method for API",
     "avg_confidence": 0.14
   }

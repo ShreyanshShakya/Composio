@@ -1,10 +1,15 @@
 import os
 import asyncio
 import json
-from typing import Any
+from typing import Any, Dict, List
 from dataclasses import dataclass
-from agent.models import AppResearch, SourceType, Evidence
-from agent.evidence import normalize_source_type, calculate_confidence
+from agent.models import (AppResearch, SourceType, Evidence, AuthMethod, 
+                          CredentialAccess, APIType, APIBreadth, MCPStatus, Buildability)
+from agent.evidence import normalize_source_type, calculate_confidence, extract_json_from_response, validate_and_repair_research
+from agent.firecrawl_search import FirecrawlSearcher
+from agent.discoverer import Discoverer
+from agent.url_scorer import URLScorer
+from agent.extractor import NemotronExtractor
 
 
 @dataclass
@@ -387,82 +392,21 @@ class HTTPScraper:
 
 
 class Researcher:
-    """Orchestrates adaptive research for a single app."""
+    """Orchestrates adaptive research for a single app using discovery-based approach."""
     
     def __init__(self, llm_client: Any, composio_mcp: ComposioMCPClient | None = None):
         self.llm = llm_client
         self.composio_mcp = composio_mcp or ComposioMCPClient()
         self.http_scraper = HTTPScraper()
+        self.firecrawl_searcher = FirecrawlSearcher(self.composio_mcp)
+        self.discoverer = Discoverer(FirecrawlSearcher(self.composio_mcp))
+        self.scorer = URLScorer()
+        self.extractor = NemotronExtractor(llm_client)
     
     async def close(self):
         """Close all connections."""
         await self.composio_mcp.close()
         await self.http_scraper.close()
-    
-    def build_research_urls(self, app: str, website: str, category: str) -> list[tuple[str, str]]:
-        """Build prioritized URLs for research passes."""
-        base = website.rstrip("/")
-        if not base.startswith("http"):
-            base = f"https://{base}"
-        
-        pass1_urls = [
-            (f"{base}/developers", "official_docs"),
-            (f"{base}/docs", "official_docs"),
-            (f"{base}/api", "official_docs"),
-            (f"{base}/developer", "official_docs"),
-        ]
-        
-        pass1_auth = [
-            (f"{base}/developers/auth", "auth_docs"),
-            (f"{base}/docs/auth", "auth_docs"),
-            (f"{base}/docs/authentication", "auth_docs"),
-            (f"{base}/api/auth", "auth_docs"),
-            (f"{base}/auth", "auth_docs"),
-        ]
-        
-        pass1_api = [
-            (f"{base}/developers/api", "official_docs"),
-            (f"{base}/docs/api", "official_docs"),
-            (f"{base}/api/reference", "official_docs"),
-            (f"{base}/docs/reference", "official_docs"),
-        ]
-        
-        urls = []
-        for url, stype in pass1_urls[:3]:
-            urls.append((url, stype))
-        for url, stype in pass1_auth[:2]:
-            urls.append((url, stype))
-        for url, stype in pass1_api[:2]:
-            urls.append((url, stype))
-        
-        return urls
-    
-    def build_targeted_urls(self, research: AppResearch, gaps: list[str]) -> list[tuple[str, str]]:
-        """Build URLs for specific knowledge gaps."""
-        urls = []
-        base = f"https://{research.app.lower().replace(' ', '')}.com"
-        
-        if "credential_access" in gaps:
-            urls.extend([
-                (f"{base}/pricing", "pricing_docs"),
-                (f"{base}/developers/pricing", "pricing_docs"),
-                (f"{base}/get-started", "official_docs"),
-            ])
-        
-        if "mcp" in gaps:
-            urls.extend([
-                (f"{base}/mcp", "mcp_registry"),
-                (f"https://github.com/search?q={research.app}+mcp", "web"),
-                (f"https://modelcontextprotocol.io/servers", "mcp_registry"),
-            ])
-        
-        if "auth" in gaps:
-            urls.extend([
-                (f"{base}/docs/auth", "auth_docs"),
-                (f"{base}/developers/authentication", "auth_docs"),
-            ])
-        
-        return urls[:3]
     
     async def _scrape_with_fallback(self, url: str) -> FirecrawlResult:
         """Try Firecrawl via Composio MCP first, fall back to HTTPScraper."""
@@ -473,26 +417,33 @@ class Researcher:
         
         # Fall back to HTTPScraper
         return await self.http_scraper.scrape(url)
-
+    
     async def research_app(self, app: str, website: str, category: str) -> AppResearch:
-        """Run adaptive research for a single app."""
+        """Run discovery-based research for a single app."""
         
-        # Pass 1: Core documentation
-        urls = self.build_research_urls(app, website, category)
+        # 1. Discover authoritative URLs
+        discovery = await self.discoverer.discover(app, website)
+        
+        # Score and select best URLs
+        all_scored = (discovery.developer_docs + discovery.auth_docs + 
+                      discovery.api_docs + discovery.mcp_docs + discovery.pricing_docs)
+        deduplicated = self.scorer.deduplicate(all_scored)
+        selected_urls = self.scorer.select_best(deduplicated)
+        
+        # 2. Scrape via Composio Firecrawl (with fallback)
         evidence = []
-        
-        for url, expected_type in urls:
-            result = await self._scrape_with_fallback(url)
+        for url_obj in selected_urls:
+            result = await self._scrape_with_fallback(url_obj.url)
             if result.success and result.content:
-                source_type = normalize_source_type(url, expected_type)
+                source_type = url_obj.source_type
                 evidence.append(Evidence(
-                    claim=f"Documentation from {url}",
-                    url=url,
+                    claim=f"Documentation from {url_obj.url}",
+                    url=url_obj.url,
                     source_type=source_type,
                     supporting_text=result.content[:3000],
                 ))
         
-        # Check Composio registry for supported integrations
+        # 2. Check Composio registry for supported integrations
         composio_tools = await self.composio_mcp.list_toolkits()
         supported, tool_name = self.composio_mcp.check_app_supported(app, composio_tools)
         if supported:
@@ -503,139 +454,47 @@ class Researcher:
                 supporting_text=f"Found in Composio toolkits: {tool_name}",
             ))
         
-        # Extract structured data via LLM
-        research = await self.extract_with_llm(app, category, evidence)
-        
-        # Override composio_supported based on actual registry check
+        # 3. Claim-specific extraction using Nemotron
         from agent.models import MCPStatus
-        research.composio_supported = MCPStatus.YES if supported else MCPStatus.NO
-        if tool_name:
-            research.evidence.append(Evidence(
-                claim=f"Composio integration: {tool_name}",
-                url="https://connect.composio.dev",
-                source_type=SourceType.COMPOSIO_REGISTRY,
-                supporting_text=f"Verified in Composio registry: {tool_name}",
-            ))
+        auth_ext = await self.extractor.extract_auth(evidence)
+        cred_ext = await self.extractor.extract_credential(evidence)
+        api_ext = await self.extractor.extract_api(evidence)
+        mcp_ext = await self.extractor.extract_mcp(evidence)
+        buildability, blocker = self.extractor.determine_buildability(
+            auth_ext, cred_ext, api_ext, mcp_ext
+        )
         
-        # Identify gaps
-        gaps = self.identify_gaps(research)
-        
-        # Pass 2: Targeted research if needed
-        if gaps and research.confidence < 0.8:
-            targeted_urls = self.build_targeted_urls(research, gaps)
-            for url, expected_type in targeted_urls:
-                result = await self._scrape_with_fallback(url)
-                if result.success and result.content:
-                    source_type = normalize_source_type(url, expected_type)
-                    evidence.append(Evidence(
-                        claim=f"Targeted research: {expected_type} from {url}",
-                        url=url,
-                        source_type=source_type,
-                        supporting_text=result.content[:3000],
-                    ))
-            
-            # Re-extract with additional evidence
-            research = await self.extract_with_llm(app, category, evidence)
-            # Re-check Composio after re-extraction
-            supported, tool_name = self.composio_mcp.check_app_supported(app, composio_tools)
-            research.composio_supported = MCPStatus.YES if supported else MCPStatus.NO
-        
-        # Final confidence calculation
-        research.confidence = calculate_confidence(research)
-        research.sources = list(set(e.url for e in research.evidence))
-        
-        return research
-    
-    def identify_gaps(self, research: AppResearch) -> list[str]:
-        """Identify knowledge gaps requiring targeted research."""
-        gaps = []
-        
-        if research.auth_methods == [research.auth_methods[0]] if research.auth_methods else [] and research.auth_methods[0].value == "unknown":
-            gaps.append("auth")
-        
-        if research.credential_access.value == "unknown":
-            gaps.append("credential_access")
-        
-        if research.api_types == [research.api_types[0]] if research.api_types else [] and research.api_types[0].value == "other":
-            gaps.append("api")
-        
-        if research.mcp_public.value == "unknown":
-            gaps.append("mcp")
-        
-        if research.buildability.value == "unknown":
-            gaps.append("buildability")
-        
-        return gaps
-    
-    async def extract_with_llm(self, app: str, category: str, evidence: list) -> AppResearch:
-        """Extract structured research using LLM."""
-        
-        evidence_text = "\n\n---\n\n".join([
-            f"SOURCE: {e.url}\nTYPE: {e.source_type.value}\nCONTENT: {e.supporting_text}"
-            for e in evidence[:10]
-        ])
-        
-        prompt = f"""You are an integration research analyst. Research {app} ({category}) using ONLY the evidence below.
-
-EVIDENCE:
-{evidence_text}
-
-Return JSON matching this exact schema:
-{{
-  "app": "{app}",
-  "category": "{category}",
-  "description": "1-2 sentence description",
-  "auth_methods": ["oauth2" | "api_key" | "basic" | "bearer_token" | "pat" | "service_account" | "other" | "multiple" | "unknown"],
-  "credential_access": "self_serve" | "self_serve_with_trial" | "paid_plan_required" | "admin_approval" | "partner_required" | "contact_sales" | "unknown",
-  "api_types": ["rest" | "graphql" | "soap" | "grpc" | "webhooks" | "mcp" | "other"],
-  "api_breadth": "broad" | "limited" | "unknown",
-  "mcp_public": "yes" | "no" | "unknown",
-  "composio_supported": "yes" | "no" | "unknown",
-  "buildability": "ready" | "buildable_with_caveat" | "human_outreach_required" | "blocked" | "unknown",
-  "blocker": "specific blocker description or null",
-  "uncertainty": ["list of specific uncertainties"]
-}}
-
-CRITICAL RULES:
-1. Only use evidence provided. Mark "unknown" if evidence insufficient.
-2. Distinguish API existence from credential accessibility.
-3. Self-serve = developer can get credentials without sales/contact.
-4. MCP = public MCP server exists (not just Composio toolkit).
-5. Composio_supported = only if evidence shows Composio has this integration.
-6. Buildability: ready=all green, caveat=minor issues, outreach=needs partnership, blocked=hard barrier.
-7. Return ONLY valid JSON. No markdown, no explanation."""
-
-        response = await self.llm.complete_async(prompt, temperature=0.1, max_tokens=16384)
-        
-        from agent.evidence import extract_json_from_response, validate_and_repair_research
-        data = extract_json_from_response(response)
-        
-        if data:
-            data["app"] = app
-            data["category"] = category
-            data["evidence"] = [e.model_dump() for e in evidence]
-            validated = validate_and_repair_research(data, app, max_retries=1)
-            if validated:
-                return validated
-        
-        # Fallback if parsing fails
-        from agent.models import AppResearch, AuthMethod, CredentialAccess, APIType, APIBreadth, MCPStatus, Buildability
-        return AppResearch(
+        # Build research record
+        research = AppResearch(
             app=app,
             category=category,
-            description=f"Research placeholder for {app}",
-            auth_methods=[AuthMethod.UNKNOWN],
-            credential_access=CredentialAccess.UNKNOWN,
-            api_types=[APIType.OTHER],
-            api_breadth=APIBreadth.UNKNOWN,
-            mcp_public=MCPStatus.UNKNOWN,
-            composio_supported=MCPStatus.UNKNOWN,
-            buildability=Buildability.UNKNOWN,
-            blocker="LLM response parsing failed",
-            evidence=evidence,
-            uncertainty=["LLM response parsing failed"],
-            confidence=0.0,
+            description=f"Integration research for {app}",
+            auth_methods=auth_ext.auth_methods,
+            credential_access=cred_ext.credential_access,
+            api_types=api_ext.api_types,
+            api_breadth=api_ext.api_breadth,
+            mcp_public=mcp_ext.mcp_public,
+            composio_supported=MCPStatus.YES if supported else MCPStatus.NO,
+            buildability=buildability,
+            blocker=blocker,
+            evidence=[e for e in evidence],
+            confidence=0.0,  # Will be calculated below
         )
+        
+        # Add citations to evidence
+        for ext, field in [(auth_ext, 'auth'), (cred_ext, 'credential'), 
+                           (api_ext, 'api'), (mcp_ext, 'mcp')]:
+            for citation in ext.citations:
+                # Find matching evidence and add citation
+                for e in evidence:
+                    if e.url == citation:
+                        e.claim += f" (cited for {field})"
+        
+        # Calculate final confidence
+        research.confidence = calculate_confidence(research)
+        research.sources = list(set(e.url for e in evidence))
+        
+        return research
 
 
 class NemotronClient:
@@ -645,20 +504,30 @@ class NemotronClient:
         self.api_key = api_key or os.getenv("NVIDIA_API_KEY")
         self.base_url = base_url or os.getenv("NVIDIA_BASE_URL", "https://integrate.api.nvidia.com/v1")
         self.model = model or os.getenv("NVIDIA_MODEL", "nvidia/nemotron-3-super-120b-a12b")
-        self._client = None
+        self._sync_client = None
+        self._async_client = None
     
-    def _get_client(self):
-        if self._client is None:
+    def _get_sync_client(self):
+        if self._sync_client is None:
             from openai import OpenAI
-            self._client = OpenAI(
+            self._sync_client = OpenAI(
                 base_url=self.base_url,
                 api_key=self.api_key,
             )
-        return self._client
+        return self._sync_client
+    
+    def _get_async_client(self):
+        if self._async_client is None:
+            from openai import AsyncOpenAI
+            self._async_client = AsyncOpenAI(
+                base_url=self.base_url,
+                api_key=self.api_key,
+            )
+        return self._async_client
     
     def complete(self, prompt: str, temperature: float = 0.1, max_tokens: int = 16384) -> str:
-        """Call Nemotron API with reasoning support."""
-        client = self._get_client()
+        """Call Nemotron API with reasoning support (sync)."""
+        client = self._get_sync_client()
         
         completion = client.chat.completions.create(
             model=self.model,
@@ -683,7 +552,27 @@ class NemotronClient:
         return "".join(content_parts)
     
     async def complete_async(self, prompt: str, temperature: float = 0.1, max_tokens: int = 16384) -> str:
-        """Async wrapper for sync complete method."""
-        import asyncio
-        loop = asyncio.get_event_loop()
-        return await loop.run_in_executor(None, self.complete, prompt, temperature, max_tokens)
+        """Call Nemotron API with reasoning support (async)."""
+        client = self._get_async_client()
+        
+        completion = await client.chat.completions.create(
+            model=self.model,
+            messages=[{"role": "user", "content": prompt}],
+            temperature=temperature,
+            top_p=0.95,
+            max_tokens=max_tokens,
+            extra_body={
+                "chat_template_kwargs": {"enable_thinking": True},
+                "reasoning_budget": 16384,
+            },
+            stream=True,
+        )
+        
+        content_parts = []
+        async for chunk in completion:
+            if not chunk.choices:
+                continue
+            if chunk.choices[0].delta.content is not None:
+                content_parts.append(chunk.choices[0].delta.content)
+        
+        return "".join(content_parts)
