@@ -5,8 +5,6 @@ from pathlib import Path
 from typing import Any, Dict, List
 from dataclasses import dataclass
 
-# Load repository-local .env before any API client reads environment variables.
-# Explicit shell environment variables still take precedence.
 try:
     from dotenv import load_dotenv
     load_dotenv(Path(__file__).resolve().parents[1] / ".env")
@@ -61,6 +59,8 @@ class ComposioMCPClient:
     async def _ensure_initialized(self):
         if self._initialized:
             return
+        if not self.api_key:
+            raise ValueError("COMPOSIO_API_KEY is required")
         session = await self._get_session()
         init_payload = {
             "jsonrpc": "2.0", "id": 1, "method": "initialize",
@@ -96,8 +96,19 @@ class ComposioMCPClient:
             print(f"[ComposioMCP] Error fetching toolkits: {e}")
             return []
 
+    def check_app_supported(self, app: str, tools: list[dict]) -> tuple[bool, str | None]:
+        """Best-effort match of an app against Composio's exposed MCP tool names/descriptions."""
+        needle = "".join(ch for ch in app.lower() if ch.isalnum())
+        for tool in tools or []:
+            if not isinstance(tool, dict):
+                continue
+            haystack = " ".join(str(tool.get(key, "")) for key in ("name", "title", "description", "toolkit", "app"))
+            normalized = "".join(ch for ch in haystack.lower() if ch.isalnum())
+            if needle and needle in normalized:
+                return True, str(tool.get("name") or tool.get("title") or app)
+        return False, None
+
     async def firecrawl_scrape(self, url: str, params: dict | None = None) -> "FirecrawlResult":
-        from agent.researcher import FirecrawlResult
         await self._ensure_initialized()
         default_params = {"url": url, "formats": ["markdown"], "onlyMainContent": True}
         if params:
@@ -132,21 +143,12 @@ class ComposioMCPClient:
     async def firecrawl_crawl(self, url: str, params: dict | None = None) -> list["FirecrawlResult"]:
         """Crawl multiple pages from a starting URL using the Firecrawl connection."""
         await self._ensure_initialized()
-        crawl_params = {
-            "url": url,
-            "max_pages": 3,
-            "only_main_content": True,
-            "wait_for": 1000,
-            "formats": ["markdown"],
-        }
+        crawl_params = {"url": url, "max_pages": 3, "only_main_content": True, "wait_for": 1000, "formats": ["markdown"]}
         if params:
             crawl_params.update(params)
         session = await self._get_session()
         for tool_name in ("firecrawl_crawl", "crawl"):
-            call_payload = {
-                "jsonrpc": "2.0", "id": 4, "method": "tools/call",
-                "params": {"name": tool_name, "arguments": crawl_params},
-            }
+            call_payload = {"jsonrpc": "2.0", "id": 4, "method": "tools/call", "params": {"name": tool_name, "arguments": crawl_params}}
             try:
                 async with session.post(self.mcp_url, headers=self.headers, json=call_payload) as resp:
                     if resp.status != 200:
@@ -277,7 +279,6 @@ class NemotronClient:
 
 
 def create_llm_client() -> Any:
-    """Create the configured extraction provider. Gemini is preferred for this run."""
     provider = os.getenv("LLM_PROVIDER", "gemini").strip().lower()
     if provider == "gemini":
         return GeminiClient()
