@@ -48,8 +48,6 @@ class Discoverer:
         self.searcher = firecrawl_searcher
         self.scorer = URLScorer()
         self.cache_dir = cache_dir
-        # Global to this Researcher/Discoverer instance: limits outbound
-        # Firecrawl search requests across all concurrently researched apps.
         self.search_semaphore = asyncio.Semaphore(max_concurrent_searches)
         os.makedirs(cache_dir, exist_ok=True)
 
@@ -80,11 +78,12 @@ class Discoverer:
         }
 
         async with self.search_semaphore:
-            results = await self.searcher.search(queries[category], limit=5)
+            results = await self.searcher.search(
+                queries[category],
+                limit=5,
+                website=website,
+            )
 
-        # FirecrawlSearcher.search() already returns SearchResult objects.
-        # The previous implementation passed them through _to_search_result(),
-        # which expected dicts and caused: 'SearchResult' object is not subscriptable.
         source_by_category = {
             'developer_docs': SourceType.OFFICIAL_DOCS,
             'auth_docs': SourceType.AUTH_DOCS,
@@ -113,8 +112,6 @@ class Discoverer:
             'pricing_docs',
         ]
 
-        # Tasks may be scheduled concurrently, but the semaphore guarantees
-        # that only max_concurrent_searches are hitting Firecrawl at once.
         tasks = [self._bounded_search(category, app, website) for category in categories]
         completed = await asyncio.gather(*tasks, return_exceptions=True)
 
