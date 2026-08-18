@@ -252,10 +252,6 @@ class FirecrawlSearcher:
     def set_app(self, app: str):
         self.app = app
     
-    async def search(self, query: str, limit: int = 5) -> list:
-        """Fallback to pattern-based URL generation."""
-        return []
-
     async def find_developer_docs(self, app: str, website: str) -> list:
         self.set_app(app)
         results = await self.search(f"{app} developer documentation", limit=5)
