@@ -3,9 +3,11 @@ from typing import Any
 
 import aiohttp
 
+from agent.rate_limiter import AsyncRateLimiter
+
 
 class GeminiClient:
-    """Gemini 3.5 Flash-Lite REST client for high-volume structured extraction."""
+    """Gemini 3.5 Flash-Lite REST client with a shared RPM limiter."""
 
     def __init__(self, api_key: str | None = None, model: str | None = None):
         self.api_key = api_key or os.getenv("GEMINI_API_KEY")
@@ -16,6 +18,9 @@ class GeminiClient:
             "GEMINI_BASE_URL",
             "https://generativelanguage.googleapis.com/v1beta/models",
         )
+        # Keep headroom below the user's observed 15 RPM quota.
+        rpm = int(os.getenv("GEMINI_RPM_LIMIT", "12"))
+        self._rate_limiter = AsyncRateLimiter(max_calls=rpm, period_seconds=60.0)
         self._session: aiohttp.ClientSession | None = None
 
     async def _get_session(self) -> aiohttp.ClientSession:
@@ -24,6 +29,8 @@ class GeminiClient:
         return self._session
 
     async def complete_async(self, prompt: str, temperature: float = 0.1, max_tokens: int = 2000) -> str:
+        # This limiter is shared by all extraction calls from this client instance.
+        await self._rate_limiter.acquire()
         session = await self._get_session()
         url = f"{self.base_url.rstrip('/')}/{self.model}:generateContent"
         payload = {
