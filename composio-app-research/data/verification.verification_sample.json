@@ -1,0 +1,910 @@
+[
+  {
+    "app": "TestApp",
+    "category": "Test",
+    "description": "unknown",
+    "auth_methods": [
+      "unknown"
+    ],
+    "credential_access": "unknown",
+    "api_types": [],
+    "api_breadth": "unknown",
+    "mcp_public": "unknown",
+    "composio_supported": "no",
+    "buildability": "unknown",
+    "blocker": null,
+    "sources": [],
+    "evidence": [],
+    "confidence": 0.008333333333333325,
+    "uncertainty": [
+      "No evidence provided about TestApp."
+    ],
+    "verification_status": "unverified",
+    "verified_fields": null
+  },
+  {
+    "app": "Freshdesk",
+    "category": "Support and Helpdesk",
+    "description": "Freshdesk is a customer support and helpdesk platform offering ticketing, shared inbox, knowledge base, and AI-powered service features across various pricing tiers.",
+    "auth_methods": [],
+    "credential_access": "unknown",
+    "api_types": [],
+    "api_breadth": "unknown",
+    "mcp_public": "unknown",
+    "composio_supported": "no",
+    "buildability": "unknown",
+    "blocker": null,
+    "sources": [
+      "https://freshdesk.com/pricing"
+    ],
+    "evidence": [
+      {
+        "claim": "Targeted research: pricing_docs from https://freshdesk.com/pricing",
+        "url": "https://freshdesk.com/pricing",
+        "source_type": "web",
+        "supporting_text": "Freshdesk Pricing & Plans | Freshworks\nIT service\nCustomer service\nCRM\nPlans for\nFreshdesk\nSave 20%\nAnnually\nMonthly\n$19\n/agent/month, billed annually\nLaunch AI-powered service over email\nGrowth\nBest suits teams that want:\nFreddy AI Agent (first 500 sessions included)\nTicketing & shared inbox\nCustomer portal & knowledge base\nOut-of-the-box analytics & reporting\nThreads & tasks\nRoles & permissions\nAvailable add-ons\nAdditional AI Agent sessions\n$49\n/100 sessions\nDay passes at\n$2\n/pass\nConnector app tasks at\n$80\n/5000 tasks\nTry it free\n$55\n/agent/month, billed annually\nScale AI-powered service across your business\nPro\nMost popular\nAccess to more AI and helpdesk features:\nFreddy AI Agent (first 500 sessions included)\nMultilingual helpdesk\nCustom dashboards & reporting\nIntelligent routing\nMultiple SLA policies\nExternal collaborators\nAvailable add-ons\nFreddy AI Copilot\n$29\n/agent/month\nAdditional AI Agent sessions\n$49\n/100 sessions\nDay passes at\n$7\n/pass\nConnector app tasks at\n$80\n/5000 tasks\nTry it free\n$89\n/agent/month, billed annually\nDeliver enterprise-grade, AI-powered service\nEnterprise\nAccess to all AI and helpdesk features:\nFreddy AI Agent (first 500 sessions included)\nFreddy AI Insights\nSkill-based routing\nSandbox\nAudit logs\nAllowed domains & IP whitelisting\nAvailable add-ons\nFreddy AI Copilot\n$29\n/agent/month\nAdditional AI Agent sessions\n$49\n/100 sessions\nDay passes at\n$12\n/pass\nConnector app tasks at\n$80\n/5000 tasks\nTry it free\nTrusted by 74,000+ Businesses Worldwide\nView all features\nCompare features\nGrowth\n$19 /agent/month, billed annually\nTry it free\nPro\n$55 /agent/month, billed annually\nTry it free\nEnterprise\n$89 /agent/month, billed annually\nTry it free\nHelp Desk and Ticketing\nTicketing\nHandle customer escalations with our award-winning ticketing system that enables intelligent prioritization, assignment, and tracking of tickets.\n\u2713\n\u2713\n\u2713\nShared inbox\nBoost team collaboration and simplify communications with a shared inbox for your support team to collaborate and respond to incoming emails.\n\u2713\n\u2713\n\u2713\nThreads and tasks\nDrive collaboration by enabling internal conversation threads related to a customer ticket without polluting the main conversation. Create tasks that are linked to a ticket so everyone understands what needs to get done.\n\u2713\n\u2713\n\u2713\nCustomer portal\nCreate a place for customers to submit tickets and self-serve information, powered by a robust knowledge base.\n\u2713\n\u2713\n\u2713\nMultilingual Help Desk\nConfigure your helpdesk to work in multiple languages, so you can provide support in the languages your customers and agents speak.\n\u2713\n\u2713\nCollaborators\nInvite external agents and third parties to help your full-time support agents resolve complex customer issues.\n5,000 collaborators included\n5,000 collaborators included\nFreddy AI Agent\nAI Agent Studio\n*\nAll-in-one hub to build, test, deploy, and monitor AI Agents.\n\u2713\n\u2713\n\u2713\nEmail AI Agent\n*\nEmail AI Agent that engages in back-and-forth replies, responds with the right resolution, and captures feedback.\n\u2713\n\u2713\n\u2713\nI",
+        "retrieved_at": "2026-08-18 07:36:14.209520"
+      }
+    ],
+    "confidence": 0.016666666666666663,
+    "uncertainty": [
+      "authentication methods",
+      "credential access process",
+      "API types and availability",
+      "API breadth",
+      "existence of public MCP server",
+      "Composio support status",
+      "buildability assessment",
+      "any potential blockers"
+    ],
+    "verification_status": "unverified",
+    "verified_fields": null
+  },
+  {
+    "app": "Stripe",
+    "category": "Finance and Fintech",
+    "description": "Stripe provides a complete payments platform with simple, pay-as-you-go pricing, enabling businesses to accept online and in-person payments, recurring billing, and more.",
+    "auth_methods": [
+      "unknown"
+    ],
+    "credential_access": "self_serve",
+    "api_types": [
+      "unknown"
+    ],
+    "api_breadth": "unknown",
+    "mcp_public": "unknown",
+    "composio_supported": "no",
+    "buildability": "unknown",
+    "blocker": null,
+    "sources": [
+      "https://stripe.com/get-started",
+      "https://stripe.com/pricing"
+    ],
+    "evidence": [
+      {
+        "claim": "Targeted research: pricing_docs from https://stripe.com/pricing",
+        "url": "https://stripe.com/pricing",
+        "source_type": "web",
+        "supporting_text": "Pricing & Fees\nStandard\nAccess a complete payments platform with simple, pay-as-you-go pricing. No setup fees, monthly fees, or hidden fees.\nRequest an invite\n2%\nfor cards issued in\u00a0India\n3%\nfor cards issued outside\u00a0India\nCustom\nDesign a custom package \u2013 available for businesses with large payments volume or unique business models.\nContact sales\nVolume discounts\nMulti-product discounts\nCountry-specific rates\nOnline and in-person payments, recurring billing, embedded payments, and much more.\nCustom pricing\nOptimise checkout conversion, accept local payment methods, and increase acceptance rates.\nAn online payments platform engineered for growth.\nStart now\nIncrease customer acquisition with 100+ payment methods.\nImprove conversion with Link, Stripe's accelerated checkout.\nGet AI-powered fraud protection for card payments with Radar Lite.\nSave engineering time with pre-built UIs.\nAccept widely used credit and debit cards, prepaid cards, and digital wallets for cards issued domestically.\nLearn more\nabout our different card types.\n2%\nfor Mastercard and Visa cards issued in\u00a0India*\nDomestic debit card transactions have the Merchant Discount Rate (MDR) of 0.4% capped to\u00a0\u20b9200.\nAccept widely used credit and debit cards, prepaid cards, and digital wallets for cards issued internationally.\n3%\nfor Mastercard and Visa cards issued outside\u00a0India\n+\n  \n  \n  \n\n  \n    2%\nif currency conversion is required\n3.5%\nfor American Express cards issued outside\u00a0India\n+\n  \n  \n  \n\n  \n    2%\nif currency conversion is required\n4.3%\nfor international cards with USD or other currency presentment\n+\n  \n  \n  \n\n  \n    2%\nif currency conversion is required\nLearn more\nRespond to card payment disputes, also known as chargebacks.\nLearn more\nDispute received fee\n\u20b91,000.00\nfor each dispute you\u00a0receive.\nIn rare cases, network fees also\u00a0apply.\nDispute countered fee\n\u20b91,000.00\nfor each dispute you respond to\u00a0manually.\nYou get this fee back for won disputes. You don't get this fee back for lost\u00a0disputes.\nLearn more\nRespond to disputes with evidence that Stripe's AI prepares for you. You can also add your own evidence.\nSmart Disputes fee\n30%\nof the disputed amount for each dispute you\u00a0win.\nThere's no Smart Dispute fee for lost disputes. The dispute received fee still\u00a0applies.\nLearn more\nHelp reduce dispute rates with dispute prevention tools powered by Verifi from Visa and Ethoca from Mastercard.\nIncluded\nDispute deflection\u00a0lookups\n\u20b91,000.00\nper\nVisa resolution\n\u20b91,000.00\nper\nVisa Compelling Evidence 3.0\u00a0block\n\u20b92,000.00\nper\nMastercard resolution\nPayment optimisations\nIncluded with Payments\nIncluded at no additional charge for businesses on standard payments pricing\nIncrease acceptance rates and reduce card processing costs with AI-powered payment optimisations, inclusive of Adaptive Acceptance, card account updater and network tokens.\nIndividual pricing\navailable for Adaptive Acceptance, card account updater and network tokens.\nIncluded\nwith\u00a0Payments\nIncluded at no additional charge for businesses",
+        "retrieved_at": "2026-08-18 07:35:59.640298"
+      },
+      {
+        "claim": "Targeted research: official_docs from https://stripe.com/get-started",
+        "url": "https://stripe.com/get-started",
+        "source_type": "web",
+        "supporting_text": "Sign up and create a Stripe account | Stripe\nJavaScript is currently disabled\nYou need JavaScript for the best experience on Stripe. Please enable it in your browser settings.\nFind out how\nIncompatible browser\nYou need a modern browser to use the Stripe Dashboard. Please switch to a compatible browser to continue.\nView Stripe Dashboard browser compatibility",
+        "retrieved_at": "2026-08-18 07:36:01.390148"
+      }
+    ],
+    "confidence": 0.016666666666666663,
+    "uncertainty": [
+      "auth_methods",
+      "api_types",
+      "api_breadth",
+      "mcp_public",
+      "composio_supported",
+      "buildability"
+    ],
+    "verification_status": "unverified",
+    "verified_fields": null
+  },
+  {
+    "app": "MrScraper",
+    "category": "Data, SEO and Scraping",
+    "description": "MrScraper provides AI-powered web scraping with APIs, proxies, and automation to turn websites into structured data.",
+    "auth_methods": [
+      "unknown"
+    ],
+    "credential_access": "self_serve",
+    "api_types": [
+      "rest",
+      "webhooks"
+    ],
+    "api_breadth": "broad",
+    "mcp_public": "unknown",
+    "composio_supported": "no",
+    "buildability": "ready",
+    "blocker": null,
+    "sources": [
+      "https://mrscraper.com/pricing"
+    ],
+    "evidence": [
+      {
+        "claim": "Targeted research: pricing_docs from https://mrscraper.com/pricing",
+        "url": "https://mrscraper.com/pricing",
+        "source_type": "web",
+        "supporting_text": "MrScraper Pricing | MrScraper\nSkip to content\nScrape Smarter.\nScale Faster.\nMrScraper turns websites into clean, structured data with AI-powered scraping, APIs, proxies, and automation - without the maintenance headache.\nFree\nPro\nCustom\nEverything You Need to Turn the Web Into Data\nFrom one-off extraction to recurring data pipelines, MrScraper gives you flexible tools to collect and deliver web data.\n1,000 free tokens included\nUnblock any website\nInclude 10GB free residential proxy\nManual and API-based scraping\nMarketplace scraping APIs\nAI-powered structured extraction\nUsage analytics and monitoring\nScheduled and repeatable workflows\nWebhooks and workflow integrations\nCSV / structured-data friendly exports\nEverything You Need to Turn the Web Into Data\nFrom one-off extraction to recurring data pipelines, MrScraper gives you flexible tools to collect and deliver web data.\n200,000 plan tokens included\nUnblock any website\nInclude 10GB free residential proxy\nManual and API-based scraping\nMarketplace scraping APIs\nAI-powered structured extraction\nUsage analytics and monitoring\nScheduled and repeatable workflows\nWebhooks and workflow integrations\nCSV / structured-data friendly exports\nEverything You Need to Turn the Web Into Data\nFrom one-off extraction to recurring data pipelines, MrScraper gives you flexible tools to collect and deliver web data.\nToken plan tailored to your need\nUnblock any website\nInclude 10GB free residential proxy\nManual and API-based scraping\nMarketplace scraping APIs\nAI-powered structured extraction\nUsage analytics and monitoring\nScheduled and repeatable workflows\nWebhooks and workflow integrations\nCSV / structured-data friendly exports\nWhat Our Customers Say\nTeams use MrScraper to automate data extraction, keep information fresh, and build reliable data workflows at scale.\nDavid Meslar\nDirector of Marketing Blockdaemon\n\u2605\u2605\u2605\u2605\u2605\n\u201cMrScraper's API integration has been a huge win for Blockdaemon. Its seamless data extraction from multiple sources and automated updates have saved our team significant time and effort, streamlining our workflows.\u201d\nSimon Torring\nCo-Founder at Cube\n\u2605\u2605\u2605\u2605\u2605\n\u201cMrScraper is a reliable and quality-minded data provider. We appreciate MrScraper's fast customer service and rapid innovations that help us deliver best-in-class market insights\u201d\nBustem\nCEO\n\u2605\u2605\u2605\u2605\u2605\n\u201cMrScraper has been a complete game-changer for us. We plug their API and scraping tech directly into our internal system, and it lets us scan marketplaces + social media at scale to surface bad actors fast. It gives us real-time visibility so we can protect our client's brands and customers with confidence.\u201d\nAI-Powered\nExtract structured web data with intelligent scraping workflows.\nBuilt for Reliability\nUse proxies, reruns, APIs, and monitoring to keep data flowing.\nTime Saving\nAutomate recurring collecting and send results into your workflow.\nNeed a custom plan?\nGet a plan tailored for higher-volume token usage, dedicated requirements, or enterprise-grade data",
+        "retrieved_at": "2026-08-18 07:26:35.118378"
+      }
+    ],
+    "confidence": 0.13333333333333333,
+    "uncertainty": [
+      "auth_methods",
+      "mcp_public",
+      "composio_supported",
+      "buildability_ready_but_auth_unknown",
+      "low_confidence_high_buildability"
+    ],
+    "verification_status": "unverified",
+    "verified_fields": null
+  },
+  {
+    "app": "Vonage",
+    "category": "Communications and Messaging",
+    "description": "unknown",
+    "auth_methods": [],
+    "credential_access": "unknown",
+    "api_types": [],
+    "api_breadth": "unknown",
+    "mcp_public": "unknown",
+    "composio_supported": "no",
+    "buildability": "unknown",
+    "blocker": null,
+    "sources": [],
+    "evidence": [],
+    "confidence": 0.06666666666666665,
+    "uncertainty": [
+      "No evidence provided about Vonage's integration details."
+    ],
+    "verification_status": "unverified",
+    "verified_fields": null
+  },
+  {
+    "app": "Mermaid CLI",
+    "category": "AI, Research and Media-native",
+    "description": "unknown",
+    "auth_methods": [
+      "unknown"
+    ],
+    "credential_access": "unknown",
+    "api_types": [
+      "unknown"
+    ],
+    "api_breadth": "unknown",
+    "mcp_public": "unknown",
+    "composio_supported": "no",
+    "buildability": "unknown",
+    "blocker": null,
+    "sources": [],
+    "evidence": [],
+    "confidence": 0.008333333333333325,
+    "uncertainty": [
+      "No evidence provided"
+    ],
+    "verification_status": "unverified",
+    "verified_fields": null
+  },
+  {
+    "app": "Close",
+    "category": "CRM and Sales",
+    "description": "Close CRM API enables full integration of Close functionality into existing tools, allowing custom reporting, admin panels, dashboards, email digests, and real-time workflows via webhooks.",
+    "auth_methods": [
+      "unknown"
+    ],
+    "credential_access": "self_serve_with_trial",
+    "api_types": [
+      "webhooks"
+    ],
+    "api_breadth": "broad",
+    "mcp_public": "unknown",
+    "composio_supported": "no",
+    "buildability": "ready",
+    "blocker": null,
+    "sources": [
+      "https://close.com/api"
+    ],
+    "evidence": [
+      {
+        "claim": "Documentation from https://close.com/api",
+        "url": "https://close.com/api",
+        "source_type": "web",
+        "supporting_text": "CRM API | How to Integrate With Close CRM\nTake\nfull control\nof your data\nIntegrate all of Close\u2019s functionality\ninto your existing toolset through our powerful API.\nIt's everything\nan easy API\nshould be.\nSet up custom reporting\nCreate custom reporting for leads that match specific criteria. Define your criteria in a Smart View and get automatically updated reports on all leads that match those criteria.\nCreate custom admin panels\nAre you running a large sales organization with very specific and unique needs? Use the Close API to build your own admin panels and create a more streamlined process for your team.\nBuild your own integrations\nWant to create leads from your own application or website? Connect directly from your app or website to Close, without having to rely on any third-party services to get the data from A to B.\nDesign your own dashboards\nClose gives you full control over your data. If you want to build your own dashboards or see your sales numbers in existing BI or reporting tools, our API allows you to pull out all the data you need.\nGenerate automated email digests\nCreate automated daily, weekly, or monthly email digests that go out to all your reps. Show their individual performance metrics for any given time period and benchmark it against the overall team members.\nTrigger custom workflows in realtime\nWant to create custom workflows based on changes to your data in Close? Use our event-based webhooks to track change events in real time and use that data to power your custom workflows.\nDiscover\nthe full power\nand potential of the Close API.\nView API Documentation\nFree trial\nFree migration\nFree support\nNo credit card needed\nStart your 14-day free trial\nOn-demand demo\nLearn the how + why of Close in just a few minutes.\nTake a product tour\nTalk to a real human\nGet the gist of Close with a guided, B.S.-free tour.\nBook a call",
+        "retrieved_at": "2026-08-18 07:33:03.626547"
+      }
+    ],
+    "confidence": 0.13333333333333333,
+    "uncertainty": [
+      "auth_methods",
+      "mcp_public",
+      "composio_supported",
+      "api_types (whether REST or other protocols besides webhooks are supported)",
+      "credential_access_evidence_weak",
+      "buildability_ready_but_auth_unknown",
+      "low_confidence_high_buildability"
+    ],
+    "verification_status": "unverified",
+    "verified_fields": null
+  },
+  {
+    "app": "Netlify",
+    "category": "Developer, Infra and Data platforms",
+    "description": "unknown",
+    "auth_methods": [
+      "unknown"
+    ],
+    "credential_access": "unknown",
+    "api_types": [
+      "unknown"
+    ],
+    "api_breadth": "unknown",
+    "mcp_public": "unknown",
+    "composio_supported": "no",
+    "buildability": "unknown",
+    "blocker": null,
+    "sources": [],
+    "evidence": [],
+    "confidence": 0.008333333333333325,
+    "uncertainty": [
+      "No evidence provided"
+    ],
+    "verification_status": "unverified",
+    "verified_fields": null
+  },
+  {
+    "app": "GoHighLevel",
+    "category": "Marketing, Ads, Email and Social",
+    "description": "GoHighLevel is an all-in-one marketing platform offering CRM, email and SMS marketing, social media management, ad management, funnel building, and automation tools for agencies and businesses.",
+    "auth_methods": [
+      "unknown"
+    ],
+    "credential_access": "self_serve_with_trial",
+    "api_types": [
+      "unknown"
+    ],
+    "api_breadth": "unknown",
+    "mcp_public": "unknown",
+    "composio_supported": "no",
+    "buildability": "buildable_with_caveat",
+    "blocker": null,
+    "sources": [
+      "https://gohighlevel.com/developers/pricing",
+      "https://gohighlevel.com/pricing",
+      "https://gohighlevel.com/get-started"
+    ],
+    "evidence": [
+      {
+        "claim": "Targeted research: pricing_docs from https://gohighlevel.com/pricing",
+        "url": "https://gohighlevel.com/pricing",
+        "source_type": "web",
+        "supporting_text": "HighLevel Pricing\nStart Your 14 Day Free Trial Today!\nStep 1\nTell Us About Your Business\nStep 2\nTrial Details\nGo To Step #2\nReceive updates, news, and offers via email and text\nLearn more about our\nEnterprise Plan\nDedicated Customer Success Manager and Account Manager\nCustom development opportunities\nDedicated slack channel\nPremium Support included with purchase\nIncrease API Limit by request\nDedicated Customer Success\nManager and Account Manager\nCustom development opportunities\nDedicated slack channel\nPremium Support included with purchase\nIncrease API Limit by request\nQuarterly Business Reviews\nEnterprise reporting\nWhite Label Mobile App included in purchase\nHIPAA compliance included in purchase\nFull feature set of HighLevel highest available platform subscription plan\nQuarterly Business Reviews\nEnterprise reporting\nWhite Label Mobile App included in purchase\nHIPAA compliance included in purchase\nFull feature set of HighLevel highest available platform subscription plan\nFeatures\nIntegrations\nAdd-ons\nPayment Providers\nFAQ\nLogin to App\nStart with a FREE 14-day trial on any plan below!\nUnlimited contacts, unlimited Users. Scale your business without a tax on growth.\nMonthly\nSave with annual\nStarter\n$97\n/Month\n$970\n/Year\nPerfect for smaller businesses and solo marketers\n3 Sub-Accounts\nUnlimited Contacts\nUnlimited Users\n24/7 Support\nAll Core Features\nStart Your Trial\nExperience it for 14 Days FREE\nMOST POPULAR\nUnlimited\n$297\n/Month\n$2970\n/Year\nBuilt for growing agencies\nEverything in Starter Plan and...\nUnlimited Sub-Accounts\nRebill Phone & Email (no markup)\nBasic API Access\nStart Your Trial\nExperience it for 14 Days FREE\nAgency Pro\n$497\n/Month\n$4970\n/Year\nIdeal for SaaSPRENEURs & Agencies looking to go SaaS\nEverything in Unlimited Plan and...\nSaaS Mode\nAutomated Sub-Account Creation\nRebill Phone & Email with Markup\nUser/Agent Reporting\nAdvanced API Access\nStart Your Trial\nExperience it for 14 Days FREE\nEnterprise plan\nSpeak with Our Enterprise Team\nDesigned for high volume businesses & agencies, our Enterprise plan is custom tailored to each business in order to maximize margins and deliver the best of what HighLevel has to offer.\nView Details\nFeatures\nCore features\nConversation AI*\nVoice AI*\nContent AI\nFunnel AI\nReviews AI*\nWebsite & Funnel Builder\nDomain Management\nCRM & Pipelines\nCustom Dashboards & Reporting\nEmail + SMS Marketing*\nInbound & outbound calling*\nUnified Conversations\nSocial Media Management\nWorkflow Automation\nForms, Surveys & Quizzes\nBooking Calendars\nAd Manager\nOnline Reputation Management\nProspecting tool\nPayments & Invoicing\nHighLevel mobile app\nCourses\nCommunities\nAPI Access\nAnd more!\n*Usage based charges apply.\nClick here\nto learn more about general usage pricing or\nclick here\nto learn more about AI usage pricing.\nIncluded Integrations\nHighLevel is built to integrate into the tools you're already using.\nAdd-ons\nOptional Add-ons\nTailor HighLevel with these optional add-ons. Enable only the capabilities you need and expand anyti",
+        "retrieved_at": "2026-08-18 07:30:39.902585"
+      },
+      {
+        "claim": "Targeted research: pricing_docs from https://gohighlevel.com/developers/pricing",
+        "url": "https://gohighlevel.com/developers/pricing",
+        "source_type": "web",
+        "supporting_text": "Page Not Found | HighLevel\nLogin to App\nLogin to App\nOops! Looks like you're lost.\nLet\u2019s get you back on track.\nBlog\nTips, trends, and strategies to level up your marketing game.\nAffiliates\nEarn 40% recurring commissions promoting HighLevel.\nEvents\nDiscover webinars, live events, and workshops to help you succeed.\nHead to the Homepage if you\u2019re still stuck!\n\u00a9 2026 HighLevel, Inc. | All Rights Reserved\nPrivacy Policy\n|\nTerms of Service\n|\nPrivacy and Security",
+        "retrieved_at": "2026-08-18 07:30:40.956118"
+      },
+      {
+        "claim": "Targeted research: official_docs from https://gohighlevel.com/get-started",
+        "url": "https://gohighlevel.com/get-started",
+        "source_type": "web",
+        "supporting_text": "Page Not Found | HighLevel\nLogin to App\nLogin to App\nOops! Looks like you're lost.\nLet\u2019s get you back on track.\nBlog\nTips, trends, and strategies to level up your marketing game.\nAffiliates\nEarn 40% recurring commissions promoting HighLevel.\nEvents\nDiscover webinars, live events, and workshops to help you succeed.\nHead to the Homepage if you\u2019re still stuck!\n\u00a9 2026 HighLevel, Inc. | All Rights Reserved\nPrivacy Policy\n|\nTerms of Service\n|\nPrivacy and Security",
+        "retrieved_at": "2026-08-18 07:30:41.497904"
+      }
+    ],
+    "confidence": 0.17499999999999996,
+    "uncertainty": [
+      "authentication method unknown",
+      "API type unknown",
+      "API breadth unknown",
+      "MCP public availability unknown",
+      "Composio integration support unknown",
+      "credential_access_evidence_weak",
+      "low_confidence_high_buildability"
+    ],
+    "verification_status": "unverified",
+    "verified_fields": null
+  },
+  {
+    "app": "Notion",
+    "category": "Productivity and Project Management",
+    "description": "Notion is an all-in-one workspace that combines notes, databases, project management, and collaboration tools, offering AI capabilities and integrations with apps like Slack, Google Drive, and GitHub.",
+    "auth_methods": [
+      "unknown"
+    ],
+    "credential_access": "unknown",
+    "api_types": [
+      "unknown"
+    ],
+    "api_breadth": "unknown",
+    "mcp_public": "unknown",
+    "composio_supported": "yes",
+    "buildability": "buildable_with_caveat",
+    "blocker": null,
+    "sources": [
+      "https://connect.composio.dev",
+      "https://notion.com/pricing"
+    ],
+    "evidence": [
+      {
+        "claim": "Composio supports Notion via COMPOSIO_SEARCH_TOOLS",
+        "url": "https://connect.composio.dev",
+        "source_type": "composio_registry",
+        "supporting_text": "Found in Composio toolkits: COMPOSIO_SEARCH_TOOLS",
+        "retrieved_at": "2026-08-18 07:31:45.427239"
+      },
+      {
+        "claim": "Targeted research: pricing_docs from https://notion.com/pricing",
+        "url": "https://notion.com/pricing",
+        "source_type": "web",
+        "supporting_text": "Notion Pricing Plans: Free, Plus, Business, & Enterprise.\nOne tool to run your company.\nTrusted by teams at\nEssentials for staying organized.\nFree\n$0\nper member / month\nFor individuals to organize personal projects and life.\nSign up\nIncludes:\nTrial AI capabilities like generating docs, or autofilling databases\nTrial of Notion AI\nCapture, organize, and act on responses right inside Notion.\nBasic forms\nPublish a Notion page to the web\nBasic sites\nConnect multiple Calendars to manage work and time together.\nNotion Calendar\nOrganize hundreds or thousands of items in one place, like projects or tasks\nDatabases including subtasks, dependencies, custom properties and more\nPlus\n$10\nper member / month\nFor small teams and professionals to work together.\nGet started\nEverything in Free, and:\nTrial AI capabilities like generating docs, or autofilling databases\nTrial of Notion AI\nRemove Notion branding from public forms\nCustom forms\nCustomize your top header, choose a light or dark theme, add a custom favicon, and integrate with Google Analytics.\nCustom sites\nVisualize data from databases in different ways (e.g. donut, bar, and line charts).\nUnlimited charts\nBlocks are pieces of content you add to a page (e.g. to-do checkboxes, paragraphs, bullet points, etc.).\nUnlimited collaborative blocks\nA per file size limit may apply to any file that you upload to a Notion page or database.\nUnlimited file uploads\nConnect to some tools like Slack & Google Drive\nBasic connections\nThe AI workspace for work that matters.\nBusiness\nRecommended\n$20\nper member / month\nFor growing businesses to streamline teamwork.\nGet started\nEverything in Plus, and:\nDoes work for you. Completes complex, multi-step tasks using context from Notion, your connected apps, and the web.\nNotion Agent\nAutomate your meeting notes and follow-ups, no bot needed\nAI Meeting Notes\nSearch across connected apps like Slack, Github & more\nEnterprise Search\nBeta\nManage employee access at scale with secure single sign-on.\nSAML SSO\nCollaborate in Notion databases without giving access to the entire database. Limit access to rows where the collaborator is assigned.\nGranular database permissions\nAdd a verified badge to pages that are up to date. Appears in search results and AI citations.\nVerify any page\nCreate teamspaces that can\u2019t be seen or discovered by anyone except those you add. Great for sensitive information like company planning or performance reviews.\nPrivate teamspaces\nVerify ownership of an email domain to access advanced security features including single-sign on.\nDomain verification\nConnect to GitHub, Asana & more\nPremium connections\nEnterprise\nCustom pricing\nFor organizations to operate with scalability, control, and security.\nContact Sales\nEverything in Business, and:\nWhen using Notion AI, our LLM providers utilize zero data retention for Enterprise plan workspaces\nZero data retention with LLM providers\nAccess the Notion SCIM API to provision and manage users and groups.\nUser provisioning (SCIM)\nUnloc",
+        "retrieved_at": "2026-08-18 07:31:53.451545"
+      }
+    ],
+    "confidence": 0.016666666666666663,
+    "uncertainty": [
+      "auth_methods",
+      "credential_access",
+      "api_types",
+      "api_breadth",
+      "mcp_public",
+      "low_confidence_high_buildability"
+    ],
+    "verification_status": "unverified",
+    "verified_fields": null
+  },
+  {
+    "app": "WooCommerce",
+    "category": "Ecommerce",
+    "description": "WooCommerce is a free, open-source ecommerce platform for WordPress that lets you build a custom online store and pay only for added features.",
+    "auth_methods": [
+      "unknown"
+    ],
+    "credential_access": "unknown",
+    "api_types": [
+      "rest"
+    ],
+    "api_breadth": "unknown",
+    "mcp_public": "unknown",
+    "composio_supported": "no",
+    "buildability": "buildable_with_caveat",
+    "blocker": null,
+    "sources": [
+      "https://woocommerce.com/document/woocommerce-rest-api/api",
+      "https://woocommerce.com/document/woocommerce-rest-api/developers/api",
+      "https://woocommerce.com/document/woocommerce-rest-api/docs",
+      "https://woocommerce.com/document/woocommerce-rest-api/docs/auth",
+      "https://woocommerce.com/document/woocommerce-rest-api/docs/api",
+      "https://woocommerce.com/document/woocommerce-rest-api/developers/auth",
+      "https://woocommerce.com/pricing"
+    ],
+    "evidence": [
+      {
+        "claim": "Documentation from https://woocommerce.com/document/woocommerce-rest-api/docs",
+        "url": "https://woocommerce.com/document/woocommerce-rest-api/docs",
+        "source_type": "web",
+        "supporting_text": "Docs Template - Extension/Plugin/Add-On Documentation - WooCommerce\nSkip to navigation\nSkip to content\nDocumentation\nDocumentation\nWooCommerce\nExpand\nProducts\nExpand\nWoo Marketplace\nCode Snippets\nExpand\nDocs Template \u2013 Extension/Plugin/Add-On\nName of your extension/add-on\nallows your WooCommerce store to ____________ .\nTo set up\u00a0your store with ___:\nGo to:\nWooCommerce\n>\nSettings\n> ____________ .\nTick the checkbox to Enable\nEnter a description for ____________ .\nSave changes.\nThere\u2019s a lot of freedom here to create sections you feel are necessary to explain setup or different configurations.\nWhat customers see on the front end.\nKnown errors or issues and how to solve them.\nHelp customers by answering commonly asked questions.\nQuestion 1\nAnswer 1 goes here.\nAnswer 2 goes here.\nQuestion 2\nThe answer goes here.\nQuestion 3\nThe answer goes here.\n30-day\nmoney-back guarantee\nSupport\nteams across the world\nSafe and secure\nonline payments",
+        "retrieved_at": "2026-08-18 07:32:55.551703"
+      },
+      {
+        "claim": "Documentation from https://woocommerce.com/document/woocommerce-rest-api/api",
+        "url": "https://woocommerce.com/document/woocommerce-rest-api/api",
+        "source_type": "web",
+        "supporting_text": "API Documentation - WooCommerce\nSkip to navigation\nSkip to content\nExtensions\nExtensions\nPre-Sales Support\nStripe\nWooCommerce Square\nPayPal Braintree\nAutomateWoo\nExpand\nProduct CSV Import Suite\nOrder/Customer CSV Export\nFacebook for WooCommerce\nWooCommerce Subscriptions\nExpand\nAll Products for WooCommerce Subscriptions\nExpand\nWooCommerce Memberships\nExpand\nWooCommerce Bookings\nExpand\nProduct Bundles\nExpand\nProduct Recommendations\nExpand\nComposite Products\nExpand\nSmart Coupons\nCashier for WooCommerce\nAffiliate For WooCommerce\nMix and Match Products\nGoogle Product Feed\nGroups WooCommerce\nGift Cards\nAPI Manager\nTable Rate Shipping\nAdvanced Shipping Packages\nName Your Price\nOrder Delivery\nWooCommerce Zapier Integration\nExpand\nKlarna\nExpand\nProduct Vendors\nWooCommerce Photography\nExpand\nWooCommerce Product Search\nExpand\nSetup\nSettings\nReports\nWidgets\nShortcodes\nDeveloper Documentation\nPDF Invoice\nPre-orders\nForce Sells\nGoogle for WooCommerce\nExpand\nImport Export Suite for WooCommerce\nWooCommerce Brands\nExpand\nBulk Updater for WooCommerce Subscriptions\nExpand\nEnhancer for WooCommerce Subscriptions\nExpand\nProduct Add-ons\nExpand\nXero\nExpand\nBuy One Get One Free\nWooCommerce Sales Analysis\nConditional Shipping and Payments\nWooCommerce Shipping & Tax\nEmail Customizer Pro\nBack In Stock Notifications\nWooCommerce Smart Refunder\nSaved Addresses For WooCommerce\nChained Products\nVolume Discount Coupons\nSensei\nExpand\nRetired Extensions\nWooSidebars\nFollow-Ups\nExpand\nOpayo\nPixel Manager Pro for WooCommerce\nAdvanced Bulk Edit\nSmart Stock & Inventory Manager\nFlexi BOGO\nFlexi Custom Order Status\nProduct Input Fields\nProduct Feed Manager\nPayment Gateway Based Fees and Discounts\nAbandoned Cart Pro\nOrder Delivery Date\nCurrency per product\nCall for Price Pro\nProduct Prices by User Role\nFlexi Custom Order Numbers\nFlexi Product Delivery Date\nFlexi Booking and Appointment\nDelivery and Pickup Scheduler\nSensAI\nAll-in-one PDF Invoice and Packing Slips Suite\nExpand\nEasy Subscriptions\nSmart Product Designer\nWooCommerce Anti-Fraud\nShipment Tracking\nExpand\nAPI\nThis section is provided for WooCommerce developers who want to interact with the API or deploy the advanced search facilities directly in theme templates. You need an advanced understanding of\nPHP\nand\nWordPress development\n. If you are not a developer but would like to find one to help with customization,\nselect a\nWooExpert or Developer\nfor assistance\n.\nPlease refer to the following sections where we provide details on how to debug issues and describe the functions and hooks provided by the\nWooCommerce Product Search\nextension\u2019s API.\nDebugging\nConstants\nFunctions\nActions\nFilters\nEvents\nREST API\nExamples\nRelated Products\nAdvanced, flexible shipping. Define multiple shipping rates based on location, price, weight, shipping class or item count.\nProtect your eCommerce store from malicious and automated attacks by using reCaptcha/Cloudflare Turnstile/hCaptcha for WooCommerce.\n30-day\nmoney-back guarantee\nSupport\nteams across the wo",
+        "retrieved_at": "2026-08-18 07:32:56.460127"
+      },
+      {
+        "claim": "Documentation from https://woocommerce.com/document/woocommerce-rest-api/developers/auth",
+        "url": "https://woocommerce.com/document/woocommerce-rest-api/developers/auth",
+        "source_type": "web",
+        "supporting_text": "Authipay Documentation - WooCommerce\nSkip to navigation\nSkip to content\nDocumentation\nDocumentation\nWooCommerce\nExpand\nProducts\nExpand\nWooPayments\nWooPay\nWooCommerce Shipping\nWooCommerce Tax\nExtensions\nExpand\nPre-Sales Support\nStripe\nWooCommerce Square\nPayPal Braintree\nAutomateWoo\nExpand\nProduct CSV Import Suite\nOrder/Customer CSV Export\nFacebook for WooCommerce\nWooCommerce Subscriptions\nExpand\nAll Products for WooCommerce Subscriptions\nExpand\nWooCommerce Memberships\nExpand\nWooCommerce Bookings\nExpand\nProduct Bundles\nExpand\nProduct Recommendations\nExpand\nComposite Products\nExpand\nSmart Coupons\nCashier for WooCommerce\nAffiliate For WooCommerce\nMix and Match Products\nGoogle Product Feed\nGroups WooCommerce\nGift Cards\nAPI Manager\nTable Rate Shipping\nAdvanced Shipping Packages\nName Your Price\nOrder Delivery\nWooCommerce Zapier Integration\nExpand\nKlarna\nExpand\nProduct Vendors\nWooCommerce Photography\nExpand\nWooCommerce Product Search\nExpand\nPDF Invoice\nPre-orders\nForce Sells\nGoogle for WooCommerce\nExpand\nImport Export Suite for WooCommerce\nWooCommerce Brands\nExpand\nBulk Updater for WooCommerce Subscriptions\nExpand\nEnhancer for WooCommerce Subscriptions\nExpand\nProduct Add-ons\nExpand\nXero\nExpand\nBuy One Get One Free\nWooCommerce Sales Analysis\nConditional Shipping and Payments\nWooCommerce Shipping & Tax\nEmail Customizer Pro\nBack In Stock Notifications\nWooCommerce Smart Refunder\nSaved Addresses For WooCommerce\nChained Products\nVolume Discount Coupons\nSensei\nExpand\nRetired Extensions\nWooSidebars\nFollow-Ups\nExpand\nOpayo\nPixel Manager Pro for WooCommerce\nAdvanced Bulk Edit\nSmart Stock & Inventory Manager\nFlexi BOGO\nFlexi Custom Order Status\nProduct Input Fields\nProduct Feed Manager\nPayment Gateway Based Fees and Discounts\nAbandoned Cart Pro\nOrder Delivery Date\nCurrency per product\nCall for Price Pro\nProduct Prices by User Role\nFlexi Custom Order Numbers\nFlexi Product Delivery Date\nFlexi Booking and Appointment\nDelivery and Pickup Scheduler\nSensAI\nAll-in-one PDF Invoice and Packing Slips Suite\nExpand\nEasy Subscriptions\nSmart Product Designer\nWooCommerce Anti-Fraud\nShipment Tracking\nExpand\nThemes\nExpand\nWoo Marketplace\nCode Snippets\nExpand\nAuthipay\nThe WooCommerce\nAuthipay Gateway\nallows you to take payments via\u00a0Authipay by AIB merchant services. An Authipay account is required:\u00a0http://www.authipay.com/\nNote:\nThis product is not available on WooCommerce.com\n. Documentation is no longer being updated.\nDownload\nthe .zip file from your\nWooCommerce account\n.\nGo to\n:\nWordPress Admin > Plugins > Add New\nto upload the file you downloaded with Choose File.\nActivate\nthe extension.\nMore information at:\nInstalling and Managing Plugins\n.\n1. Go to\n:\nWooCommerce > Settings > Checkout > AuthiPay\n.\n2. On the Settings page, enter:\nStore ID\n\u2013\u00a0This is the ID of the store that was given to you by AIB Merchant Services. For example: 13123456789.\nShared Secret\n\u2013\u00a0This is the shared secret provided to you by AIB Merchant Services.\nEnable Test Mode\nif you would like to test before going ",
+        "retrieved_at": "2026-08-18 07:32:58.025056"
+      },
+      {
+        "claim": "Documentation from https://woocommerce.com/document/woocommerce-rest-api/docs/auth",
+        "url": "https://woocommerce.com/document/woocommerce-rest-api/docs/auth",
+        "source_type": "web",
+        "supporting_text": "Authipay Documentation - WooCommerce\nSkip to navigation\nSkip to content\nDocumentation\nDocumentation\nWooCommerce\nExpand\nProducts\nExpand\nWooPayments\nWooPay\nWooCommerce Shipping\nWooCommerce Tax\nExtensions\nExpand\nPre-Sales Support\nStripe\nWooCommerce Square\nPayPal Braintree\nAutomateWoo\nExpand\nProduct CSV Import Suite\nOrder/Customer CSV Export\nFacebook for WooCommerce\nWooCommerce Subscriptions\nExpand\nAll Products for WooCommerce Subscriptions\nExpand\nWooCommerce Memberships\nExpand\nWooCommerce Bookings\nExpand\nProduct Bundles\nExpand\nProduct Recommendations\nExpand\nComposite Products\nExpand\nSmart Coupons\nCashier for WooCommerce\nAffiliate For WooCommerce\nMix and Match Products\nGoogle Product Feed\nGroups WooCommerce\nGift Cards\nAPI Manager\nTable Rate Shipping\nAdvanced Shipping Packages\nName Your Price\nOrder Delivery\nWooCommerce Zapier Integration\nExpand\nKlarna\nExpand\nProduct Vendors\nWooCommerce Photography\nExpand\nWooCommerce Product Search\nExpand\nPDF Invoice\nPre-orders\nForce Sells\nGoogle for WooCommerce\nExpand\nImport Export Suite for WooCommerce\nWooCommerce Brands\nExpand\nBulk Updater for WooCommerce Subscriptions\nExpand\nEnhancer for WooCommerce Subscriptions\nExpand\nProduct Add-ons\nExpand\nXero\nExpand\nBuy One Get One Free\nWooCommerce Sales Analysis\nConditional Shipping and Payments\nWooCommerce Shipping & Tax\nEmail Customizer Pro\nBack In Stock Notifications\nWooCommerce Smart Refunder\nSaved Addresses For WooCommerce\nChained Products\nVolume Discount Coupons\nSensei\nExpand\nRetired Extensions\nWooSidebars\nFollow-Ups\nExpand\nOpayo\nPixel Manager Pro for WooCommerce\nAdvanced Bulk Edit\nSmart Stock & Inventory Manager\nFlexi BOGO\nFlexi Custom Order Status\nProduct Input Fields\nProduct Feed Manager\nPayment Gateway Based Fees and Discounts\nAbandoned Cart Pro\nOrder Delivery Date\nCurrency per product\nCall for Price Pro\nProduct Prices by User Role\nFlexi Custom Order Numbers\nFlexi Product Delivery Date\nFlexi Booking and Appointment\nDelivery and Pickup Scheduler\nSensAI\nAll-in-one PDF Invoice and Packing Slips Suite\nExpand\nEasy Subscriptions\nSmart Product Designer\nWooCommerce Anti-Fraud\nShipment Tracking\nExpand\nThemes\nExpand\nWoo Marketplace\nCode Snippets\nExpand\nAuthipay\nThe WooCommerce\nAuthipay Gateway\nallows you to take payments via\u00a0Authipay by AIB merchant services. An Authipay account is required:\u00a0http://www.authipay.com/\nNote:\nThis product is not available on WooCommerce.com\n. Documentation is no longer being updated.\nDownload\nthe .zip file from your\nWooCommerce account\n.\nGo to\n:\nWordPress Admin > Plugins > Add New\nto upload the file you downloaded with Choose File.\nActivate\nthe extension.\nMore information at:\nInstalling and Managing Plugins\n.\n1. Go to\n:\nWooCommerce > Settings > Checkout > AuthiPay\n.\n2. On the Settings page, enter:\nStore ID\n\u2013\u00a0This is the ID of the store that was given to you by AIB Merchant Services. For example: 13123456789.\nShared Secret\n\u2013\u00a0This is the shared secret provided to you by AIB Merchant Services.\nEnable Test Mode\nif you would like to test before going ",
+        "retrieved_at": "2026-08-18 07:32:58.810091"
+      },
+      {
+        "claim": "Documentation from https://woocommerce.com/document/woocommerce-rest-api/developers/api",
+        "url": "https://woocommerce.com/document/woocommerce-rest-api/developers/api",
+        "source_type": "web",
+        "supporting_text": "API Documentation - WooCommerce\nSkip to navigation\nSkip to content\nExtensions\nExtensions\nPre-Sales Support\nStripe\nWooCommerce Square\nPayPal Braintree\nAutomateWoo\nExpand\nProduct CSV Import Suite\nOrder/Customer CSV Export\nFacebook for WooCommerce\nWooCommerce Subscriptions\nExpand\nAll Products for WooCommerce Subscriptions\nExpand\nWooCommerce Memberships\nExpand\nWooCommerce Bookings\nExpand\nProduct Bundles\nExpand\nProduct Recommendations\nExpand\nComposite Products\nExpand\nSmart Coupons\nCashier for WooCommerce\nAffiliate For WooCommerce\nMix and Match Products\nGoogle Product Feed\nGroups WooCommerce\nGift Cards\nAPI Manager\nTable Rate Shipping\nAdvanced Shipping Packages\nName Your Price\nOrder Delivery\nWooCommerce Zapier Integration\nExpand\nKlarna\nExpand\nProduct Vendors\nWooCommerce Photography\nExpand\nWooCommerce Product Search\nExpand\nSetup\nSettings\nReports\nWidgets\nShortcodes\nDeveloper Documentation\nPDF Invoice\nPre-orders\nForce Sells\nGoogle for WooCommerce\nExpand\nImport Export Suite for WooCommerce\nWooCommerce Brands\nExpand\nBulk Updater for WooCommerce Subscriptions\nExpand\nEnhancer for WooCommerce Subscriptions\nExpand\nProduct Add-ons\nExpand\nXero\nExpand\nBuy One Get One Free\nWooCommerce Sales Analysis\nConditional Shipping and Payments\nWooCommerce Shipping & Tax\nEmail Customizer Pro\nBack In Stock Notifications\nWooCommerce Smart Refunder\nSaved Addresses For WooCommerce\nChained Products\nVolume Discount Coupons\nSensei\nExpand\nRetired Extensions\nWooSidebars\nFollow-Ups\nExpand\nOpayo\nPixel Manager Pro for WooCommerce\nAdvanced Bulk Edit\nSmart Stock & Inventory Manager\nFlexi BOGO\nFlexi Custom Order Status\nProduct Input Fields\nProduct Feed Manager\nPayment Gateway Based Fees and Discounts\nAbandoned Cart Pro\nOrder Delivery Date\nCurrency per product\nCall for Price Pro\nProduct Prices by User Role\nFlexi Custom Order Numbers\nFlexi Product Delivery Date\nFlexi Booking and Appointment\nDelivery and Pickup Scheduler\nSensAI\nAll-in-one PDF Invoice and Packing Slips Suite\nExpand\nEasy Subscriptions\nSmart Product Designer\nWooCommerce Anti-Fraud\nShipment Tracking\nExpand\nAPI\nThis section is provided for WooCommerce developers who want to interact with the API or deploy the advanced search facilities directly in theme templates. You need an advanced understanding of\nPHP\nand\nWordPress development\n. If you are not a developer but would like to find one to help with customization,\nselect a\nWooExpert or Developer\nfor assistance\n.\nPlease refer to the following sections where we provide details on how to debug issues and describe the functions and hooks provided by the\nWooCommerce Product Search\nextension\u2019s API.\nDebugging\nConstants\nFunctions\nActions\nFilters\nEvents\nREST API\nExamples\nRelated Products\nAdvanced, flexible shipping. Define multiple shipping rates based on location, price, weight, shipping class or item count.\nProtect your eCommerce store from malicious and automated attacks by using reCaptcha/Cloudflare...\n30-day\nmoney-back guarantee\nSupport\nteams across the world\nSafe and secure\nonline paymen",
+        "retrieved_at": "2026-08-18 07:32:59.449188"
+      },
+      {
+        "claim": "Documentation from https://woocommerce.com/document/woocommerce-rest-api/docs/api",
+        "url": "https://woocommerce.com/document/woocommerce-rest-api/docs/api",
+        "source_type": "web",
+        "supporting_text": "API Documentation - WooCommerce\nSkip to navigation\nSkip to content\nExtensions\nExtensions\nPre-Sales Support\nStripe\nWooCommerce Square\nPayPal Braintree\nAutomateWoo\nExpand\nProduct CSV Import Suite\nOrder/Customer CSV Export\nFacebook for WooCommerce\nWooCommerce Subscriptions\nExpand\nAll Products for WooCommerce Subscriptions\nExpand\nWooCommerce Memberships\nExpand\nWooCommerce Bookings\nExpand\nProduct Bundles\nExpand\nProduct Recommendations\nExpand\nComposite Products\nExpand\nSmart Coupons\nCashier for WooCommerce\nAffiliate For WooCommerce\nMix and Match Products\nGoogle Product Feed\nGroups WooCommerce\nGift Cards\nAPI Manager\nTable Rate Shipping\nAdvanced Shipping Packages\nName Your Price\nOrder Delivery\nWooCommerce Zapier Integration\nExpand\nKlarna\nExpand\nProduct Vendors\nWooCommerce Photography\nExpand\nWooCommerce Product Search\nExpand\nSetup\nSettings\nReports\nWidgets\nShortcodes\nDeveloper Documentation\nPDF Invoice\nPre-orders\nForce Sells\nGoogle for WooCommerce\nExpand\nImport Export Suite for WooCommerce\nWooCommerce Brands\nExpand\nBulk Updater for WooCommerce Subscriptions\nExpand\nEnhancer for WooCommerce Subscriptions\nExpand\nProduct Add-ons\nExpand\nXero\nExpand\nBuy One Get One Free\nWooCommerce Sales Analysis\nConditional Shipping and Payments\nWooCommerce Shipping & Tax\nEmail Customizer Pro\nBack In Stock Notifications\nWooCommerce Smart Refunder\nSaved Addresses For WooCommerce\nChained Products\nVolume Discount Coupons\nSensei\nExpand\nRetired Extensions\nWooSidebars\nFollow-Ups\nExpand\nOpayo\nPixel Manager Pro for WooCommerce\nAdvanced Bulk Edit\nSmart Stock & Inventory Manager\nFlexi BOGO\nFlexi Custom Order Status\nProduct Input Fields\nProduct Feed Manager\nPayment Gateway Based Fees and Discounts\nAbandoned Cart Pro\nOrder Delivery Date\nCurrency per product\nCall for Price Pro\nProduct Prices by User Role\nFlexi Custom Order Numbers\nFlexi Product Delivery Date\nFlexi Booking and Appointment\nDelivery and Pickup Scheduler\nSensAI\nAll-in-one PDF Invoice and Packing Slips Suite\nExpand\nEasy Subscriptions\nSmart Product Designer\nWooCommerce Anti-Fraud\nShipment Tracking\nExpand\nAPI\nThis section is provided for WooCommerce developers who want to interact with the API or deploy the advanced search facilities directly in theme templates. You need an advanced understanding of\nPHP\nand\nWordPress development\n. If you are not a developer but would like to find one to help with customization,\nselect a\nWooExpert or Developer\nfor assistance\n.\nPlease refer to the following sections where we provide details on how to debug issues and describe the functions and hooks provided by the\nWooCommerce Product Search\nextension\u2019s API.\nDebugging\nConstants\nFunctions\nActions\nFilters\nEvents\nREST API\nExamples\nRelated Products\nAdvanced, flexible shipping. Define multiple shipping rates based on location, price, weight, shipping class or item count.\nProtect your eCommerce store from malicious and automated attacks by using reCaptcha/Cloudflare...\n30-day\nmoney-back guarantee\nSupport\nteams across the world\nSafe and secure\nonline paymen",
+        "retrieved_at": "2026-08-18 07:33:00.081878"
+      },
+      {
+        "claim": "Targeted research: pricing_docs from https://woocommerce.com/pricing",
+        "url": "https://woocommerce.com/pricing",
+        "source_type": "web",
+        "supporting_text": "WooCommerce Pricing Puts You In Control - WooCommerce\nSkip to navigation\nSkip to content\nWooCommerce pricing puts you in control\nWooCommerce is the\nfree, open-source ecommerce platform\nfor WordPress. Build a custom online store and only pay for the added features you use \u2014 no platform fees, no revenue share.\nEstimate your costs\nHow WooCommerce pricing works\nWooCommerce is free to download and use, and you choose where to invest your budget from there. Get everything you need and nothing you don\u2019t, with total transparency and no tiers or surprise fees.\n0\n%\nrevenue share\nCore platform: WooCommerce\nFree, with no monthly subscription.\nPayments: Pick your processor\nNo extra costs, just your solution\u2019s processing fees.\nHosting: Choose your provider\n$25 \u2013 $350/month for most stores, but scales with traffic and performance needs.\nExtensions: Add \u00e0 la carte\n$29 \u2013 $299/year per extension to enhance your store.\nCompare the costs\nWooCommerce\u2019s flexible and transparent model translates into\u00a0long-term savings for your business. Scroll right to compare pricing across platforms.\nShopify Basic\nShopify Advanced\nShopify Plus\nBigCommerce Core\nBigCommerce Enterprise\nSalesforce Commerce Cloud\nWix Enterprise\nAdobe Commerce (Magento)\nMonthly platform and hosting fees\n$0 platform fee\nChoose the host that makes sense for your business\n$29/mo\n$399/month\n$2,300+/month\n$29/mo, online revenue capped at $50k\n~$1,000\u20135,000+/month\n1-3% of GMV\n~$500\u20132,000+/month\n$22k\u2013$125k+/year\nCard payment processing\n~2.50-2.90% + 30\u00a2 per transaction with WooPayments\n2.9% + 30\u00a2 per transaction\n2.5% + $0.30 per transaction\n2.4% + $0.30 per transaction\n2.89% + 29\u00a2 per transaction\n~2.35% + $0.49 per transaction\n~2.9% + $0.30 per transaction\n~2.9% + $0.30 per transaction\n~2.9% + $0.30 per transaction\nAdditional fee for using third-party payment solution\nNone\n2% per transaction\n0.6% per transaction\n0.2% per transaction\n2% per transaction\nNone\nNone\nNone\nNone\nRevenue share\nNone\nNone\nNone\n0.25% on monthly sales over $800k\nNone\n0.6% on\u00a0GMV\u00a0above $250k/month\n1-3% of GMV\nNone\nNone\nSubscription processing fees\nNone with WooCommerce Subscriptions\n~1\u20133% depending on app (no native subscription billing)\n~1\u20133% depending on app\n~1\u20133% depending on app\n~1\u20133% depending on app (no native subscription billing)\n0\u20132% plus up to $500/month, depending on app\nVaries based on app; annual fees can reach $2,000-10,000\nNone\nVaries based on app; annual fees can exceed $1,000\nFee for localized selling in global markets\n$0, can sell in unlimited markets\n3 markets included. Unable to add more\n$59/month per market after first 3 markets\n$59/month per market after first 50 markets\nNone\n$0\n$59/month per market after first 50 markets\n$0, but requires development\n$0\nProduct variant limits\nUnlimited\nUp to 2,048 variants per product; max 3 option types per product\nUp to 2,048 variants per product; max 3 option types per product\nUp to 2,048 variants per product; max 3 option types per product\nUp to 600 variants per product\nMaximum 600 SK",
+        "retrieved_at": "2026-08-18 07:33:18.157731"
+      }
+    ],
+    "confidence": 0.21666666666666665,
+    "uncertainty": [
+      "auth_methods",
+      "credential_access",
+      "api_breadth",
+      "mcp_public",
+      "composio_supported",
+      "low_confidence_high_buildability"
+    ],
+    "verification_status": "unverified",
+    "verified_fields": null
+  },
+  {
+    "app": "Asana",
+    "category": "Productivity and Project Management",
+    "description": "Asana is a productivity and project management platform that enables users to build apps to extend its functionality, integrate with other tools, add or extract data about the Work Graph, and automate workflows.",
+    "auth_methods": [
+      "oauth2"
+    ],
+    "credential_access": "self_serve",
+    "api_types": [
+      "rest",
+      "webhooks"
+    ],
+    "api_breadth": "broad",
+    "mcp_public": "unknown",
+    "composio_supported": "no",
+    "buildability": "ready",
+    "blocker": null,
+    "sources": [
+      "https://developers.asana.com/docs"
+    ],
+    "evidence": [
+      {
+        "claim": "Documentation from https://developers.asana.com/docs",
+        "url": "https://developers.asana.com/docs",
+        "source_type": "web",
+        "supporting_text": "Build an app with Asana\nFor AI agents: visit https://developers.asana.com/llms.txt for an index of all pages formatted in Markdown and endpoints in OpenAPI.\nWhat is an Asana app?\nAn Asana app makes it possible to extend or enhance what\u2019s possible with Asana. Many people build Asana apps to integrate with other tools, add or extract data about the\nWork Graph\n, or automate workflows.\nApps can be built and then shared with other Asana users or they can be built just for your organization. Apps can be built for individual users, for example\nGoogle Drive\nwhich attaches Google files to tasks. Apps can also be built to run org-level processes. For example like onboarding users from\nOkta\nor running custom scripts.\nBuild an app and publish to the App Directory\nIf you are building an integration with a 3rd party tool and intend for any Asana user to discover it, apps can be published to the\nAsana App Directory\n. The app directory is a great place for users to discover new apps that help them get the most out of Asana. We recommend visiting the app directory and try using an app to learn more about what\u2019s possible to build with Asana.\nBuild an app for just one organization\nIf your app is not meant to be used by any Asana user, apps can also be created and then shared with only organizations of your choice. By default, all apps start out private to the developer. You can change the sharing permissions of your app in the Manage distribution tab inside the developer console.\nAsana apps use features like our rest API, app components, and webhooks. Learn more about how these features are used to power our most\ncommon use cases\n.\nWhat do I need to know before I build an app with Asana?\nWhile no two apps are exactly the same. We have a general set of best practices that will help you build a successful app with Asana.\nHere\u2019s an overview of the steps you will need to follow to build an app.\nPlan your app\nBefore you get started building your Asana app, we recommend you familiarize yourself with the Work Graph, meaning the core Asana objects and their relationships.\nCheck out this quick guide on understanding objects\n.\nNext, we recommend planning your app. This step helps you define the exact problem your app is meant to solve and become familiar with features in the Asana platform that will help you build the right solution. Check out our\nlibrary of use cases\n,\nexample apps\n, and\nother apps in the directory\nfor inspiration.\nGet started with the API\nThe next step is to try using the API to test how it works. The primary feature of Asana\u2019s platform is our rest API, so we recommend getting familiar with how our API works.\nHere\u2019s a brief overview of how to get started:\nChoose your test workspace. You can test in any of your existing workspaces, create a free account, or\nrequest a developer sandbox\n. The developer sandbox will allow you to test premium features not included in a free account.\nChoose your authentication method\n. Your app may ultimately use OAuth, but most",
+        "retrieved_at": "2026-08-18 07:32:35.747336"
+      }
+    ],
+    "confidence": 0.24166666666666667,
+    "uncertainty": [
+      "mcp_public",
+      "composio_supported",
+      "buildability_ready_but_auth_unknown",
+      "low_confidence_high_buildability"
+    ],
+    "verification_status": "unverified",
+    "verified_fields": null
+  },
+  {
+    "app": "Smartsheet",
+    "category": "Productivity and Project Management",
+    "description": "Smartsheet is a productivity and project management platform that enables teams to track, share, and manage projects, programs, and processes in a unified workspace.",
+    "auth_methods": [
+      "unknown"
+    ],
+    "credential_access": "unknown",
+    "api_types": [
+      "unknown"
+    ],
+    "api_breadth": "unknown",
+    "mcp_public": "unknown",
+    "composio_supported": "no",
+    "buildability": "unknown",
+    "blocker": null,
+    "sources": [
+      "https://smartsheet.com/pricing"
+    ],
+    "evidence": [
+      {
+        "claim": "Targeted research: pricing_docs from https://smartsheet.com/pricing",
+        "url": "https://smartsheet.com/pricing",
+        "source_type": "web",
+        "supporting_text": "Smartsheet Pricing | Smartsheet\nSkip to main content\nFlexible plans for any team\nChoose the plan that works best for you and manage your projects, programs, and processes \u2014 all in one place.\nTry for free\nPricing by plan type\nCurrency\nAUD (Australian Dollar)\nCAD (Canadian Dollar)\nCHF (Swiss Franc)\nDKK (Danish Krone)\nEUR (Euro)\nGBP (British Pound)\nJPY (Japanese Yen)\nNOK (Norwegian Krone)\nNZD (New Zealand Dollar)\nSEK (Swedish Krona)\nSGD (Singapore Dollar)\nUSD (US Dollar)\nZAR (South African Rand)\nPayment\nMonthly pricing\nYearly pricing\nPro\n$\n12\n9\nper Member/month\n$\n17\n13\nAUD\nper Member/month\n$\n16\n12\nCAD\nper Member/month\n11\n8\nCHF\nper Member/month\n83\n62\nDKK\nper Member/month\n11\n8\n\u20ac\nper Member/month\n\u00a3\n10\n7\nper Member/month\n\u00a5\n1,600\n1,200\nper Member/month\n130\n98\nNOK\nper Member/month\n$\n20\n15\nNZD\nper Member/month\n130\n97\nSEK\nper Member/month\n$\n16\n12\nSGD\nper Member/month\n230\n170\nZAR\nper Member/month\nTotal\n/month\nBilled monthly\n1-10 Members, unlimited Contributors\nBilled yearly\n1-10 Members, unlimited Contributors\nStart now\nFor people and teams wanting to track, share, and manage projects.\nIncludes:\nUnlimited free Contributors\nGantt, table, board, and calendar view\nRich formulas\nConversational AI features, including Smart Assist, Smart Columns, AI-powered dashboards and more\nNew\nUnlimited sheets, forms, and reports\n250 automations per month\nMost popular\nBusiness\n$\n24\n19\nper Member/month\n$\n35\n27\nAUD\nper Member/month\n$\n33\n26\nCAD\nper Member/month\n22\n17\nCHF\nper Member/month\n170\n132\nDKK\nper Member/month\n22\n17\n\u20ac\nper Member/month\n\u00a3\n19\n15\nper Member/month\n\u00a5\n3,200\n2,500\nper Member/month\n260\n207\nNOK\nper Member/month\n$\n40\n32\nNZD\nper Member/month\n260\n205\nSEK\nper Member/month\n$\n33\n25\nSGD\nper Member/month\n450\n359\nZAR\nper Member/month\nTotal\n/month\nBilled monthly\n3+ Members, unlimited Guests and Contributors\nBilled yearly\n3+ Members, unlimited Guests and Contributors\nStart now\nFor businesses looking to align people, projects, and programs.\nIncludes Pro plan, plus:\nUnlimited free Guests\nTimeline view\nWorkload tracking\nAdmin capabilities\nUnlimited automations\nConnect Smartsheet to external AI tools through MCP-enabled integrations\nNew\n1 TB attachment storage\nEnterprise\nTotal\n/month\nCustom pricing\n10+ Members\nCustom pricing\n10+ Members\nContact us\nFor organizations needing to build complex solutions and company-wide security and controls.\nIncludes Business plan, plus:\nScenario Planning\nNEW\nPortfolios\nNEW\nSAML-based SSO\nEnterprise Plan Manager\nUnlimited attachment storage\nDirectory integrations\nBest value\nAdvanced Work Management\nTotal\n/month\nCustom pricing\nSolutions for your needs\nCustom pricing\nSolutions for your needs\nContact us\nFor organizations aiming to manage large scale portfolios of work and connect across their systems.\nIncludes Enterprise plan, plus:\nControl Center\nDynamic View\nData Shuttle\nConnectors\nDataMesh\nCalendar App\nPivot App\nPremium Support\nCompare plans\nFeatures by plan type\nComparison table detailing features across the four Smartsheet plan types: Pro, Business,",
+        "retrieved_at": "2026-08-18 07:34:56.821396"
+      }
+    ],
+    "confidence": 0.0,
+    "uncertainty": [
+      "Authentication methods used by Smartsheet API",
+      "How developers can obtain credentials (self-serve, paid plan, etc.)",
+      "Types of APIs offered (REST, GraphQL, etc.)",
+      "Breadth of API coverage",
+      "Whether a public MCP server exists",
+      "Whether Composio provides a Smartsheet integration",
+      "Ease of building an integration (any blockers or requirements)"
+    ],
+    "verification_status": "unverified",
+    "verified_fields": null
+  },
+  {
+    "app": "Intercom",
+    "category": "Support and Helpdesk",
+    "description": "Intercom provides an AI customer service platform with APIs and SDKs to build customized experiences in the Help Desk and Messenger, enabling integrations for reporting, ticketing, and inbox apps.",
+    "auth_methods": [
+      "unknown"
+    ],
+    "credential_access": "unknown",
+    "api_types": [
+      "rest",
+      "webhooks"
+    ],
+    "api_breadth": "broad",
+    "mcp_public": "unknown",
+    "composio_supported": "no",
+    "buildability": "ready",
+    "blocker": null,
+    "sources": [
+      "https://intercom.com/api",
+      "https://intercom.com/developers"
+    ],
+    "evidence": [
+      {
+        "claim": "Documentation from https://intercom.com/developers",
+        "url": "https://intercom.com/developers",
+        "source_type": "web",
+        "supporting_text": "Intercom Developers | Intercom and Fin Developer Platform\nSkip to content\nIntercom for Developers\nIntegrate with Intercom by building apps on the complete\nAI customer service platform\n. Create seamless customized experiences in the Intercom Help Desk and Messenger using our APIs and SDKS.\nStart building\nSee App Store\nInstall Intercom\nOn Web, iOS, Android, and more\nMake sure the Messenger is available everywhere your customers are. Customize the UI, configure user interactions, or set up\npush notifications\n.\nInstall now\nBuild and list an app\nOffer an integration to Intercom's 25K+ customers\nBuild an app that helps solve business problems, from AI to reporting. Get started by setting up a free\ndevelopment workspace\nto test and publish your app.\nSign up for free\nCreate a custom integration\nFor Inbox, Messenger, and accessing data\nBuild a solution just for your team on your main Intercom workspace. See what's possible with a\nMessenger app\ntutorial or\nTickets\ntutorial.\nSee how it works\nJoin the brands who build\non Intercom\nGo to app store\n\"The Intercom API had everything we needed to go from whiteboard to working app within a week. Plus, the documentation made it dead simple.\"\nRoger Zurawicki\nEngineer @ Coda\n\u201cIntegrating with Intercom has increased our product engagement and retention. Within 2 weeks of launch, our app had already been used in over 2,500 conversations.\u201d\nNicolas Greni\u00e9\nDeveloper Advocate\n\u201cAircall signups through Intercom-referral have increased 5x since we launched our app, and it's already been adopted by hundreds of support and sales teams.\u201d\nClement Bruneau\nDirector of Business Development\nGuides for developers\n\ud83c\udf9f\ufe0f Tickets + GitHub Issues\nBuild an integration\nusing webhooks and the Tickets API to create a GitHub issue when a ticket is created in Intercom.\n\ud83d\udcc8 Reporting\nCreate your own reports\nfrom conversation and teammates data using the Intercom API.\n\u2709\ufe0f Inbox apps for admins\nIn Intercom, admins are called teammates.\nBuild an Inbox app\nfor a teammate to log data about a contact.\nNeed help?\nGet fast, helpful support via chat or in the Intercom Community.\nJoin community",
+        "retrieved_at": "2026-08-18 07:34:51.166703"
+      },
+      {
+        "claim": "Documentation from https://intercom.com/api",
+        "url": "https://intercom.com/api",
+        "source_type": "web",
+        "supporting_text": "Intercom Developers | Intercom and Fin Developer Platform\nSkip to content\nIntercom for Developers\nIntegrate with Intercom by building apps on the complete\nAI customer service platform\n. Create seamless customized experiences in the Intercom Help Desk and Messenger using our APIs and SDKS.\nStart building\nSee App Store\nInstall Intercom\nOn Web, iOS, Android, and more\nMake sure the Messenger is available everywhere your customers are. Customize the UI, configure user interactions, or set up\npush notifications\n.\nInstall now\nBuild and list an app\nOffer an integration to Intercom's 25K+ customers\nBuild an app that helps solve business problems, from AI to reporting. Get started by setting up a free\ndevelopment workspace\nto test and publish your app.\nSign up for free\nCreate a custom integration\nFor Inbox, Messenger, and accessing data\nBuild a solution just for your team on your main Intercom workspace. See what's possible with a\nMessenger app\ntutorial or\nTickets\ntutorial.\nSee how it works\nJoin the brands who build\non Intercom\nGo to app store\n\"The Intercom API had everything we needed to go from whiteboard to working app within a week. Plus, the documentation made it dead simple.\"\nRoger Zurawicki\nEngineer @ Coda\n\u201cIntegrating with Intercom has increased our product engagement and retention. Within 2 weeks of launch, our app had already been used in over 2,500 conversations.\u201d\nNicolas Greni\u00e9\nDeveloper Advocate\n\u201cAircall signups through Intercom-referral have increased 5x since we launched our app, and it's already been adopted by hundreds of support and sales teams.\u201d\nClement Bruneau\nDirector of Business Development\nGuides for developers\n\ud83c\udf9f\ufe0f Tickets + GitHub Issues\nBuild an integration\nusing webhooks and the Tickets API to create a GitHub issue when a ticket is created in Intercom.\n\ud83d\udcc8 Reporting\nCreate your own reports\nfrom conversation and teammates data using the Intercom API.\n\u2709\ufe0f Inbox apps for admins\nIn Intercom, admins are called teammates.\nBuild an Inbox app\nfor a teammate to log data about a contact.\nNeed help?\nGet fast, helpful support via chat or in the Intercom Community.\nJoin community",
+        "retrieved_at": "2026-08-18 07:34:52.854707"
+      }
+    ],
+    "confidence": 0.07499999999999998,
+    "uncertainty": [
+      "auth_methods",
+      "credential_access",
+      "mcp_public",
+      "composio_supported",
+      "buildability_ready_but_gated",
+      "buildability_ready_but_auth_unknown",
+      "low_confidence_high_buildability"
+    ],
+    "verification_status": "unverified",
+    "verified_fields": null
+  },
+  {
+    "app": "Gorgias",
+    "category": "Support and Helpdesk",
+    "description": "Gorgias provides a helpdesk and AI-powered support platform with a unified inbox, enabling businesses to manage customer conversations at scale.",
+    "auth_methods": [
+      "unknown"
+    ],
+    "credential_access": "unknown",
+    "api_types": [
+      "unknown"
+    ],
+    "api_breadth": "unknown",
+    "mcp_public": "unknown",
+    "composio_supported": "no",
+    "buildability": "unknown",
+    "blocker": null,
+    "sources": [
+      "https://gorgias.com/pricing"
+    ],
+    "evidence": [
+      {
+        "claim": "Targeted research: pricing_docs from https://gorgias.com/pricing",
+        "url": "https://gorgias.com/pricing",
+        "source_type": "web",
+        "supporting_text": "Gorgias Pricing \u2013\u00a0Build the customer support suite that fits your needs\nBook a demo\nPricing\nHelpdesk + AI Agent.\nOne platform. One inbox. One bill.\nAI Agent on every plan, pay only when it resolves a conversation.\nHelpdesk scales from 50 to 5,000 tickets a month, never priced per agent.\nWe power customer conversations for 40% of Shopify brands\nRead case study\nRead case study\nRead case study\nRead case study\nRead case study\nAdd-ons\nVoice and SMS,when you need them.\nAdd Voice or SMS to any plan. Pricing scales with your call and text volume, so you can choose the tier that matches your usage.\nCompare plans\nEvery feature side by side.\n\"When we first started with Gorgias, our goal was to hit 30% automation in 30 days. We surpassed that and are now above 50% automation, and we\u2019re still climbing.\"\nCourtney Bajek\nCustomer Service Lead at Orthofeet\nRead the full story\n->\nFAQs\nFrequently Asked Questions",
+        "retrieved_at": "2026-08-18 07:26:13.854700"
+      }
+    ],
+    "confidence": 0.0,
+    "uncertainty": [
+      "authentication method",
+      "credential access process",
+      "API availability and type",
+      "API breadth",
+      "MCP server existence",
+      "Composio support"
+    ],
+    "verification_status": "unverified",
+    "verified_fields": null
+  },
+  {
+    "app": "Pipedrive",
+    "category": "CRM and Sales",
+    "description": "Pipedrive provides a CRM and sales platform with a developer API, sandbox environment, webhooks, and API clients for building integrations.",
+    "auth_methods": [
+      "unknown"
+    ],
+    "credential_access": "self_serve",
+    "api_types": [
+      "webhooks"
+    ],
+    "api_breadth": "broad",
+    "mcp_public": "unknown",
+    "composio_supported": "no",
+    "buildability": "ready",
+    "blocker": null,
+    "sources": [
+      "https://pipedrive.com/api"
+    ],
+    "evidence": [
+      {
+        "claim": "Documentation from https://pipedrive.com/api",
+        "url": "https://pipedrive.com/api",
+        "source_type": "web",
+        "supporting_text": "Pipedrive Developers Corner | Pipedrive API sandbox\nDevelopers' Corner\nEasily build integrations with our API and developer platform to reach over 100,000 companies through the Pipedrive Marketplace\nBuild apps & integrations\nCreate a test environment\nSign up for a\nSandbox Account\ntoday to begin experimenting and developing in a risk free environment\nE-mail\nFirst Name\nSign up for a Sandbox account\nBy signing up, you accept our\nTerms of Service\n,\nDeveloper Agreement\nand\nPrivacy Notice\nWould you like to subscribe to our Changelog updates?\nWe love working with Pipedrive! The documentation is great, their communication is proactive and the Pipedrive Marketplace exposes us to an SMB audience who is actively looking for solutions.\nAndrus Purde,\nCo-founder/CEO of Outfunnel\nPipedrive is an amazing tool! Their developer API, well-documented API reference page and easy use of webhooks allow developers to easily build solutions in the Pipedrive Developer Platform.\nKelly Bernardino,\nSoftware Engineer at Gamifier\nDeveloping our Pipedrive integration was a breeze! Their documentation, along with the support we received, is excellent. Pipedrive is one of our best integrations, and we've made many.\nAles Kocjancic,\nVP of Engineering at Plecto\nPipedrive API clients\nKick-start your development by using one of the many API clients available on GitHub.\nHere are some of the most popular repositories.\nOFFICIAL\nclient-nodejs\nJavascript\n235\n88\nOFFICIAL\nclient-php\nPHP\n63\n64\nCOMMUNITY\npipedrive\nPHP\n171\n58\nCOMMUNITY\npython-pipedrive\nPython\n102\n44\nCOMMUNITY\npipedrive-dotnet\n.NET\n38\n51\nCOMMUNITY\npipedrive.rb\nRuby\n35\n53\nExample Apps\nHit the ground running by checking out some of our example apps and getting yourself inspired!\ncreate-pipedrive-app\nCreate a Pipedrive app with a single command\n4\n2\npipedrive-laravel\nA Pipedrive App boilerplate with Laravel\n12\n2\nexample-apps\nExample apps for Pipedrive Marketplace\n13\n20\nWant to stay in the loop?\nYour email\nSubscribe\nWe promise to only send you relevant Pipedrive developer news, updates and content.\nYou may unsubscribe anytime using the unsubscribe link in our emails. For more information, please see our\nprivacy notice\n.",
+        "retrieved_at": "2026-08-18 07:28:47.307831"
+      }
+    ],
+    "confidence": 0.13333333333333333,
+    "uncertainty": [
+      "auth_methods",
+      "api_types (beyond webhooks)",
+      "mcp_public",
+      "composio_supported",
+      "buildability_ready_but_auth_unknown",
+      "low_confidence_high_buildability"
+    ],
+    "verification_status": "unverified",
+    "verified_fields": null
+  },
+  {
+    "app": "Brex",
+    "category": "Finance and Fintech",
+    "description": "Finance for fast-growing companies",
+    "auth_methods": [
+      "unknown"
+    ],
+    "credential_access": "unknown",
+    "api_types": [
+      "unknown"
+    ],
+    "api_breadth": "unknown",
+    "mcp_public": "unknown",
+    "composio_supported": "no",
+    "buildability": "unknown",
+    "blocker": null,
+    "sources": [
+      "https://brex.com/developers/pricing"
+    ],
+    "evidence": [
+      {
+        "claim": "Targeted research: pricing_docs from https://brex.com/developers/pricing",
+        "url": "https://brex.com/developers/pricing",
+        "source_type": "web",
+        "supporting_text": "Finance for fast-growing companies\nNY & SF sold out. Now Brex Mode is headed to Chicago & Austin! Join us >",
+        "retrieved_at": "2026-08-18 07:26:15.138697"
+      }
+    ],
+    "confidence": 0.0,
+    "uncertainty": [
+      "Authentication method",
+      "API type and availability",
+      "Credential access process",
+      "MCP server existence",
+      "Composio support",
+      "Any blockers to integration"
+    ],
+    "verification_status": "unverified",
+    "verified_fields": null
+  },
+  {
+    "app": "Linear",
+    "category": "Productivity and Project Management",
+    "description": "Linear is a project management platform offering a GraphQL API, OAuth2 and API key authentication, TypeScript SDK, and guides for uploading files, creating issues via URL, and importing data.",
+    "auth_methods": [
+      "oauth2",
+      "api_key"
+    ],
+    "credential_access": "self_serve",
+    "api_types": [
+      "graphql"
+    ],
+    "api_breadth": "broad",
+    "mcp_public": "unknown",
+    "composio_supported": "yes",
+    "buildability": "ready",
+    "blocker": null,
+    "sources": [
+      "https://developers.linear.app/developers",
+      "https://developers.linear.app/docs/api",
+      "https://developers.linear.app/docs",
+      "https://developers.linear.app/developers/auth",
+      "https://connect.composio.dev",
+      "https://developers.linear.app/developers/api",
+      "https://developers.linear.app/api",
+      "https://developers.linear.app/docs/auth"
+    ],
+    "evidence": [
+      {
+        "claim": "Documentation from https://developers.linear.app/developers",
+        "url": "https://developers.linear.app/developers",
+        "source_type": "web",
+        "supporting_text": "Skip to content \u2192\nGetting Started\nGraphQL API\nLearn how to use the GraphQL API to query and mutate your data\nAuthentication\nUse OAuth 2.0 or personal API keys to authenticate your requests to the Linear API\nAgents\nHow to best integrate an AI agent into Linear\nTypeScript SDK\nInstall the Linear SDK to use strongly typed models and operations\nGuides\nUpload a file\nLearn how to reference a file in markdown content, or upload with the API\nCreate issues via URL\nOpen issue creation with pre-filled fields from a URL\nCLI importer\nImport data from other services into Linear\nResources\nChangelog\nStay up to date with the latest changes to Linear and the API\nBrand Guidelines\nResources and assets for presenting the Linear brand\nAgent Interaction Guidelines\nPrinciples and practices for designing agent interactions\nLinear Developers",
+        "retrieved_at": "2026-08-18 07:31:55.177390"
+      },
+      {
+        "claim": "Documentation from https://developers.linear.app/docs",
+        "url": "https://developers.linear.app/docs",
+        "source_type": "web",
+        "supporting_text": "Skip to content \u2192\nGetting Started\nGraphQL API\nLearn how to use the GraphQL API to query and mutate your data\nAuthentication\nUse OAuth 2.0 or personal API keys to authenticate your requests to the Linear API\nAgents\nHow to best integrate an AI agent into Linear\nTypeScript SDK\nInstall the Linear SDK to use strongly typed models and operations\nGuides\nUpload a file\nLearn how to reference a file in markdown content, or upload with the API\nCreate issues via URL\nOpen issue creation with pre-filled fields from a URL\nCLI importer\nImport data from other services into Linear\nResources\nChangelog\nStay up to date with the latest changes to Linear and the API\nBrand Guidelines\nResources and assets for presenting the Linear brand\nAgent Interaction Guidelines\nPrinciples and practices for designing agent interactions\nLinear Developers",
+        "retrieved_at": "2026-08-18 07:31:56.924684"
+      },
+      {
+        "claim": "Documentation from https://developers.linear.app/api",
+        "url": "https://developers.linear.app/api",
+        "source_type": "web",
+        "supporting_text": "Skip to content \u2192\nGetting Started\nGraphQL API\nLearn how to use the GraphQL API to query and mutate your data\nAuthentication\nUse OAuth 2.0 or personal API keys to authenticate your requests to the Linear API\nAgents\nHow to best integrate an AI agent into Linear\nTypeScript SDK\nInstall the Linear SDK to use strongly typed models and operations\nGuides\nUpload a file\nLearn how to reference a file in markdown content, or upload with the API\nCreate issues via URL\nOpen issue creation with pre-filled fields from a URL\nCLI importer\nImport data from other services into Linear\nResources\nChangelog\nStay up to date with the latest changes to Linear and the API\nBrand Guidelines\nResources and assets for presenting the Linear brand\nAgent Interaction Guidelines\nPrinciples and practices for designing agent interactions\nLinear Developers",
+        "retrieved_at": "2026-08-18 07:31:57.750831"
+      },
+      {
+        "claim": "Documentation from https://developers.linear.app/developers/auth",
+        "url": "https://developers.linear.app/developers/auth",
+        "source_type": "web",
+        "supporting_text": "Skip to content \u2192\nGetting Started\nGraphQL API\nLearn how to use the GraphQL API to query and mutate your data\nAuthentication\nUse OAuth 2.0 or personal API keys to authenticate your requests to the Linear API\nAgents\nHow to best integrate an AI agent into Linear\nTypeScript SDK\nInstall the Linear SDK to use strongly typed models and operations\nGuides\nUpload a file\nLearn how to reference a file in markdown content, or upload with the API\nCreate issues via URL\nOpen issue creation with pre-filled fields from a URL\nCLI importer\nImport data from other services into Linear\nResources\nChangelog\nStay up to date with the latest changes to Linear and the API\nBrand Guidelines\nResources and assets for presenting the Linear brand\nAgent Interaction Guidelines\nPrinciples and practices for designing agent interactions\nLinear Developers",
+        "retrieved_at": "2026-08-18 07:31:59.532147"
+      },
+      {
+        "claim": "Documentation from https://developers.linear.app/docs/auth",
+        "url": "https://developers.linear.app/docs/auth",
+        "source_type": "web",
+        "supporting_text": "Skip to content \u2192\nGetting Started\nGraphQL API\nLearn how to use the GraphQL API to query and mutate your data\nAuthentication\nUse OAuth 2.0 or personal API keys to authenticate your requests to the Linear API\nAgents\nHow to best integrate an AI agent into Linear\nTypeScript SDK\nInstall the Linear SDK to use strongly typed models and operations\nGuides\nUpload a file\nLearn how to reference a file in markdown content, or upload with the API\nCreate issues via URL\nOpen issue creation with pre-filled fields from a URL\nCLI importer\nImport data from other services into Linear\nResources\nChangelog\nStay up to date with the latest changes to Linear and the API\nBrand Guidelines\nResources and assets for presenting the Linear brand\nAgent Interaction Guidelines\nPrinciples and practices for designing agent interactions\nLinear Developers",
+        "retrieved_at": "2026-08-18 07:32:00.140948"
+      },
+      {
+        "claim": "Documentation from https://developers.linear.app/developers/api",
+        "url": "https://developers.linear.app/developers/api",
+        "source_type": "web",
+        "supporting_text": "Skip to content \u2192\nGetting Started\nGraphQL API\nLearn how to use the GraphQL API to query and mutate your data\nAuthentication\nUse OAuth 2.0 or personal API keys to authenticate your requests to the Linear API\nAgents\nHow to best integrate an AI agent into Linear\nTypeScript SDK\nInstall the Linear SDK to use strongly typed models and operations\nGuides\nUpload a file\nLearn how to reference a file in markdown content, or upload with the API\nCreate issues via URL\nOpen issue creation with pre-filled fields from a URL\nCLI importer\nImport data from other services into Linear\nResources\nChangelog\nStay up to date with the latest changes to Linear and the API\nBrand Guidelines\nResources and assets for presenting the Linear brand\nAgent Interaction Guidelines\nPrinciples and practices for designing agent interactions\nLinear Developers",
+        "retrieved_at": "2026-08-18 07:32:02.011218"
+      },
+      {
+        "claim": "Documentation from https://developers.linear.app/docs/api",
+        "url": "https://developers.linear.app/docs/api",
+        "source_type": "web",
+        "supporting_text": "Skip to content \u2192\nGetting Started\nGraphQL API\nLearn how to use the GraphQL API to query and mutate your data\nAuthentication\nUse OAuth 2.0 or personal API keys to authenticate your requests to the Linear API\nAgents\nHow to best integrate an AI agent into Linear\nTypeScript SDK\nInstall the Linear SDK to use strongly typed models and operations\nGuides\nUpload a file\nLearn how to reference a file in markdown content, or upload with the API\nCreate issues via URL\nOpen issue creation with pre-filled fields from a URL\nCLI importer\nImport data from other services into Linear\nResources\nChangelog\nStay up to date with the latest changes to Linear and the API\nBrand Guidelines\nResources and assets for presenting the Linear brand\nAgent Interaction Guidelines\nPrinciples and practices for designing agent interactions\nLinear Developers",
+        "retrieved_at": "2026-08-18 07:32:02.673565"
+      },
+      {
+        "claim": "Composio supports Linear via COMPOSIO_SEARCH_TOOLS",
+        "url": "https://connect.composio.dev",
+        "source_type": "composio_registry",
+        "supporting_text": "Found in Composio toolkits: COMPOSIO_SEARCH_TOOLS",
+        "retrieved_at": "2026-08-18 07:32:02.673737"
+      }
+    ],
+    "confidence": 0.49166666666666675,
+    "uncertainty": [
+      "mcp_public",
+      "low_confidence_high_buildability"
+    ],
+    "verification_status": "unverified",
+    "verified_fields": null
+  },
+  {
+    "app": "Klaviyo",
+    "category": "Marketing, Ads, Email and Social",
+    "description": "Klaviyo provides marketing automation, email, SMS, and social advertising tools, enabling businesses to build personalized experiences via its API.",
+    "auth_methods": [
+      "api_key",
+      "oauth2"
+    ],
+    "credential_access": "self_serve",
+    "api_types": [
+      "rest"
+    ],
+    "api_breadth": "broad",
+    "mcp_public": "unknown",
+    "composio_supported": "no",
+    "buildability": "ready",
+    "blocker": null,
+    "sources": [
+      "https://developers.klaviyo.com/docs",
+      "https://developers.klaviyo.com/developers",
+      "https://developers.klaviyo.com/api",
+      "https://developers.klaviyo.com/docs/auth",
+      "https://developers.klaviyo.com/developers/api",
+      "https://developers.klaviyo.com/developers/auth",
+      "https://developers.klaviyo.com/docs/api"
+    ],
+    "evidence": [
+      {
+        "claim": "Documentation from https://developers.klaviyo.com/developers",
+        "url": "https://developers.klaviyo.com/developers",
+        "source_type": "web",
+        "supporting_text": "API Reference & Technical Guides | Klaviyo Developers\nBuild personalized\nexperiences that scale.\nCreate apps and integrations using Klaviyo's API that help \n  your business grow. Get started for free.\nExplore docs\nJoin 300+ others who have integrated with Klaviyo\nShopify logo\nWoo Commerce logo\nGorgias logo\nMagento logo\nZendesk logo\nYotpo. logo\nRecharge logo\nOkendo logo\nPrestashop logo\nAftership logo\nGet started\nStart here\nGetting started\nLearn how to authenticate, how data is stored, and how to make your first API calls.\nExplore docs\nGuides\nDeveloper guides\nRead detailed guides for common developer use cases. Learn how our New APIs compare to our legacy APIs.\nRead guides\nDocs\nAPI docs\nKlaviyo's new and improved APIs are now available! Learn about our API objects, methods, attributes, and responses\nRead API docs\nDeveloper tools\nSpeed up development with tools designed for your workflow.\nSDKs\nInstall a Klaviyo maintained SDK to accelerate development\u2013 offered in Python, PHP, Ruby, and Node.\nExplore SDKs\nTest accounts\nTest custom integrations and apps without the risk of impacting your production account.\nCreate test account\nPostman\nMake test calls using Postman\u2019s UI tool with our collection of pre-built API requests.\nTest with Postman\nSample code repository\nFind pre-built solutions, examples, and reference code guides in our Klaviyo Labs GitHub.\nView code samples\nSample data\nPopulate your test account with sample data to quickly explore our API and see how data is used in Klaviyo.\nGenerate sample data\nNapkin\nCreate and deploy serverless cloud functions instantly from the browser. Quickly add authentication for your API, schedule tasks, and replay events.\nExplore Napkin.io\nUse cases\nCustom integrations\nBetter user experience\nReporting\nBuild custom integrations to bring data into Klaviyo to create personalized experiences. Integrate with point-of-sale software, inventory management systems, scheduling apps, and more.\nRead docs\nBrian Whalley - Co-Founder of Wonderment\n\u201cSince Klaviyo doesn't impose a rigid data schema, it's easy to send in just about any arbitrary data without having to do annoying manipulations or data mappings and without having to pre-configure a data schema in the app.\u201d\nRead story \u2192\nUse profile information, custom events, catalog information, and other types of data to build custom customer experiences using Klaviyo's flows, template email builder, and more.\nRead docs\nCallum McMaugh - Techincal Lead at Giftnotes\n\u201cMerchants can set up flows based on Klaviyo events to send out branded notifications to both the [gift] recipient and the customer. They can also segment the customer and the recipient for greater insights into their customer\u2019s shopping habits.\u201d\nRead story \u2192\nPull data from Klaviyo to create dashboards, sync to other systems, and perform analysis to keep up with your marketing performance.\nRead docs\nKyle Tremblay - Sr. Product Manger at EXCLUSIVE\n\u201cIntegrating with Klaviyo\u2019s APIs was a no-brainer as it allowed us to build re",
+        "retrieved_at": "2026-08-18 07:31:10.131425"
+      },
+      {
+        "claim": "Documentation from https://developers.klaviyo.com/docs",
+        "url": "https://developers.klaviyo.com/docs",
+        "source_type": "web",
+        "supporting_text": "API Reference & Technical Guides | Klaviyo Developers\nBuild personalized\nexperiences that scale.\nCreate apps and integrations using Klaviyo's API that help \n  your business grow. Get started for free.\nExplore docs\nJoin 300+ others who have integrated with Klaviyo\nShopify logo\nWoo Commerce logo\nGorgias logo\nMagento logo\nZendesk logo\nYotpo. logo\nRecharge logo\nOkendo logo\nPrestashop logo\nAftership logo\nGet started\nStart here\nGetting started\nLearn how to authenticate, how data is stored, and how to make your first API calls.\nExplore docs\nGuides\nDeveloper guides\nRead detailed guides for common developer use cases. Learn how our New APIs compare to our legacy APIs.\nRead guides\nDocs\nAPI docs\nKlaviyo's new and improved APIs are now available! Learn about our API objects, methods, attributes, and responses\nRead API docs\nDeveloper tools\nSpeed up development with tools designed for your workflow.\nSDKs\nInstall a Klaviyo maintained SDK to accelerate development\u2013 offered in Python, PHP, Ruby, and Node.\nExplore SDKs\nTest accounts\nTest custom integrations and apps without the risk of impacting your production account.\nCreate test account\nPostman\nMake test calls using Postman\u2019s UI tool with our collection of pre-built API requests.\nTest with Postman\nSample code repository\nFind pre-built solutions, examples, and reference code guides in our Klaviyo Labs GitHub.\nView code samples\nSample data\nPopulate your test account with sample data to quickly explore our API and see how data is used in Klaviyo.\nGenerate sample data\nNapkin\nCreate and deploy serverless cloud functions instantly from the browser. Quickly add authentication for your API, schedule tasks, and replay events.\nExplore Napkin.io\nUse cases\nCustom integrations\nBetter user experience\nReporting\nBuild custom integrations to bring data into Klaviyo to create personalized experiences. Integrate with point-of-sale software, inventory management systems, scheduling apps, and more.\nRead docs\nBrian Whalley - Co-Founder of Wonderment\n\u201cSince Klaviyo doesn't impose a rigid data schema, it's easy to send in just about any arbitrary data without having to do annoying manipulations or data mappings and without having to pre-configure a data schema in the app.\u201d\nRead story \u2192\nUse profile information, custom events, catalog information, and other types of data to build custom customer experiences using Klaviyo's flows, template email builder, and more.\nRead docs\nCallum McMaugh - Techincal Lead at Giftnotes\n\u201cMerchants can set up flows based on Klaviyo events to send out branded notifications to both the [gift] recipient and the customer. They can also segment the customer and the recipient for greater insights into their customer\u2019s shopping habits.\u201d\nRead story \u2192\nPull data from Klaviyo to create dashboards, sync to other systems, and perform analysis to keep up with your marketing performance.\nRead docs\nKyle Tremblay - Sr. Product Manger at EXCLUSIVE\n\u201cIntegrating with Klaviyo\u2019s APIs was a no-brainer as it allowed us to build re",
+        "retrieved_at": "2026-08-18 07:31:11.026552"
+      },
+      {
+        "claim": "Documentation from https://developers.klaviyo.com/api",
+        "url": "https://developers.klaviyo.com/api",
+        "source_type": "web",
+        "supporting_text": "API overview\n\ud83d\udcd8\nJumpstart your Klaviyo API journey with our YouTube tutorials.\nDive into\nKlaviyo's API tutorial playlist on YouTube\n, where we provide walkthroughs of some of our most popular Klaviyo API endpoints.\nQuickstart\nNew Klaviyo developers:\nCheck out our\nGet started with Klaviyo\nseries to set up an account, obtain API credentials, and authenticate.\nCurrent Klaviyo developers:\nInstall one of our\nnew SDKs\n.\nMake test calls with the\nnew API collection in our Postman workspace\n.\nTo learn more, see below for an overview of the newly launched API features:\nGo into detail on the\nJSON API features\nsupported by our new API surface.\nOpenAPI and Postman\nView the latest OpenAPI spec here.\nImport the spec into your favorite API tool, such as Postman, to start interacting with our new APIs right away.\nYou can also navigate to our\nPostman Workspace\n, where you will find our latest collection of requests, along with the API definitions. You can get started by checking out our\nPostman collection guide\n.\nAuthentication\nKlaviyo provides 3 methods of authentication including private key authentication and OAuth (used to call server-side APIs) and public key authentication (used to call client-side APIs). Read below for a quick overview of each method.\nPrivate key authentication\nAll\n/api\nendpoints use\nprivate API keys\nwith API key scopes to authenticate requests. If you do not use an API key for your requests, or if you use a key from the wrong account, your call will return an error. A\n400\nerror indicates an invalid or missing API key.\nPrivate key authentication for\n/api\nendpoints is performed by setting the following request header:\nAuthorization: Klaviyo-API-Key your-private-api-key\nOAuth\nIf you are a tech partner integrating with Klaviyo, we recommend using OAuth to authenticate your app. OAuth offers multiple benefits over a private key integration, including security, usability, and improved rate limits. Check out our\nguide on setting up OAuth\n.\nPublic key authentication\nAll\n/client\nendpoints are designed to only be called from publicly-browseable client-side environments and use public API keys to authorize and route requests. Your public API key is your 6-character company ID, also known as a site ID. We recommend using the\nKlaviyo object\nor our\nmobile SDKs\nfor interacting with our client-side APIs.\nPublic API keys are passed to\n/client\nendpoints using a query parameter:\ncurl --request POST \\\n  --url 'https://a.klaviyo.com/client/events/?company_id=COMPANY_ID'\n  --header 'Content-Type: application/json'\n  --data '{DATA}'\n\ud83d\udcd8\nClient endpoints are specifically designed to limit functionality to object creation of specific types of objects and do not respond with any potentially sensitive response data. For security reasons, this data must be accessed using private key endpoints only (i.e.,\n/api\n).\nAPI key scopes\nKlaviyo's APIs support the use of API scopes, which allow you to restrict access for third parties using a private API key. Adding a scope helps ",
+        "retrieved_at": "2026-08-18 07:31:12.528253"
+      },
+      {
+        "claim": "Documentation from https://developers.klaviyo.com/developers/auth",
+        "url": "https://developers.klaviyo.com/developers/auth",
+        "source_type": "web",
+        "supporting_text": "API Reference & Technical Guides | Klaviyo Developers\nBuild personalized\nexperiences that scale.\nCreate apps and integrations using Klaviyo's API that help \n  your business grow. Get started for free.\nExplore docs\nJoin 300+ others who have integrated with Klaviyo\nShopify logo\nWoo Commerce logo\nGorgias logo\nMagento logo\nZendesk logo\nYotpo. logo\nRecharge logo\nOkendo logo\nPrestashop logo\nAftership logo\nGet started\nStart here\nGetting started\nLearn how to authenticate, how data is stored, and how to make your first API calls.\nExplore docs\nGuides\nDeveloper guides\nRead detailed guides for common developer use cases. Learn how our New APIs compare to our legacy APIs.\nRead guides\nDocs\nAPI docs\nKlaviyo's new and improved APIs are now available! Learn about our API objects, methods, attributes, and responses\nRead API docs\nDeveloper tools\nSpeed up development with tools designed for your workflow.\nSDKs\nInstall a Klaviyo maintained SDK to accelerate development\u2013 offered in Python, PHP, Ruby, and Node.\nExplore SDKs\nTest accounts\nTest custom integrations and apps without the risk of impacting your production account.\nCreate test account\nPostman\nMake test calls using Postman\u2019s UI tool with our collection of pre-built API requests.\nTest with Postman\nSample code repository\nFind pre-built solutions, examples, and reference code guides in our Klaviyo Labs GitHub.\nView code samples\nSample data\nPopulate your test account with sample data to quickly explore our API and see how data is used in Klaviyo.\nGenerate sample data\nNapkin\nCreate and deploy serverless cloud functions instantly from the browser. Quickly add authentication for your API, schedule tasks, and replay events.\nExplore Napkin.io\nUse cases\nCustom integrations\nBetter user experience\nReporting\nBuild custom integrations to bring data into Klaviyo to create personalized experiences. Integrate with point-of-sale software, inventory management systems, scheduling apps, and more.\nRead docs\nBrian Whalley - Co-Founder of Wonderment\n\u201cSince Klaviyo doesn't impose a rigid data schema, it's easy to send in just about any arbitrary data without having to do annoying manipulations or data mappings and without having to pre-configure a data schema in the app.\u201d\nRead story \u2192\nUse profile information, custom events, catalog information, and other types of data to build custom customer experiences using Klaviyo's flows, template email builder, and more.\nRead docs\nCallum McMaugh - Techincal Lead at Giftnotes\n\u201cMerchants can set up flows based on Klaviyo events to send out branded notifications to both the [gift] recipient and the customer. They can also segment the customer and the recipient for greater insights into their customer\u2019s shopping habits.\u201d\nRead story \u2192\nPull data from Klaviyo to create dashboards, sync to other systems, and perform analysis to keep up with your marketing performance.\nRead docs\nKyle Tremblay - Sr. Product Manger at EXCLUSIVE\n\u201cIntegrating with Klaviyo\u2019s APIs was a no-brainer as it allowed us to build re",
+        "retrieved_at": "2026-08-18 07:31:13.633578"
+      },
+      {
+        "claim": "Documentation from https://developers.klaviyo.com/docs/auth",
+        "url": "https://developers.klaviyo.com/docs/auth",
+        "source_type": "web",
+        "supporting_text": "API Reference & Technical Guides | Klaviyo Developers\nBuild personalized\nexperiences that scale.\nCreate apps and integrations using Klaviyo's API that help \n  your business grow. Get started for free.\nExplore docs\nJoin 300+ others who have integrated with Klaviyo\nShopify logo\nWoo Commerce logo\nGorgias logo\nMagento logo\nZendesk logo\nYotpo. logo\nRecharge logo\nOkendo logo\nPrestashop logo\nAftership logo\nGet started\nStart here\nGetting started\nLearn how to authenticate, how data is stored, and how to make your first API calls.\nExplore docs\nGuides\nDeveloper guides\nRead detailed guides for common developer use cases. Learn how our New APIs compare to our legacy APIs.\nRead guides\nDocs\nAPI docs\nKlaviyo's new and improved APIs are now available! Learn about our API objects, methods, attributes, and responses\nRead API docs\nDeveloper tools\nSpeed up development with tools designed for your workflow.\nSDKs\nInstall a Klaviyo maintained SDK to accelerate development\u2013 offered in Python, PHP, Ruby, and Node.\nExplore SDKs\nTest accounts\nTest custom integrations and apps without the risk of impacting your production account.\nCreate test account\nPostman\nMake test calls using Postman\u2019s UI tool with our collection of pre-built API requests.\nTest with Postman\nSample code repository\nFind pre-built solutions, examples, and reference code guides in our Klaviyo Labs GitHub.\nView code samples\nSample data\nPopulate your test account with sample data to quickly explore our API and see how data is used in Klaviyo.\nGenerate sample data\nNapkin\nCreate and deploy serverless cloud functions instantly from the browser. Quickly add authentication for your API, schedule tasks, and replay events.\nExplore Napkin.io\nUse cases\nCustom integrations\nBetter user experience\nReporting\nBuild custom integrations to bring data into Klaviyo to create personalized experiences. Integrate with point-of-sale software, inventory management systems, scheduling apps, and more.\nRead docs\nBrian Whalley - Co-Founder of Wonderment\n\u201cSince Klaviyo doesn't impose a rigid data schema, it's easy to send in just about any arbitrary data without having to do annoying manipulations or data mappings and without having to pre-configure a data schema in the app.\u201d\nRead story \u2192\nUse profile information, custom events, catalog information, and other types of data to build custom customer experiences using Klaviyo's flows, template email builder, and more.\nRead docs\nCallum McMaugh - Techincal Lead at Giftnotes\n\u201cMerchants can set up flows based on Klaviyo events to send out branded notifications to both the [gift] recipient and the customer. They can also segment the customer and the recipient for greater insights into their customer\u2019s shopping habits.\u201d\nRead story \u2192\nPull data from Klaviyo to create dashboards, sync to other systems, and perform analysis to keep up with your marketing performance.\nRead docs\nKyle Tremblay - Sr. Product Manger at EXCLUSIVE\n\u201cIntegrating with Klaviyo\u2019s APIs was a no-brainer as it allowed us to build re",
+        "retrieved_at": "2026-08-18 07:31:14.734312"
+      },
+      {
+        "claim": "Documentation from https://developers.klaviyo.com/developers/api",
+        "url": "https://developers.klaviyo.com/developers/api",
+        "source_type": "web",
+        "supporting_text": "API Reference & Technical Guides | Klaviyo Developers\nBuild personalized\nexperiences that scale.\nCreate apps and integrations using Klaviyo's API that help \n  your business grow. Get started for free.\nExplore docs\nJoin 300+ others who have integrated with Klaviyo\nShopify logo\nWoo Commerce logo\nGorgias logo\nMagento logo\nZendesk logo\nYotpo. logo\nRecharge logo\nOkendo logo\nPrestashop logo\nAftership logo\nGet started\nStart here\nGetting started\nLearn how to authenticate, how data is stored, and how to make your first API calls.\nExplore docs\nGuides\nDeveloper guides\nRead detailed guides for common developer use cases. Learn how our New APIs compare to our legacy APIs.\nRead guides\nDocs\nAPI docs\nKlaviyo's new and improved APIs are now available! Learn about our API objects, methods, attributes, and responses\nRead API docs\nDeveloper tools\nSpeed up development with tools designed for your workflow.\nSDKs\nInstall a Klaviyo maintained SDK to accelerate development\u2013 offered in Python, PHP, Ruby, and Node.\nExplore SDKs\nTest accounts\nTest custom integrations and apps without the risk of impacting your production account.\nCreate test account\nPostman\nMake test calls using Postman\u2019s UI tool with our collection of pre-built API requests.\nTest with Postman\nSample code repository\nFind pre-built solutions, examples, and reference code guides in our Klaviyo Labs GitHub.\nView code samples\nSample data\nPopulate your test account with sample data to quickly explore our API and see how data is used in Klaviyo.\nGenerate sample data\nNapkin\nCreate and deploy serverless cloud functions instantly from the browser. Quickly add authentication for your API, schedule tasks, and replay events.\nExplore Napkin.io\nUse cases\nCustom integrations\nBetter user experience\nReporting\nBuild custom integrations to bring data into Klaviyo to create personalized experiences. Integrate with point-of-sale software, inventory management systems, scheduling apps, and more.\nRead docs\nBrian Whalley - Co-Founder of Wonderment\n\u201cSince Klaviyo doesn't impose a rigid data schema, it's easy to send in just about any arbitrary data without having to do annoying manipulations or data mappings and without having to pre-configure a data schema in the app.\u201d\nRead story \u2192\nUse profile information, custom events, catalog information, and other types of data to build custom customer experiences using Klaviyo's flows, template email builder, and more.\nRead docs\nCallum McMaugh - Techincal Lead at Giftnotes\n\u201cMerchants can set up flows based on Klaviyo events to send out branded notifications to both the [gift] recipient and the customer. They can also segment the customer and the recipient for greater insights into their customer\u2019s shopping habits.\u201d\nRead story \u2192\nPull data from Klaviyo to create dashboards, sync to other systems, and perform analysis to keep up with your marketing performance.\nRead docs\nKyle Tremblay - Sr. Product Manger at EXCLUSIVE\n\u201cIntegrating with Klaviyo\u2019s APIs was a no-brainer as it allowed us to build re",
+        "retrieved_at": "2026-08-18 07:31:15.835087"
+      },
+      {
+        "claim": "Documentation from https://developers.klaviyo.com/docs/api",
+        "url": "https://developers.klaviyo.com/docs/api",
+        "source_type": "web",
+        "supporting_text": "API Reference & Technical Guides | Klaviyo Developers\nBuild personalized\nexperiences that scale.\nCreate apps and integrations using Klaviyo's API that help \n  your business grow. Get started for free.\nExplore docs\nJoin 300+ others who have integrated with Klaviyo\nShopify logo\nWoo Commerce logo\nGorgias logo\nMagento logo\nZendesk logo\nYotpo. logo\nRecharge logo\nOkendo logo\nPrestashop logo\nAftership logo\nGet started\nStart here\nGetting started\nLearn how to authenticate, how data is stored, and how to make your first API calls.\nExplore docs\nGuides\nDeveloper guides\nRead detailed guides for common developer use cases. Learn how our New APIs compare to our legacy APIs.\nRead guides\nDocs\nAPI docs\nKlaviyo's new and improved APIs are now available! Learn about our API objects, methods, attributes, and responses\nRead API docs\nDeveloper tools\nSpeed up development with tools designed for your workflow.\nSDKs\nInstall a Klaviyo maintained SDK to accelerate development\u2013 offered in Python, PHP, Ruby, and Node.\nExplore SDKs\nTest accounts\nTest custom integrations and apps without the risk of impacting your production account.\nCreate test account\nPostman\nMake test calls using Postman\u2019s UI tool with our collection of pre-built API requests.\nTest with Postman\nSample code repository\nFind pre-built solutions, examples, and reference code guides in our Klaviyo Labs GitHub.\nView code samples\nSample data\nPopulate your test account with sample data to quickly explore our API and see how data is used in Klaviyo.\nGenerate sample data\nNapkin\nCreate and deploy serverless cloud functions instantly from the browser. Quickly add authentication for your API, schedule tasks, and replay events.\nExplore Napkin.io\nUse cases\nCustom integrations\nBetter user experience\nReporting\nBuild custom integrations to bring data into Klaviyo to create personalized experiences. Integrate with point-of-sale software, inventory management systems, scheduling apps, and more.\nRead docs\nBrian Whalley - Co-Founder of Wonderment\n\u201cSince Klaviyo doesn't impose a rigid data schema, it's easy to send in just about any arbitrary data without having to do annoying manipulations or data mappings and without having to pre-configure a data schema in the app.\u201d\nRead story \u2192\nUse profile information, custom events, catalog information, and other types of data to build custom customer experiences using Klaviyo's flows, template email builder, and more.\nRead docs\nCallum McMaugh - Techincal Lead at Giftnotes\n\u201cMerchants can set up flows based on Klaviyo events to send out branded notifications to both the [gift] recipient and the customer. They can also segment the customer and the recipient for greater insights into their customer\u2019s shopping habits.\u201d\nRead story \u2192\nPull data from Klaviyo to create dashboards, sync to other systems, and perform analysis to keep up with your marketing performance.\nRead docs\nKyle Tremblay - Sr. Product Manger at EXCLUSIVE\n\u201cIntegrating with Klaviyo\u2019s APIs was a no-brainer as it allowed us to build re",
+        "retrieved_at": "2026-08-18 07:31:17.411614"
+      }
+    ],
+    "confidence": 0.44166666666666676,
+    "uncertainty": [
+      "mcp_public",
+      "composio_supported",
+      "low_confidence_high_buildability"
+    ],
+    "verification_status": "unverified",
+    "verified_fields": null
+  },
+  {
+    "app": "Harvest",
+    "category": "Productivity and Project Management",
+    "description": "unknown",
+    "auth_methods": [
+      "unknown"
+    ],
+    "credential_access": "unknown",
+    "api_types": [
+      "unknown"
+    ],
+    "api_breadth": "unknown",
+    "mcp_public": "unknown",
+    "composio_supported": "no",
+    "buildability": "unknown",
+    "blocker": null,
+    "sources": [],
+    "evidence": [],
+    "confidence": 0.008333333333333325,
+    "uncertainty": [
+      "No evidence provided about Harvest integration details."
+    ],
+    "verification_status": "unverified",
+    "verified_fields": null
+  }
+]
