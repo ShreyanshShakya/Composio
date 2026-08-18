@@ -148,6 +148,41 @@ class ComposioMCPClient:
         except Exception as e:
             return FirecrawlResult(url=url, content="", metadata={}, success=False, error=str(e))
 
+    async def firecrawl_crawl(self, url: str, params: dict | None = None) -> list["FirecrawlResult"]:
+        """Crawl multiple pages from a starting URL using the Firecrawl connection."""
+        await self._ensure_initialized()
+        crawl_params = {
+            "url": url,
+            "max_pages": 3,
+            "only_main_content": True,
+            "wait_for": 1000,
+            "formats": ["markdown"],
+        }
+        if params:
+            crawl_params.update(params)
+        session = await self._get_session()
+        for tool_name in ("firecrawl_crawl", "crawl"):
+            call_payload = {
+                "jsonrpc": "2.0",
+                "id": 4,
+                "method": "tools/call",
+                "params": {"name": tool_name, "arguments": crawl_params},
+            }
+            try:
+                async with session.post(self.mcp_url, headers=self.headers, json=call_payload) as resp:
+                    if resp.status != 200:
+                        continue
+                    data = await resp.json(content_type=None)
+                    result = data.get("result", {})
+                    content = result.get("content", "")
+                    if isinstance(content, list):
+                        return [FirecrawlResult(url=url, content=str(item), metadata={}, success=True) for item in content]
+                    if content:
+                        return [FirecrawlResult(url=url, content=str(content), metadata={}, success=True)]
+            except Exception:
+                continue
+        return []
+
 
 class HTTPScraper:
     """Simple HTTP-based web scraper as Firecrawl fallback."""
