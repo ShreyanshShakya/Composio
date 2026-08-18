@@ -61,28 +61,14 @@ class FirecrawlSearcher:
         return await self._fallback_search(query, limit, website)
 
     async def _firecrawl_search(self, query: str, limit: int = 5) -> list[SearchResult]:
-        """Call FIRECRAWL_SEARCH through Composio's multi-tool executor.
-
-        Firecrawl search supports scrape options; explicitly requesting markdown is
-        important because the returned result objects otherwise vary by tool/schema
-        and can contain no usable page payload.
-        """
         await self.composio_mcp._ensure_initialized()
         session = await self.composio_mcp._get_session()
-        arguments = {
-            'query': query,
-            'limit': limit,
-            'scrape_options': {'formats': ['markdown']},
-        }
+        arguments = {'query': query, 'limit': limit, 'scrape_options': {'formats': ['markdown']}}
         payload = {
             'jsonrpc': '2.0', 'id': 1, 'method': 'tools/call',
-            'params': {
-                'name': 'COMPOSIO_MULTI_EXECUTE_TOOL',
-                'arguments': {
-                    'tools': [{'tool_slug': 'FIRECRAWL_SEARCH', 'arguments': arguments}],
-                    'memory': {},
-                },
-            },
+            'params': {'name': 'COMPOSIO_MULTI_EXECUTE_TOOL', 'arguments': {
+                'tools': [{'tool_slug': 'FIRECRAWL_SEARCH', 'arguments': arguments}], 'memory': {}
+            }}
         }
         async with session.post(self.composio_mcp.mcp_url, headers=self.composio_mcp.headers, json=payload) as resp:
             if resp.status != 200:
@@ -92,7 +78,7 @@ class FirecrawlSearcher:
                 if not line.startswith('data: '):
                     continue
                 data = json.loads(line[6:])
-                if 'error' in data:
+                if data.get('error'):
                     raise Exception(f"MCP error: {data['error']}")
                 content = data.get('result', {}).get('content', [])
                 for block in content if isinstance(content, list) else []:
@@ -121,10 +107,34 @@ class FirecrawlSearcher:
                 return None
 
     def _parse_search_results(self, data: object) -> list[SearchResult]:
-        candidates = []
+        """Parse native Firecrawl and Composio-wrapped Firecrawl result shapes."""
+        # Composio FIRECRAWL_SEARCH currently returns:
+        # data.results[].response.data.data.web[].{url,title,description,position}
+        wrapped = data.get('data', {}).get('results', []) if isinstance(data, dict) else []
+        if isinstance(wrapped, list):
+            for item in wrapped:
+                if not isinstance(item, dict):
+                    continue
+                response = item.get('response', {})
+                response_data = response.get('data', {}) if isinstance(response, dict) else {}
+                nested_data = response_data.get('data', {}) if isinstance(response_data, dict) else {}
+                web = nested_data.get('web', []) if isinstance(nested_data, dict) else []
+                if isinstance(web, list) and web:
+                    parsed = self._items_to_results(web)
+                    if parsed:
+                        return parsed
 
+        # Keep compatibility with other Firecrawl response schemas.
+        if isinstance(data, dict):
+            raw_results = data.get('data', {}).get('results', [])
+            if isinstance(raw_results, list):
+                parsed = self._items_to_results(raw_results)
+                if parsed:
+                    return parsed
+
+        candidates = []
         def walk(node, depth=0):
-            if depth > 6:
+            if depth > 8:
                 return
             if isinstance(node, dict):
                 if node.get('url'):
@@ -134,21 +144,30 @@ class FirecrawlSearcher:
             elif isinstance(node, list):
                 for value in node:
                     walk(value, depth + 1)
-
         walk(data)
+        return self._items_to_results(candidates)
+
+    def _items_to_results(self, items: list) -> list[SearchResult]:
         results, seen = [], set()
-        for item in candidates:
+        for item in items:
+            if not isinstance(item, dict):
+                continue
             url = str(item.get('url') or '').strip()
             parsed = urlparse(url)
             if not url or not parsed.scheme or not parsed.netloc or url in seen:
                 continue
             seen.add(url)
+            score = item.get('score')
+            try:
+                confidence = float(score) if score is not None else 0.8
+            except (TypeError, ValueError):
+                confidence = 0.8
             results.append(SearchResult(
                 url=url,
                 title=str(item.get('title') or ''),
                 snippet=str(item.get('description') or item.get('snippet') or item.get('markdown') or '')[:500],
                 source_type=self._classify_source(url),
-                confidence=float(item.get('score') or 0.5),
+                confidence=confidence,
             ))
         return results
 
@@ -190,23 +209,11 @@ class FirecrawlSearcher:
         base_url = self.known_domains.get(domain, f'https://{domain}')
         for category in selected:
             for pattern in self.doc_patterns.get(category, [])[:5]:
-                results[category].append({
-                    'url': urljoin(base_url, pattern),
-                    'title': f'{category.replace("_", " ").title()} for {app}',
-                    'snippet': f'Generated from pattern: {pattern}',
-                    'source_type': self._classify_source_for_category(category),
-                    'confidence': 0.7,
-                })
+                results[category].append({'url': urljoin(base_url, pattern), 'title': f'{category.replace("_", " ").title()} for {app}', 'snippet': f'Generated from pattern: {pattern}', 'source_type': self._classify_source_for_category(category), 'confidence': 0.7})
         return results
 
     def _classify_source_for_category(self, category: str) -> SourceType:
-        return {
-            'developer_docs': SourceType.OFFICIAL_DOCS,
-            'auth_docs': SourceType.AUTH_DOCS,
-            'api_docs': SourceType.OFFICIAL_DOCS,
-            'mcp_docs': SourceType.MCP_REGISTRY,
-            'pricing_docs': SourceType.PRICING_DOCS,
-        }.get(category, SourceType.WEB)
+        return {'developer_docs': SourceType.OFFICIAL_DOCS, 'auth_docs': SourceType.AUTH_DOCS, 'api_docs': SourceType.OFFICIAL_DOCS, 'mcp_docs': SourceType.MCP_REGISTRY, 'pricing_docs': SourceType.PRICING_DOCS}.get(category, SourceType.WEB)
 
     def set_app(self, app: str): self.app = app
     async def find_developer_docs(self, app: str, website: str): self.set_app(app); return await self.search(f'{app} developer documentation', 5, website)
@@ -217,6 +224,5 @@ class FirecrawlSearcher:
 
     def _to_search_result(self, item: dict, source_type: SourceType) -> SearchResult:
         url = str(item.get('url') or '').strip()
-        if not url:
-            raise ValueError('Fallback generated an empty URL')
+        if not url: raise ValueError('Fallback generated an empty URL')
         return SearchResult(url=url, title=item.get('title', ''), snippet=item.get('snippet', ''), source_type=SourceType(item.get('source_type', source_type)), confidence=item.get('confidence', 0.7))
