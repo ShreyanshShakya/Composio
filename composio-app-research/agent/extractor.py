@@ -1,38 +1,11 @@
 import json
-from dataclasses import dataclass, field
+import re
 from typing import List, Optional, Dict, Any
-from agent.models import (AuthMethod, CredentialAccess, APIType, APIBreadth, 
-                          MCPStatus, Buildability, Evidence, SourceType)
+from datetime import datetime
+from agent.models import (Evidence, SourceType, AuthMethod, CredentialAccess, APIType,
+                          APIBreadth, MCPStatus, Buildability, AppResearch,
+                          AuthExtraction, CredentialExtraction, APIExtraction, MCPExtraction)
 from agent.evidence import extract_json_from_response, validate_and_repair_research
-
-
-@dataclass
-class AuthExtraction:
-    auth_methods: List[AuthMethod]
-    confidence: float
-    citations: List[str]
-
-
-@dataclass
-class CredentialExtraction:
-    credential_access: CredentialAccess
-    confidence: float
-    citations: List[str]
-
-
-@dataclass
-class APIExtraction:
-    api_types: List[APIType]
-    api_breadth: str  # broad, limited, unknown
-    confidence: float
-    citations: List[str]
-
-
-@dataclass
-class MCPExtraction:
-    mcp_public: MCPStatus
-    confidence: float
-    citations: List[str]
 
 
 class NemotronExtractor:
@@ -71,9 +44,9 @@ Return JSON:
 
 RULES:
 1. Only use evidence provided. Mark "unknown" if evidence insufficient.
-2. Distinguish between auth methods (OAuth2, API key, etc.) and credential accessibility.
+2. Look for explicit mentions of: OAuth 2.0, OAuth2, API key, API key authentication, Bearer token, Personal Access Token (PAT), Service Account, Basic Auth, Basic Authentication.
 3. If multiple methods are clearly documented, use "multiple".
-4. Return ONLY valid JSON."""
+4. Return ONLY valid JSON. No markdown, no explanation."""
 
         return await self._extract_with_llm(prompt, 'auth')
 
@@ -96,9 +69,14 @@ Return JSON:
 
 RULES:
 1. Only use evidence provided. Mark "unknown" if evidence insufficient.
-2. Self-serve = developer can get credentials without sales/contact.
-3. Distinguish API existence from credential accessibility.
-4. Return ONLY valid JSON."""
+2. Self-serve = developer can get credentials immediately without sales/contact.
+3. Self-serve with trial = free tier available but limited.
+4. Paid plan required = must pay before getting credentials.
+5. Admin approval = requires admin in customer's org.
+5. Partner required = must be approved partner.
+6. Contact sales = must talk to sales team.
+7. Distinguish API existence from credential accessibility.
+8. Return ONLY valid JSON. No markdown, no explanation."""
 
         return await self._extract_with_llm(prompt, 'credential')
 
@@ -122,9 +100,10 @@ Return JSON:
 
 RULES:
 1. Only use evidence provided. Mark "unknown" if evidence insufficient.
-2. Broad = comprehensive API covering most product features.
-3. Limited = narrow API (e.g., only webhooks, or only specific resources).
-4. Return ONLY valid JSON."""
+2. Broad = comprehensive API covering most product features (CRUD operations, webhooks, batch operations, etc.).
+2. Limited = narrow API (e.g., only webhooks, only specific resources, read-only).
+3. Look for: REST, GraphQL, SOAP, gRPC, Webhooks, MCP, OpenAPI/Swagger, API reference docs.
+3. Return ONLY valid JSON. No markdown, no explanation."""
 
         return await self._extract_with_llm(prompt, 'api')
 
@@ -148,8 +127,8 @@ Return JSON:
 RULES:
 1. Only use evidence provided. Mark "unknown" if evidence insufficient.
 2. MCP = public Model Context Protocol server exists (not just Composio toolkit).
-3. Look for: modelcontextprotocol.io, mcp. subdomain, "MCP server" in docs.
-4. Return ONLY valid JSON."""
+3. Look for: modelcontextprotocol.io, mcp. subdomain, "MCP server" in docs, "Model Context Protocol" in docs.
+4. Return ONLY valid JSON. No markdown, no explanation."""
 
         return await self._extract_with_llm(prompt, 'mcp')
 
@@ -157,19 +136,21 @@ RULES:
                                api: APIExtraction, mcp: MCPExtraction) -> tuple[str, str]:
         """Determine buildability with deterministic rules."""
         # Rules:
-        # If credential access is blocked (contact_sales, partner_required, unknown) -> BLOCKED
-        # If credential access requires admin/partner -> HUMAN_OUTREACH_REQUIRED
+        # If credential access is explicitly blocked (contact_sales, partner_required) -> BLOCKED
+        # If credential access requires admin approval -> HUMAN_OUTREACH_REQUIRED
+        # If credential access is unknown -> UNKNOWN (not blocked)
         # If auth or API is unknown -> BUILDABLE_WITH_CAVEAT
         # Otherwise -> READY
         
         if cred.credential_access in [CredentialAccess.CONTACT_SALES, 
-                                       CredentialAccess.PARTNER_REQUIRED,
-                                       CredentialAccess.UNKNOWN]:
-            return Buildability.BLOCKED.value, "Credential access blocked or unknown"
-        
-        if cred.credential_access in [CredentialAccess.ADMIN_APPROVAL, 
                                        CredentialAccess.PARTNER_REQUIRED]:
-            return Buildability.HUMAN_OUTREACH_REQUIRED.value, "Requires admin/partner approval"
+            return Buildability.BLOCKED.value, "Credential access requires sales/partner contact"
+        
+        if cred.credential_access == CredentialAccess.ADMIN_APPROVAL:
+            return Buildability.HUMAN_OUTREACH_REQUIRED.value, "Requires admin approval"
+        
+        if cred.credential_access == CredentialAccess.UNKNOWN:
+            return Buildability.UNKNOWN.value, "Credential access unknown"
         
         if auth.auth_methods == [AuthMethod.UNKNOWN] or api.api_types == [APIType.OTHER]:
             return Buildability.BUILDABLE_WITH_CAVEAT.value, "Auth or API type uncertain"

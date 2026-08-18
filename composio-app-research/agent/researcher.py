@@ -552,27 +552,22 @@ class NemotronClient:
         return "".join(content_parts)
     
     async def complete_async(self, prompt: str, temperature: float = 0.1, max_tokens: int = 16384) -> str:
-        """Call Nemotron API with reasoning support (async)."""
+        """Call Nemotron API (async, non-streaming)."""
         client = self._get_async_client()
         
         completion = await client.chat.completions.create(
             model=self.model,
-            messages=[{"role": "user", "content": prompt}],
+            messages=[
+                {"role": "system", "content": "You are a concise research analyst. Return ONLY valid JSON. No explanations, no markdown, no extra text. Only the requested JSON object."},
+                {"role": "user", "content": prompt}
+            ],
             temperature=temperature,
             top_p=0.95,
             max_tokens=max_tokens,
             extra_body={
-                "chat_template_kwargs": {"enable_thinking": True},
-                "reasoning_budget": 16384,
+                "chat_template_kwargs": {"enable_thinking": False},
             },
-            stream=True,
+            stream=False,
         )
         
-        content_parts = []
-        async for chunk in completion:
-            if not chunk.choices:
-                continue
-            if chunk.choices[0].delta.content is not None:
-                content_parts.append(chunk.choices[0].delta.content)
-        
-        return "".join(content_parts)
+        return completion.choices[0].message.content or ""

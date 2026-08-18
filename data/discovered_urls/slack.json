@@ -1,0 +1,237 @@
+{
+  "developer_docs": [
+    {
+      "url": "https://api.slack.com/developers",
+      "title": "Developer Docs for Slack",
+      "snippet": "Generated from pattern: /developers",
+      "source_type": "official_docs",
+      "confidence": 0.7,
+      "score": 4,
+      "category": "developer_docs"
+    },
+    {
+      "url": "https://api.slack.com/docs",
+      "title": "Developer Docs for Slack",
+      "snippet": "Generated from pattern: /docs",
+      "source_type": "official_docs",
+      "confidence": 0.7,
+      "score": 4,
+      "category": "developer_docs"
+    },
+    {
+      "url": "https://api.slack.com/api",
+      "title": "Developer Docs for Slack",
+      "snippet": "Generated from pattern: /api",
+      "source_type": "official_docs",
+      "confidence": 0.7,
+      "score": 4,
+      "category": "developer_docs"
+    },
+    {
+      "url": "https://api.slack.com/developer",
+      "title": "Developer Docs for Slack",
+      "snippet": "Generated from pattern: /developer",
+      "source_type": "official_docs",
+      "confidence": 0.7,
+      "score": 4,
+      "category": "developer_docs"
+    },
+    {
+      "url": "https://api.slack.com/reference",
+      "title": "Developer Docs for Slack",
+      "snippet": "Generated from pattern: /reference",
+      "source_type": "official_docs",
+      "confidence": 0.7,
+      "score": 4,
+      "category": "developer_docs"
+    }
+  ],
+  "auth_docs": [
+    {
+      "url": "https://api.slack.com/developers/auth",
+      "title": "Auth Docs for Slack",
+      "snippet": "Generated from pattern: /developers/auth",
+      "source_type": "auth_docs",
+      "confidence": 0.7,
+      "score": 4,
+      "category": "auth_docs"
+    },
+    {
+      "url": "https://api.slack.com/docs/auth",
+      "title": "Auth Docs for Slack",
+      "snippet": "Generated from pattern: /docs/auth",
+      "source_type": "auth_docs",
+      "confidence": 0.7,
+      "score": 4,
+      "category": "auth_docs"
+    },
+    {
+      "url": "https://api.slack.com/docs/authentication",
+      "title": "Auth Docs for Slack",
+      "snippet": "Generated from pattern: /docs/authentication",
+      "source_type": "auth_docs",
+      "confidence": 0.7,
+      "score": 4,
+      "category": "auth_docs"
+    },
+    {
+      "url": "https://api.slack.com/api/auth",
+      "title": "Auth Docs for Slack",
+      "snippet": "Generated from pattern: /api/auth",
+      "source_type": "auth_docs",
+      "confidence": 0.7,
+      "score": 4,
+      "category": "auth_docs"
+    },
+    {
+      "url": "https://api.slack.com/auth",
+      "title": "Auth Docs for Slack",
+      "snippet": "Generated from pattern: /auth",
+      "source_type": "auth_docs",
+      "confidence": 0.7,
+      "score": 4,
+      "category": "auth_docs"
+    }
+  ],
+  "api_docs": [
+    {
+      "url": "https://api.slack.com/developers/api",
+      "title": "Api Docs for Slack",
+      "snippet": "Generated from pattern: /developers/api",
+      "source_type": "official_docs",
+      "confidence": 0.7,
+      "score": 4,
+      "category": "api_docs"
+    },
+    {
+      "url": "https://api.slack.com/docs/api",
+      "title": "Api Docs for Slack",
+      "snippet": "Generated from pattern: /docs/api",
+      "source_type": "official_docs",
+      "confidence": 0.7,
+      "score": 4,
+      "category": "api_docs"
+    },
+    {
+      "url": "https://api.slack.com/api/reference",
+      "title": "Api Docs for Slack",
+      "snippet": "Generated from pattern: /api/reference",
+      "source_type": "official_docs",
+      "confidence": 0.7,
+      "score": 4,
+      "category": "api_docs"
+    },
+    {
+      "url": "https://api.slack.com/docs/reference",
+      "title": "Api Docs for Slack",
+      "snippet": "Generated from pattern: /docs/reference",
+      "source_type": "official_docs",
+      "confidence": 0.7,
+      "score": 4,
+      "category": "api_docs"
+    },
+    {
+      "url": "https://api.slack.com/api/docs",
+      "title": "Api Docs for Slack",
+      "snippet": "Generated from pattern: /api/docs",
+      "source_type": "official_docs",
+      "confidence": 0.7,
+      "score": 4,
+      "category": "api_docs"
+    }
+  ],
+  "mcp_docs": [
+    {
+      "url": "https://api.slack.com/mcp",
+      "title": "Mcp Docs for Slack",
+      "snippet": "Generated from pattern: /mcp",
+      "source_type": "mcp_registry",
+      "confidence": 0.7,
+      "score": 4,
+      "category": "mcp_docs"
+    },
+    {
+      "url": "https://api.slack.com/modelcontextprotocol",
+      "title": "Mcp Docs for Slack",
+      "snippet": "Generated from pattern: /modelcontextprotocol",
+      "source_type": "mcp_registry",
+      "confidence": 0.7,
+      "score": 4,
+      "category": "mcp_docs"
+    },
+    {
+      "url": "https://api.slack.com/mcp-server",
+      "title": "Mcp Docs for Slack",
+      "snippet": "Generated from pattern: /mcp-server",
+      "source_type": "mcp_registry",
+      "confidence": 0.7,
+      "score": 4,
+      "category": "mcp_docs"
+    },
+    {
+      "url": "https://api.slack.com/.well-known/mcp",
+      "title": "Mcp Docs for Slack",
+      "snippet": "Generated from pattern: /.well-known/mcp",
+      "source_type": "mcp_registry",
+      "confidence": 0.7,
+      "score": 4,
+      "category": "mcp_docs"
+    },
+    {
+      "url": "https://api.slack.com/mcp/documentation",
+      "title": "Mcp Docs for Slack",
+      "snippet": "Generated from pattern: /mcp/documentation",
+      "source_type": "mcp_registry",
+      "confidence": 0.7,
+      "score": 4,
+      "category": "mcp_docs"
+    }
+  ],
+  "pricing_docs": [
+    {
+      "url": "https://api.slack.com/pricing",
+      "title": "Pricing Docs for Slack",
+      "snippet": "Generated from pattern: /pricing",
+      "source_type": "pricing_docs",
+      "confidence": 0.7,
+      "score": 3,
+      "category": "pricing_docs"
+    },
+    {
+      "url": "https://api.slack.com/plans",
+      "title": "Pricing Docs for Slack",
+      "snippet": "Generated from pattern: /plans",
+      "source_type": "pricing_docs",
+      "confidence": 0.7,
+      "score": 3,
+      "category": "pricing_docs"
+    },
+    {
+      "url": "https://api.slack.com/billing",
+      "title": "Pricing Docs for Slack",
+      "snippet": "Generated from pattern: /billing",
+      "source_type": "pricing_docs",
+      "confidence": 0.7,
+      "score": 3,
+      "category": "pricing_docs"
+    },
+    {
+      "url": "https://api.slack.com/pricing/developer",
+      "title": "Pricing Docs for Slack",
+      "snippet": "Generated from pattern: /pricing/developer",
+      "source_type": "pricing_docs",
+      "confidence": 0.7,
+      "score": 3,
+      "category": "pricing_docs"
+    },
+    {
+      "url": "https://api.slack.com/developers/pricing",
+      "title": "Pricing Docs for Slack",
+      "snippet": "Generated from pattern: /developers/pricing",
+      "source_type": "pricing_docs",
+      "confidence": 0.7,
+      "score": 3,
+      "category": "pricing_docs"
+    }
+  ]
+}

@@ -61,14 +61,14 @@ class Discoverer:
             json.dump(result.to_dict(), f, indent=2)
 
     async def discover(self, app: str, website: str, use_cache: bool = True) -> DiscoveryResult:
-        """Run all searches, score, deduplicate, return top URLs per category."""
+        """Run all searches in parallel, score, deduplicate, return top URLs per category."""
         # Check cache first
         if use_cache:
             cached = self.load_cache(app)
             if cached:
                 return cached
 
-        # Run searches in parallel
+        # Run searches in parallel using asyncio.gather
         search_tasks = {
             'developer_docs': self.searcher.find_developer_docs(app, website),
             'auth_docs': self.searcher.find_auth_docs(app, website),
@@ -77,13 +77,22 @@ class Discoverer:
             'pricing_docs': self.searcher.find_pricing_access(app, website),
         }
 
+        # Run all searches in parallel
+        task_names = list(search_tasks.keys())
+        tasks = list(search_tasks.values())
+        
         results = {}
-        for category, task in search_tasks.items():
-            try:
-                results[category] = await task
-            except Exception as e:
-                print(f"[{app}] Search failed for {category}: {e}")
-                results[category] = []
+        try:
+            completed = await asyncio.gather(*tasks, return_exceptions=True)
+            for category, result in zip(task_names, completed):
+                if isinstance(result, Exception):
+                    print(f"[{app}] Search failed for {category}: {result}")
+                    results[category] = []
+                else:
+                    results[category] = result
+        except Exception as e:
+            print(f"[{app}] Search failed: {e}")
+            results = {cat: [] for cat in search_tasks.keys()}
 
         # Score and select best URLs
         all_scored = []
@@ -93,24 +102,8 @@ class Discoverer:
                 all_scored.extend(scored)
 
         deduplicated = self.scorer.deduplicate(all_scored)
-        selected_urls = self.scorer.select_best(deduplicated)
-
-        # Build result object with categorized URLs
-        # We need to map back to categories
-        by_category = {cat: [] for cat in ['developer_docs', 'auth_docs', 'api_docs', 'mcp_docs', 'pricing_docs']}
         
-        # Re-score with category info for proper categorization
-        # Actually, we already have the category in ScoredURL.category
-        # Let's rebuild by category
-        temp_scored = []
-        for category, search_results in results.items():
-            if search_results:
-                scored = self.scorer.score(search_results, category)
-                temp_scored.extend(scored)
-        
-        deduplicated = self.scorer.deduplicate(temp_scored)
-        
-        # Build result
+        # Build result object with categorized URLs directly from deduplicated
         result = DiscoveryResult(
             developer_docs=[u for u in deduplicated if u.category == 'developer_docs'],
             auth_docs=[u for u in deduplicated if u.category == 'auth_docs'],

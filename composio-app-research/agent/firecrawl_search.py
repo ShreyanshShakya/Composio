@@ -112,8 +112,73 @@ class FirecrawlSearcher:
         }
 
     async def search(self, query: str, limit: int = 5) -> list:
-        """Fallback to pattern-based URL generation."""
+        """Execute COMPOSIO_SEARCH_TOOLS via Composio MCP."""
+        await self.composio_mcp._ensure_initialized()
+        session = await self.composio_mcp._get_session()
+
+        call_payload = {
+            "jsonrpc": "2.0",
+            "id": 1,
+            "method": "tools/call",
+            "params": {
+                "name": "COMPOSIO_MULTI_EXECUTE_TOOL",
+                "arguments": {
+                    "tools": [
+                        {
+                            "tool_slug": "COMPOSIO_SEARCH_TOOLS",
+                            "arguments": {
+                                "query": query,
+                                "limit": limit
+                            }
+                        }
+                    ],
+                    "memory": {}
+                }
+            }
+        }
+
+        try:
+            session = await self.composio_mcp._get_session()
+            async with session.post(
+                self.composio_mcp.mcp_url,
+                headers=self.composio_mcp.headers,
+                json=call_payload
+            ) as resp:
+                if resp.status != 200:
+                    error_text = await resp.text()
+                    raise Exception(f"HTTP {resp.status}: {error_text}")
+
+                text = await resp.text()
+                for line in text.split('\n'):
+                    if line.startswith('data: '):
+                        data = json.loads(line[6:])
+                        if 'result' in data and 'content' in data['result']:
+                            content_text = data['result']['content'][0]['text']
+                            result_data = json.loads(content_text)
+                            return self._parse_search_results(result_data)
+
+        except Exception as e:
+            raise Exception(f"Firecrawl search failed: {e}")
+
         return []
+
+    def _parse_search_results(self, data: dict) -> list:
+        """Parse Firecrawl search results into SearchResult objects."""
+        results = []
+        for item in data.get('data', {}).get('results', []):
+            url = item.get('url', '')
+            title = item.get('title', '')
+            snippet = item.get('snippet', '') or item.get('markdown', '')[:200]
+            source_type = self._classify_source(url)
+            confidence = item.get('score', 0.5)
+            results.append(SearchResult(
+                url=url,
+                title=title,
+                snippet=snippet,
+                source_type=source_type,
+                confidence=confidence
+            ))
+        return results
 
     def _classify_source(self, url: str) -> str:
         """Classify URL source type."""
@@ -193,28 +258,28 @@ class FirecrawlSearcher:
 
     async def find_developer_docs(self, app: str, website: str) -> list:
         self.set_app(app)
-        results = self.generate_urls(app, website)
-        return [self._to_search_result(r, 'official_docs') for r in results.get('developer_docs', [])]
-
+        results = await self.search(f"{app} developer documentation", limit=5)
+        return [self._to_search_result(r, 'official_docs') for r in results]
+  
     async def find_auth_docs(self, app: str, website: str) -> list:
         self.set_app(app)
-        results = self.generate_urls(app, website)
-        return [self._to_search_result(r, 'auth_docs') for r in results.get('auth_docs', [])]
-
+        results = await self.search(f"{app} API authentication", limit=5)
+        return [self._to_search_result(r, 'auth_docs') for r in results]
+  
     async def find_api_reference(self, app: str, website: str) -> list:
         self.set_app(app)
-        results = self.generate_urls(app, website)
-        return [self._to_search_result(r, 'official_docs') for r in results.get('api_docs', [])]
-
+        results = await self.search(f"{app} API reference", limit=5)
+        return [self._to_search_result(r, 'official_docs') for r in results]
+  
     async def find_mcp_evidence(self, app: str, website: str) -> list:
         self.set_app(app)
-        results = self.generate_urls(app, website)
-        return [self._to_search_result(r, 'mcp_registry') for r in results.get('mcp_docs', [])]
-
+        results = await self.search(f"{app} MCP server", limit=5)
+        return [self._to_search_result(r, 'mcp_registry') for r in results]
+  
     async def find_pricing_access(self, app: str, website: str) -> list:
         self.set_app(app)
-        results = self.generate_urls(app, website)
-        return [self._to_search_result(r, 'pricing_docs') for r in results.get('pricing_docs', [])]
+        results = await self.search(f"{app} pricing plans developer", limit=5)
+        return [self._to_search_result(r, 'pricing_docs') for r in results]
 
     def _to_search_result(self, item: dict, source_type: str) -> 'SearchResult':
         from agent.models import SourceType

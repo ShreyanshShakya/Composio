@@ -103,6 +103,41 @@ class VerificationRecord(BaseModel):
     evidence: str
 
 
+class AuthExtraction(BaseModel):
+    auth_methods: list[AuthMethod]
+    confidence: float
+    citations: list[str]
+
+
+class CredentialExtraction(BaseModel):
+    credential_access: CredentialAccess
+    confidence: float
+    citations: list[str]
+
+
+class APIExtraction(BaseModel):
+    api_types: list[APIType]
+    api_breadth: str  # broad, limited, unknown
+    confidence: float
+    citations: list[str]
+
+
+class MCPExtraction(BaseModel):
+    mcp_public: MCPStatus
+    confidence: float
+    citations: list[str]
+
+
+class VerificationRecord(BaseModel):
+    app: str
+    field: str
+    agent_answer: str
+    verified_answer: str
+    correct: bool
+    error_type: ErrorType | None = None
+    evidence: str
+
+
 class AppResearch(BaseModel):
     app: str
     category: str
