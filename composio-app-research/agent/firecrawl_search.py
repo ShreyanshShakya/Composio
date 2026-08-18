@@ -65,10 +65,11 @@ class FirecrawlSearcher:
         try:
             results = await self._firecrawl_search(query, limit)
             if results:
+                print(f"[Firecrawl] {query!r}: {len(results)} valid results")
                 return results
+            print(f"[Firecrawl] {query!r}: 0 valid results; using website fallback")
         except Exception as e:
             print(f"Firecrawl search failed, falling back to app-domain patterns: {e}")
-
         return await self._fallback_search(query, limit, website)
 
     async def _firecrawl_search(self, query: str, limit: int = 5) -> list[SearchResult]:
@@ -87,11 +88,24 @@ class FirecrawlSearcher:
                 raise Exception(f"HTTP {resp.status}: {error_text}")
             text = await resp.text()
             for line in text.split('\n'):
-                if line.startswith('data: '):
-                    data = json.loads(line[6:])
-                    if 'result' in data and 'content' in data['result']:
-                        content_text = data['result']['content'][0]['text']
-                        return self._parse_search_results(json.loads(content_text))
+                if not line.startswith('data: '):
+                    continue
+                data = json.loads(line[6:])
+                if 'error' in data:
+                    raise Exception(f"MCP error: {data['error']}")
+                if 'result' not in data or 'content' not in data['result']:
+                    continue
+                content = data['result']['content']
+                if not content:
+                    continue
+                content_text = content[0].get('text', '') if isinstance(content[0], dict) else str(content[0])
+                if not content_text:
+                    continue
+                try:
+                    parsed = json.loads(content_text)
+                except json.JSONDecodeError as exc:
+                    raise Exception(f"Invalid Firecrawl JSON payload: {exc}") from exc
+                return self._parse_search_results(parsed)
         return []
 
     async def _fallback_search(self, query: str, limit: int = 5, website: str | None = None) -> list[SearchResult]:
@@ -105,23 +119,31 @@ class FirecrawlSearcher:
         for category, urls in results.items():
             for item in urls[:limit]:
                 all_results.append(self._to_search_result(item, self._classify_source_for_category(category)))
-        return all_results[:limit]
+        fallback = all_results[:limit]
+        print(f"[Fallback] {query!r}: generated {len(fallback)} candidates from {website}")
+        return fallback
 
     def _parse_search_results(self, data: dict) -> list[SearchResult]:
         results = []
-        for item in data.get('data', {}).get('results', []):
-            url = item.get('url', '')
+        raw_results = data.get('data', {}).get('results', [])
+        if not isinstance(raw_results, list):
+            raise ValueError(f"Unexpected Firecrawl results type: {type(raw_results).__name__}")
+        for item in raw_results:
+            if not isinstance(item, dict):
+                continue
+            url = str(item.get('url') or '').strip()
+            if not url or not urlparse(url).scheme or not urlparse(url).netloc:
+                continue
             results.append(SearchResult(
                 url=url,
-                title=item.get('title', ''),
-                snippet=item.get('snippet', '') or item.get('markdown', '')[:200],
+                title=str(item.get('title') or ''),
+                snippet=str(item.get('snippet') or item.get('markdown') or '')[:500],
                 source_type=self._classify_source(url),
-                confidence=item.get('score', 0.5),
+                confidence=float(item.get('score') or 0.5),
             ))
         return results
 
     def _classify_source(self, url: str) -> SourceType:
-        """Return SourceType enums consistently so URL scoring is deterministic."""
         url_lower = url.lower()
         if 'mcp' in url_lower or 'modelcontextprotocol' in url_lower:
             return SourceType.MCP_REGISTRY
@@ -183,8 +205,10 @@ class FirecrawlSearcher:
         self.set_app(app); return await self.search(f"{app} pricing plans developer", 5, website)
 
     def _to_search_result(self, item: dict, source_type: SourceType) -> SearchResult:
+        url = str(item.get('url') or '').strip()
+        if not url:
+            raise ValueError("Fallback generated an empty URL")
         return SearchResult(
-            url=item['url'], title=item.get('title', ''), snippet=item.get('snippet', ''),
-            source_type=SourceType(item.get('source_type', source_type)),
-            confidence=item.get('confidence', 0.7)
+            url=url, title=item.get('title', ''), snippet=item.get('snippet', ''),
+            source_type=SourceType(item.get('source_type', source_type)), confidence=item.get('confidence', 0.7)
         )
