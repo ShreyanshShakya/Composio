@@ -35,16 +35,17 @@ class DiscoveryResult:
             pricing_docs=[ScoredURL(**u) for u in data.get('pricing_docs', [])],
         )
 
+    def count(self) -> int:
+        return sum(len(group) for group in (
+            self.developer_docs, self.auth_docs, self.api_docs,
+            self.mcp_docs, self.pricing_docs,
+        ))
+
 
 class Discoverer:
     """Coordinate bounded discovery for a single app."""
 
-    def __init__(
-        self,
-        firecrawl_searcher: FirecrawlSearcher,
-        cache_dir: str = "data/discovered_urls",
-        max_concurrent_searches: int = 2,
-    ):
+    def __init__(self, firecrawl_searcher: FirecrawlSearcher, cache_dir: str = "data/discovered_urls", max_concurrent_searches: int = 2):
         self.searcher = firecrawl_searcher
         self.scorer = URLScorer()
         self.cache_dir = cache_dir
@@ -58,17 +59,27 @@ class Discoverer:
     def load_cache(self, app: str) -> Optional[DiscoveryResult]:
         path = self._cache_path(app)
         if os.path.exists(path):
-            with open(path, 'r') as f:
-                return DiscoveryResult.from_dict(json.load(f))
+            try:
+                with open(path, 'r') as f:
+                    result = DiscoveryResult.from_dict(json.load(f))
+                # Never treat an empty/failed discovery as valid cached research.
+                if result.count() > 0:
+                    return result
+                print(f"[{app}] Ignoring empty discovery cache: {path}")
+            except (OSError, json.JSONDecodeError, TypeError, KeyError, ValueError) as exc:
+                print(f"[{app}] Ignoring invalid discovery cache: {exc}")
         return None
 
     def save_cache(self, app: str, result: DiscoveryResult):
+        # Do not persist failed/empty discovery results; otherwise one transient
+        # Firecrawl failure can poison every later run for that app.
+        if result.count() == 0:
+            return
         path = self._cache_path(app)
         with open(path, 'w') as f:
             json.dump(result.to_dict(), f, indent=2)
 
     async def _bounded_search(self, category: str, app: str, website: str):
-        """Run one Firecrawl search under the global search concurrency limit."""
         queries = {
             'developer_docs': f"{app} developer documentation",
             'auth_docs': f"{app} API authentication",
@@ -76,14 +87,8 @@ class Discoverer:
             'mcp_docs': f"{app} MCP server",
             'pricing_docs': f"{app} pricing plans developer",
         }
-
         async with self.search_semaphore:
-            results = await self.searcher.search(
-                queries[category],
-                limit=5,
-                website=website,
-            )
-
+            results = await self.searcher.search(queries[category], limit=5, website=website)
         source_by_category = {
             'developer_docs': SourceType.OFFICIAL_DOCS,
             'auth_docs': SourceType.AUTH_DOCS,
@@ -98,23 +103,13 @@ class Discoverer:
         return results
 
     async def discover(self, app: str, website: str, use_cache: bool = True) -> DiscoveryResult:
-        """Run bounded searches, score/deduplicate once, and cache the result."""
         if use_cache:
             cached = self.load_cache(app)
             if cached:
                 return cached
-
-        categories = [
-            'developer_docs',
-            'auth_docs',
-            'api_docs',
-            'mcp_docs',
-            'pricing_docs',
-        ]
-
+        categories = ['developer_docs', 'auth_docs', 'api_docs', 'mcp_docs', 'pricing_docs']
         tasks = [self._bounded_search(category, app, website) for category in categories]
         completed = await asyncio.gather(*tasks, return_exceptions=True)
-
         results = {}
         for category, result in zip(categories, completed):
             if isinstance(result, Exception):
@@ -122,12 +117,10 @@ class Discoverer:
                 results[category] = []
             else:
                 results[category] = result
-
         all_scored = []
         for category, search_results in results.items():
             if search_results:
                 all_scored.extend(self.scorer.score(search_results, category))
-
         deduplicated = self.scorer.deduplicate(all_scored)
         result = DiscoveryResult(
             developer_docs=[u for u in deduplicated if u.category == 'developer_docs'],
@@ -136,6 +129,5 @@ class Discoverer:
             mcp_docs=[u for u in deduplicated if u.category == 'mcp_docs'],
             pricing_docs=[u for u in deduplicated if u.category == 'pricing_docs'],
         )
-
         self.save_cache(app, result)
         return result
