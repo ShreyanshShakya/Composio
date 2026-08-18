@@ -112,7 +112,21 @@ class FirecrawlSearcher:
         }
 
     async def search(self, query: str, limit: int = 5) -> list:
-        """Execute COMPOSIO_SEARCH_TOOLS via Composio MCP."""
+        """Execute FIRECRAWL_SEARCH via Composio MCP, with fallback to pattern-based URLs."""
+        # Try Firecrawl search via Composio's FIRECRAWL_SEARCH tool
+        try:
+            results = await self._firecrawl_search(query, limit)
+            if results:
+                return results
+        except Exception as e:
+            # Log the error and fall back
+            print(f"Firecrawl search failed, falling back to pattern URLs: {e}")
+
+        # Fallback to pattern-based URL generation
+        return await self._fallback_search(query, limit)
+
+    async def _firecrawl_search(self, query: str, limit: int = 5) -> list:
+        """Execute FIRECRAWL_SEARCH via Composio MCP."""
         await self.composio_mcp._ensure_initialized()
         session = await self.composio_mcp._get_session()
 
@@ -125,7 +139,7 @@ class FirecrawlSearcher:
                 "arguments": {
                     "tools": [
                         {
-                            "tool_slug": "COMPOSIO_SEARCH_TOOLS",
+                            "tool_slug": "FIRECRAWL_SEARCH",
                             "arguments": {
                                 "query": query,
                                 "limit": limit
@@ -137,30 +151,39 @@ class FirecrawlSearcher:
             }
         }
 
-        try:
-            session = await self.composio_mcp._get_session()
-            async with session.post(
-                self.composio_mcp.mcp_url,
-                headers=self.composio_mcp.headers,
-                json=call_payload
-            ) as resp:
-                if resp.status != 200:
-                    error_text = await resp.text()
-                    raise Exception(f"HTTP {resp.status}: {error_text}")
+        session = await self.composio_mcp._get_session()
+        async with session.post(
+            self.composio_mcp.mcp_url,
+            headers=self.composio_mcp.headers,
+            json=call_payload
+        ) as resp:
+            if resp.status != 200:
+                error_text = await resp.text()
+                raise Exception(f"HTTP {resp.status}: {error_text}")
 
-                text = await resp.text()
-                for line in text.split('\n'):
-                    if line.startswith('data: '):
-                        data = json.loads(line[6:])
-                        if 'result' in data and 'content' in data['result']:
-                            content_text = data['result']['content'][0]['text']
-                            result_data = json.loads(content_text)
-                            return self._parse_search_results(result_data)
-
-        except Exception as e:
-            raise Exception(f"Firecrawl search failed: {e}")
+            text = await resp.text()
+            for line in text.split('\n'):
+                if line.startswith('data: '):
+                    data = json.loads(line[6:])
+                    if 'result' in data and 'content' in data['result']:
+                        content_text = data['result']['content'][0]['text']
+                        result_data = json.loads(content_text)
+                        return self._parse_search_results(result_data)
 
         return []
+
+    async def _fallback_search(self, query: str, limit: int = 5) -> list:
+        """Fallback to pattern-based URL generation."""
+        # Extract app name from query (first word)
+        app = query.split()[0] if query else "unknown"
+        # Use a generic website based on query
+        website = "https://www.google.com"
+        results = self.generate_urls(app, website)
+        all_results = []
+        for category, urls in results.items():
+            for item in urls[:limit]:
+                all_results.append(self._to_search_result(item, self._classify_source_for_category(category)))
+        return all_results[:limit]
 
     def _parse_search_results(self, data: dict) -> list:
         """Parse Firecrawl search results into SearchResult objects."""
