@@ -6,6 +6,7 @@ from pathlib import Path
 from dataclasses import dataclass
 from agent.models import AppResearch
 from agent.researcher import Researcher, NemotronClient, ComposioMCPClient, create_llm_client
+from agent.gemini_client import GeminiQuotaExhausted
 from agent.evidence import validate_and_repair_research
 
 
@@ -45,6 +46,8 @@ class ResearchPipeline:
         self.rate_limiter = RateLimiter(config.max_concurrent)
         self.completed: set[str] = set()
         self.failed: dict[str, int] = {}
+        self.quota_exhausted = False
+        self._write_lock = asyncio.Lock()
 
     def _is_resume_quality(self, research: AppResearch) -> bool:
         return research.confidence > self.config.min_resume_confidence
@@ -60,21 +63,29 @@ class ResearchPipeline:
                     if previous is None or research.confidence > previous.confidence:
                         results_by_app[research.app] = research
                     if self._is_resume_quality(research): self.completed.add(research.app)
-                except Exception: continue
+                except Exception:
+                    # Tolerate a truncated/corrupted historical line and continue.
+                    continue
         return list(results_by_app.values())
 
-    def save_result(self, research: AppResearch) -> bool:
+    async def save_result(self, research: AppResearch) -> bool:
         if not self._is_resume_quality(research):
             print(f"[{research.app}] Result confidence {research.confidence:.2f} <= {self.config.min_resume_confidence:.2f}; not marking completed")
             return False
-        with open(self.raw_file, "a", encoding="utf-8") as f:
-            f.write(research.model_dump_json() + "\n")
-        self.completed.add(research.app)
+        # A single writer lock prevents concurrent workers from interleaving JSONL records.
+        async with self._write_lock:
+            with open(self.raw_file, "a", encoding="utf-8") as f:
+                f.write(research.model_dump_json() + "\n")
+                f.flush()
+                os.fsync(f.fileno())
+            self.completed.add(research.app)
         return True
 
     async def research_with_retry(self, app: str, website: str, category: str) -> AppResearch | None:
         last_error = None
         for attempt in range(self.config.max_retries + 1):
+            if self.quota_exhausted:
+                return None
             try:
                 await self.rate_limiter.acquire()
                 try:
@@ -84,11 +95,15 @@ class ResearchPipeline:
                     raise ValueError("Validation failed after repair attempts")
                 finally:
                     self.rate_limiter.release()
+            except GeminiQuotaExhausted as e:
+                self.quota_exhausted = True
+                print(f"[QUOTA] Gemini quota exhausted; stopping new LLM work. Remaining apps will stay resumable. ({e})")
+                return None
             except Exception as e:
                 last_error = e
                 error_str = str(e).lower()
                 retryable = any(x in error_str for x in ["429", "500", "502", "503", "504", "timeout", "rate limit"])
-                if attempt < self.config.max_retries and retryable:
+                if attempt < self.config.max_retries and retryable and not self.quota_exhausted:
                     base_delay = self.config.base_delay * (2 ** attempt)
                     if "429" in error_str: base_delay *= 2
                     delay = min(base_delay + random.uniform(0, 1), self.config.max_delay)
@@ -116,18 +131,20 @@ class ResearchPipeline:
             result = await coro
             completed += 1
             if result:
-                saved = self.save_result(result)
+                saved = await self.save_result(result)
                 print(f"[{completed}/{len(remaining)}] {'OK' if saved else 'RETRY'} {result.app} (confidence: {result.confidence:.2f})")
             else:
-                print(f"[{completed}/{len(remaining)}] FAIL Failed")
+                if self.quota_exhausted:
+                    print(f"[{completed}/{len(remaining)}] PAUSED Gemini quota exhausted")
+                else:
+                    print(f"[{completed}/{len(remaining)}] FAIL Failed")
             if completed % 10 == 0: self.print_summary()
         self.print_summary()
         await self.researcher.close()
         return self.load_existing()
 
     def print_summary(self):
-        total = len(self.completed) + sum(self.failed.values())
-        print(f"\n--- Progress: {len(self.completed)}/{total} completed, {len(self.failed)} failed ---")
+        print(f"\n--- Progress: {len(self.completed)} quality completed, {len(self.failed)} failed, quota_exhausted={self.quota_exhausted} ---")
 
 
 async def main():
