@@ -13,9 +13,6 @@ from agent.evidence import extract_json_from_response, validate_and_repair_resea
 class NemotronExtractor:
     """5 claim-specific extraction methods with bounded Nemotron concurrency/retries."""
 
-    # NVIDIA/Nemotron rate limiting is independent of Composio/Firecrawl.
-    # Serialize extraction requests so app-level concurrency cannot create
-    # a burst of 4 claim calls per app against the NVIDIA endpoint.
     _llm_semaphore = asyncio.Semaphore(1)
     _last_llm_request = 0.0
     _llm_min_interval = 1.0
@@ -152,13 +149,13 @@ RULES:
                 data = extract_json_from_response(response)
                 if data:
                     if field == 'auth':
-                        return AuthExtraction([AuthMethod(m) for m in data.get('auth_methods', ['unknown'])], data.get('confidence', 0.0), data.get('citations', []))
+                        return AuthExtraction(auth_methods=[AuthMethod(m) for m in data.get('auth_methods', ['unknown'])], confidence=data.get('confidence', 0.0), citations=data.get('citations', []))
                     if field == 'credential':
-                        return CredentialExtraction(CredentialAccess(data.get('credential_access', 'unknown')), data.get('confidence', 0.0), data.get('citations', []))
+                        return CredentialExtraction(credential_access=CredentialAccess(data.get('credential_access', 'unknown')), confidence=data.get('confidence', 0.0), citations=data.get('citations', []))
                     if field == 'api':
-                        return APIExtraction([APIType(t) for t in data.get('api_types', ['other'])], data.get('api_breadth', 'unknown'), data.get('confidence', 0.0), data.get('citations', []))
+                        return APIExtraction(api_types=[APIType(t) for t in data.get('api_types', ['other'])], api_breadth=data.get('api_breadth', 'unknown'), confidence=data.get('confidence', 0.0), citations=data.get('citations', []))
                     if field == 'mcp':
-                        return MCPExtraction(MCPStatus(data.get('mcp_public', 'unknown')), data.get('confidence', 0.0), data.get('citations', []))
+                        return MCPExtraction(mcp_public=MCPStatus(data.get('mcp_public', 'unknown')), confidence=data.get('confidence', 0.0), citations=data.get('citations', []))
                 return self._fallback(field)
             except Exception as exc:
                 error = str(exc).lower()
@@ -175,11 +172,11 @@ RULES:
     @staticmethod
     def _fallback(field: str):
         if field == 'auth':
-            return AuthExtraction([AuthMethod.UNKNOWN], 0.0, [])
+            return AuthExtraction(auth_methods=[AuthMethod.UNKNOWN], confidence=0.0, citations=[])
         if field == 'credential':
-            return CredentialExtraction(CredentialAccess.UNKNOWN, 0.0, [])
+            return CredentialExtraction(credential_access=CredentialAccess.UNKNOWN, confidence=0.0, citations=[])
         if field == 'api':
-            return APIExtraction([APIType.OTHER], 'unknown', 0.0, [])
+            return APIExtraction(api_types=[APIType.OTHER], api_breadth='unknown', confidence=0.0, citations=[])
         if field == 'mcp':
-            return MCPExtraction(MCPStatus.UNKNOWN, 0.0, [])
+            return MCPExtraction(mcp_public=MCPStatus.UNKNOWN, confidence=0.0, citations=[])
         return None
