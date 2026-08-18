@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>100 App Integration Research - Case Study</title>
+    <script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header class="hero">
+        <div class="hero-content">
+            <h1>100 Apps Researched</h1>
+            <p class="subtitle">Integration buildability analysis for AI agent tooling</p>
+            <div class="hero-stats" id="hero-stats">
+            </div>
+            <div class="hero-insights" id="hero-insights">
+            </div>
+        </div>
+    </header>
+
+    <nav class="section-nav" id="section-nav">
+        <button class="nav-btn active" data-section="patterns">Patterns</button>
+        <button class="nav-btn" data-section="agent">The Agent</button>
+        <button class="nav-btn" data-section="verification">Verification</button>
+        <button class="nav-btn" data-section="matrix">Full Matrix</button>
+        <button class="nav-btn" data-section="run">Run / GitHub</button>
+    </nav>
+
+    <main>
+        <section id="patterns" class="section active">
+            <h2>Patterns Across 100 Apps</h2>
+            
+            <div class="chart-grid">
+                <div class="chart-card">
+                    <h3>Authentication Methods</h3>
+                    <div id="chart-auth"></div>
+                </div>
+                <div class="chart-card">
+                    <h3>Credential Accessibility</h3>
+                    <div id="chart-credential"></div>
+                </div>
+                <div class="chart-card">
+                    <h3>Buildability Funnel</h3>
+                    <div id="chart-buildability"></div>
+                </div>
+                <div class="chart-card">
+                    <h3>MCP Availability</h3>
+                    <div id="chart-mcp"></div>
+                </div>
+            </div>
+
+            <div class="chart-grid">
+                <div class="chart-card full-width">
+                    <h3>Buildability by Category</h3>
+                    <div id="chart-category-heatmap"></div>
+                </div>
+            </div>
+
+            <div class="chart-grid">
+                <div class="chart-card">
+                    <h3>Opportunity Score by Segment</h3>
+                    <div id="chart-opportunity"></div>
+                </div>
+                <div class="chart-card">
+                    <h3>Confidence Distribution</h3>
+                    <div id="chart-confidence"></div>
+                </div>
+            </div>
+
+            <div class="insight-box">
+                <h3>Key Insights</h3>
+                <ul id="key-insights"></ul>
+            </div>
+        </section>
+
+        <section id="agent" class="section">
+            <h2>The Research Agent</h2>
+            
+            <div class="agent-architecture">
+                <h3>Architecture</h3>
+                <pre class="architecture-diagram">
+App Registry (100 apps)
+       |
+       v
+Research Orchestrator (5 workers)
+       |
++------+------+
+v      v      v
+Firecrawl  Composio  Public MCP
+Web Search Registry   Evidence
+       |      |      |
+       +------+------+
+              v
+       Nemotron Analyst
+              |
+              v
+       Pydantic Validation
+              |
+       +------+------+
+       v             v
+    Valid          Repair/Retry
+       |
+       v
+   Confidence Check
+       |
++------+------+
+v             v
+High        Low/Conflict
+|             |
+|         Verification
++------+------+
+       v
+  Final Dataset
+</pre>
+            </div>
+
+            <div class="agent-details">
+                <div class="detail-card">
+                    <h3>Research Methodology</h3>
+                    <ul>
+                        <li><strong>Adaptive research:</strong> 3 default pages -> targeted if confidence < 0.8</li>
+                        <li><strong>Source priority:</strong> Official docs -> Auth docs -> Pricing -> Marketplace</li>
+                        <li><strong>Evidence-first:</strong> Every claim tied to quoted source</li>
+                        <li><strong>Fixed vocabulary:</strong> Enums prevent hallucinated labels</li>
+                    </ul>
+                </div>
+                <div class="detail-card">
+                    <h3>LLM Prompt Philosophy</h3>
+                    <ul>
+                        <li>"Unknown is better than hallucinated"</li>
+                        <li>Distinguish API existence from credential accessibility</li>
+                        <li>Self-serve = developer can get credentials without sales</li>
+                        <li>MCP = public server exists (not just Composio toolkit)</li>
+                        <li>Buildability: ready -> caveat -> outreach -> blocked</li>
+                    </ul>
+                </div>
+                <div class="detail-card">
+                    <h3>Tech Stack</h3>
+                    <ul>
+                        <li>LLM: NVIDIA Nemotron 3 Ultra</li>
+                        <li>Web Research: Firecrawl via Composio</li>
+                        <li>Validation: Pydantic + repair retry</li>
+                        <li>Orchestration: Python asyncio (5 concurrent)</li>
+                        <li>Analysis: pandas + Plotly</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="verification" class="section">
+            <h2>Verification & Accuracy</h2>
+            
+            <div class="verification-stats" id="verification-stats">
+            </div>
+
+            <div class="chart-card">
+                <h3>Field-Level Accuracy</h3>
+                <div id="chart-accuracy"></div>
+            </div>
+
+            <div class="error-taxonomy">
+                <h3>Error Taxonomy</h3>
+                <table id="error-table">
+                    <thead>
+                        <tr><th>Error Type</th><th>Count</th><th>Description</th></tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+
+            <div class="improvement-box">
+                <h3>Accuracy Improvement</h3>
+                <p id="improvement-text"></p>
+            </div>
+        </section>
+
+        <section id="matrix" class="section">
+            <h2>Full Research Matrix</h2>
+            
+            <div class="filter-bar">
+                <input type="text" id="search-input" placeholder="Search apps...">
+                <select id="filter-category"><option value="">All Categories</option></select>
+                <select id="filter-buildability"><option value="">All Buildability</option></select>
+                <select id="filter-auth"><option value="">All Auth</option></select>
+                <select id="filter-gating"><option value="">All Credential Access</option></select>
+                <select id="filter-confidence"><option value="">All Confidence</option></select>
+            </div>
+
+            <div class="table-wrapper">
+                <table id="matrix-table">
+                    <thead>
+                        <tr>
+                            <th>App</th>
+                            <th>Category</th>
+                            <th>Auth</th>
+                            <th>Credential Access</th>
+                            <th>API</th>
+                            <th>MCP Public</th>
+                            <th>Composio</th>
+                            <th>Buildability</th>
+                            <th>Blocker</th>
+                            <th>Confidence</th>
+                            <th>Evidence</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+
+            <div class="table-info">
+                Showing <span id="showing-count">0</span> of <span id="total-count">0</span> apps
+            </div>
+        </section>
+
+        <section id="run" class="section">
+            <h2>Run It Yourself</h2>
+            
+            <div class="run-card">
+                <h3>Live Demo</h3>
+                <p><a href="https://github.com/yourusername/composio-app-research" target="_blank" id="github-link">GitHub Repository</a></p>
+                <p><a href="#" target="_blank" id="pages-link">GitHub Pages (Live Case Study)</a></p>
+            </div>
+
+            <div class="run-card">
+                <h3>Local Execution</h3>
+                <pre><code># Setup
+git clone https://github.com/yourusername/composio-app-research
+cd composio-app-research
+pip install -r requirements.txt
+cp .env.example .env
+# Edit .env with your API keys
+
+# Run research (resumes automatically)
+python scripts/run_research.py
+
+# Create verification sample
+python scripts/verify_sample.py
+
+# After manual verification, calculate accuracy
+python scripts/verify_sample.py --calculate
+
+# Build case study
+python scripts/build_case_study.py
+
+# Serve locally
+cd web && python -m http.server 8000</code></pre>
+            </div>
+
+            <div class="run-card">
+                <h3>Environment Variables</h3>
+                <pre><code>COMPOSIO_API_KEY=your_composio_key
+NVIDIA_API_KEY=your_nvidia_key
+NVIDIA_BASE_URL=https://integrate.api.nvidia.com/v1
+NVIDIA_MODEL=nvidia/nemotron-3-ultra</code></pre>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>AI Product Ops Intern Assignment - Composio</p>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>
