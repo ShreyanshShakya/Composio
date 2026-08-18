@@ -464,6 +464,16 @@ class Researcher:
         
         return urls[:3]
     
+    async def _scrape_with_fallback(self, url: str) -> FirecrawlResult:
+        """Try Firecrawl via Composio MCP first, fall back to HTTPScraper."""
+        # Try Firecrawl via Composio MCP first
+        result = await self.composio_mcp.firecrawl_scrape(url)
+        if result.success and result.content:
+            return result
+        
+        # Fall back to HTTPScraper
+        return await self.http_scraper.scrape(url)
+
     async def research_app(self, app: str, website: str, category: str) -> AppResearch:
         """Run adaptive research for a single app."""
         
@@ -472,7 +482,7 @@ class Researcher:
         evidence = []
         
         for url, expected_type in urls:
-            result = await self.http_scraper.scrape(url)
+            result = await self._scrape_with_fallback(url)
             if result.success and result.content:
                 source_type = normalize_source_type(url, expected_type)
                 evidence.append(Evidence(
@@ -514,7 +524,7 @@ class Researcher:
         if gaps and research.confidence < 0.8:
             targeted_urls = self.build_targeted_urls(research, gaps)
             for url, expected_type in targeted_urls:
-                result = await self.http_scraper.scrape(url)
+                result = await self._scrape_with_fallback(url)
                 if result.success and result.content:
                     source_type = normalize_source_type(url, expected_type)
                     evidence.append(Evidence(
