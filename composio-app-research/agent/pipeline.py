@@ -1,6 +1,7 @@
 import asyncio
 import json
 import os
+import random
 from datetime import datetime
 from pathlib import Path
 from typing import Any
@@ -80,8 +81,8 @@ class ResearchPipeline:
             f.write(research.model_dump_json() + "\n")
         self.completed.add(research.app)
     
-    async def research_with_retry(self, app: str, website: str, category: str) -> AppResearch | None:
-        """Research single app with retry logic."""
+async def research_with_retry(self, app: str, website: str, category: str) -> AppResearch | None:
+        """Research single app with retry logic and exponential backoff."""
         last_error = None
         
         for attempt in range(self.config.max_retries + 1):
@@ -107,15 +108,26 @@ class ResearchPipeline:
                 last_error = e
                 error_str = str(e).lower()
                 
-                # Check if retryable
+                # Check if retryable (429, 5xx, timeout, rate limit)
                 retryable = any(x in error_str for x in ["429", "500", "502", "503", "504", "timeout", "rate limit"])
                 
                 if attempt < self.config.max_retries and retryable:
-                    await self.rate_limiter.wait_for_retry(attempt, self.config.base_delay, self.config.max_delay)
+                    # Exponential backoff with jitter
+                    import random
+                    base_delay = self.config.base_delay * (2 ** attempt)
+                    jitter = random.uniform(0, 0.5)
+                    delay = min(base_delay + jitter, self.config.max_delay)
+                    
+                    # For 429, use longer delay
+                    if "429" in error_str:
+                        delay = min(delay * 2, self.config.max_delay)
+                    
+                    print(f"[{app}] Attempt {attempt + 1} failed: {e}. Retrying in {delay:.1f}s...")
+                    await asyncio.sleep(delay)
                     continue
                 
                 break
-        
+            
         self.failed[app] = self.failed.get(app, 0) + 1
         print(f"[FAILED] {app}: {last_error}")
         return None
