@@ -1,17 +1,15 @@
 import asyncio
 import json
 import random
-import re
-from typing import List, Optional, Dict, Any
-from datetime import datetime
+from typing import List
 from agent.models import (Evidence, SourceType, AuthMethod, CredentialAccess, APIType,
                           APIBreadth, MCPStatus, Buildability, AppResearch,
                           AuthExtraction, CredentialExtraction, APIExtraction, MCPExtraction)
-from agent.evidence import extract_json_from_response, validate_and_repair_research
+from agent.evidence import extract_json_from_response
 
 
 class NemotronExtractor:
-    """5 claim-specific extraction methods with bounded Nemotron concurrency/retries."""
+    """Claim-specific extraction methods using the configured LLM client."""
 
     _llm_semaphore = asyncio.Semaphore(1)
     _last_llm_request = 0.0
@@ -25,10 +23,10 @@ class NemotronExtractor:
         filtered = evidence
         if relevant_types:
             filtered = [e for e in evidence if e.source_type.value in relevant_types]
-        return "\n\n---\n\n".join([
+        return "\n\n---\n\n".join(
             f"SOURCE: {e.url}\nTYPE: {e.source_type.value}\nCONTENT: {e.supporting_text[:2000]}"
             for e in filtered[:8]
-        ])
+        )
 
     async def extract_auth(self, evidence: list) -> AuthExtraction:
         evidence_text = self._build_evidence_context(evidence, ['official_docs', 'auth_docs', 'web'])
@@ -134,7 +132,8 @@ RULES:
         return Buildability.READY.value, ""
 
     async def _extract_with_llm(self, prompt: str, field: str):
-        """Call Nemotron with global serialization and 429-aware exponential backoff."""
+        """Call the configured LLM with serialized access and 429-aware backoff."""
+        provider = type(self.llm).__name__
         for attempt in range(self.max_retries + 1):
             try:
                 async with self._llm_semaphore:
@@ -161,11 +160,11 @@ RULES:
                 error = str(exc).lower()
                 retryable = any(token in error for token in ('429', 'rate limit', 'too many requests', 'timeout', '500', '502', '503', '504'))
                 if not retryable or attempt >= self.max_retries:
-                    print(f"[Nemotron] {field} failed: {exc}")
+                    print(f"[{provider}] {field} failed: {exc}")
                     break
                 base = 5.0 if any(token in error for token in ('429', 'rate limit', 'too many requests')) else 2.0
                 delay = min(base * (2 ** attempt) + random.uniform(0, 2), 60.0)
-                print(f"[Nemotron] {field} attempt {attempt + 1} rate-limited; retrying in {delay:.1f}s")
+                print(f"[{provider}] {field} attempt {attempt + 1} rate-limited; retrying in {delay:.1f}s")
                 await asyncio.sleep(delay)
         return self._fallback(field)
 
