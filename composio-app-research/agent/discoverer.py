@@ -27,12 +27,18 @@ class DiscoveryResult:
 
     @classmethod
     def from_dict(cls, data: dict):
+        def parse_url(item: dict) -> ScoredURL:
+            item = dict(item)
+            raw_source = item.get('source_type', SourceType.WEB)
+            item['source_type'] = raw_source if isinstance(raw_source, SourceType) else SourceType(str(raw_source))
+            return ScoredURL(**item)
+
         return cls(
-            developer_docs=[ScoredURL(**u) for u in data.get('developer_docs', [])],
-            auth_docs=[ScoredURL(**u) for u in data.get('auth_docs', [])],
-            api_docs=[ScoredURL(**u) for u in data.get('api_docs', [])],
-            mcp_docs=[ScoredURL(**u) for u in data.get('mcp_docs', [])],
-            pricing_docs=[ScoredURL(**u) for u in data.get('pricing_docs', [])],
+            developer_docs=[parse_url(u) for u in data.get('developer_docs', [])],
+            auth_docs=[parse_url(u) for u in data.get('auth_docs', [])],
+            api_docs=[parse_url(u) for u in data.get('api_docs', [])],
+            mcp_docs=[parse_url(u) for u in data.get('mcp_docs', [])],
+            pricing_docs=[parse_url(u) for u in data.get('pricing_docs', [])],
         )
 
     def count(self) -> int:
@@ -62,17 +68,21 @@ class Discoverer:
             try:
                 with open(path, 'r') as f:
                     result = DiscoveryResult.from_dict(json.load(f))
-                # Never treat an empty/failed discovery as valid cached research.
-                if result.count() > 0:
+                groups = (
+                    result.developer_docs, result.auth_docs, result.api_docs,
+                    result.mcp_docs, result.pricing_docs,
+                )
+                if result.count() > 0 and all(
+                    isinstance(u.url, str) and u.url.strip()
+                    for group in groups for u in group
+                ):
                     return result
-                print(f"[{app}] Ignoring empty discovery cache: {path}")
+                print(f"[{app}] Ignoring empty or malformed discovery cache: {path}")
             except (OSError, json.JSONDecodeError, TypeError, KeyError, ValueError) as exc:
                 print(f"[{app}] Ignoring invalid discovery cache: {exc}")
         return None
 
     def save_cache(self, app: str, result: DiscoveryResult):
-        # Do not persist failed/empty discovery results; otherwise one transient
-        # Firecrawl failure can poison every later run for that app.
         if result.count() == 0:
             return
         path = self._cache_path(app)
