@@ -1,8 +1,18 @@
 import os
 import asyncio
 import json
+from pathlib import Path
 from typing import Any, Dict, List
 from dataclasses import dataclass
+
+# Load repository-local .env before any API client reads environment variables.
+# Explicit shell environment variables still take precedence.
+try:
+    from dotenv import load_dotenv
+    load_dotenv(Path(__file__).resolve().parents[1] / ".env")
+except ImportError:
+    pass
+
 from agent.models import (AppResearch, SourceType, Evidence, AuthMethod,
                           CredentialAccess, APIType, APIBreadth, MCPStatus, Buildability)
 from agent.evidence import normalize_source_type, calculate_confidence, extract_json_from_response, validate_and_repair_research
@@ -86,35 +96,6 @@ class ComposioMCPClient:
             print(f"[ComposioMCP] Error fetching toolkits: {e}")
             return []
 
-    def check_app_supported(self, app_name: str, tools: list[dict] | None = None) -> tuple[bool, str | None]:
-        if tools is None:
-            tools = []
-        app_lower = app_name.lower().replace(" ", "").replace("-", "").replace("_", "")
-        for tool in tools:
-            tool_name = tool.get("name", "").lower().replace(" ", "").replace("-", "").replace("_", "")
-            tool_desc = tool.get("description", "").lower()
-            if app_lower in tool_name or tool_name in app_lower:
-                return True, tool.get("name")
-            if app_lower in tool_desc:
-                return True, tool.get("name")
-        variations = {
-            "salesforce": ["salesforce", "sfdc"], "github": ["github", "gh"],
-            "googleads": ["googleads", "google-ads", "adwords"], "metaads": ["metaads", "facebook-ads", "fb-ads"],
-            "linkedinads": ["linkedinads", "linkedin-ads"], "whatsappbusiness": ["whatsapp", "whatsapp-business", "wa-business"],
-            "amazonsellingpartner": ["amazon-sp-api", "amazon-selling-partner", "sp-api"],
-            "woocommerce": ["woocommerce", "wc-api"], "salesforcecommercecloud": ["salesforce-commerce", "sfcc"],
-            "adobecommerce": ["magento", "adobe-commerce"], "datadoghq": ["datadog", "datadoghq"],
-            "mongodb": ["mongodb-atlas", "mongo-atlas"], "googlecloud": ["gcp", "google-cloud"],
-            "aws": ["amazon-web-services", "aws"], "azure": ["microsoft-azure", "azure"],
-        }
-        for key, aliases in variations.items():
-            if app_lower == key or app_lower in aliases:
-                for tool in tools:
-                    tool_name = tool.get("name", "").lower()
-                    if any(alias in tool_name for alias in aliases):
-                        return True, tool.get("name")
-        return False, None
-
     async def firecrawl_scrape(self, url: str, params: dict | None = None) -> "FirecrawlResult":
         from agent.researcher import FirecrawlResult
         await self._ensure_initialized()
@@ -163,9 +144,7 @@ class ComposioMCPClient:
         session = await self._get_session()
         for tool_name in ("firecrawl_crawl", "crawl"):
             call_payload = {
-                "jsonrpc": "2.0",
-                "id": 4,
-                "method": "tools/call",
+                "jsonrpc": "2.0", "id": 4, "method": "tools/call",
                 "params": {"name": tool_name, "arguments": crawl_params},
             }
             try:
@@ -255,20 +234,12 @@ class Researcher:
         supported, tool_name = self.composio_mcp.check_app_supported(app, composio_tools)
         if supported:
             evidence.append(Evidence(claim=f"Composio supports {app} via {tool_name}", url="https://connect.composio.dev", source_type=SourceType.COMPOSIO_REGISTRY, supporting_text=f"Found in Composio toolkits: {tool_name}"))
-
         auth_ext = await self.extractor.extract_auth(evidence)
         cred_ext = await self.extractor.extract_credential(evidence)
         api_ext = await self.extractor.extract_api(evidence)
         mcp_ext = await self.extractor.extract_mcp(evidence)
         buildability, blocker = self.extractor.determine_buildability(auth_ext, cred_ext, api_ext, mcp_ext)
-
-        research = AppResearch(
-            app=app, category=category, description=f"Integration research for {app}",
-            auth_methods=auth_ext.auth_methods, credential_access=cred_ext.credential_access,
-            api_types=api_ext.api_types, api_breadth=api_ext.api_breadth, mcp_public=mcp_ext.mcp_public,
-            composio_supported=MCPStatus.YES if supported else MCPStatus.NO,
-            buildability=buildability, blocker=blocker, evidence=evidence, confidence=0.0,
-        )
+        research = AppResearch(app=app, category=category, description=f"Integration research for {app}", auth_methods=auth_ext.auth_methods, credential_access=cred_ext.credential_access, api_types=api_ext.api_types, api_breadth=api_ext.api_breadth, mcp_public=mcp_ext.mcp_public, composio_supported=MCPStatus.YES if supported else MCPStatus.NO, buildability=buildability, blocker=blocker, evidence=evidence, confidence=0.0)
         for ext, field in [(auth_ext, 'auth'), (cred_ext, 'credential'), (api_ext, 'api'), (mcp_ext, 'mcp')]:
             for citation in ext.citations:
                 for e in evidence:
