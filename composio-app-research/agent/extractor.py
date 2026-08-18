@@ -1,5 +1,6 @@
 import asyncio
 import json
+import os
 import random
 from typing import List
 from agent.models import (Evidence, SourceType, AuthMethod, CredentialAccess, APIType,
@@ -131,9 +132,39 @@ RULES:
             return Buildability.BUILDABLE_WITH_CAVEAT.value, "Auth or API type uncertain"
         return Buildability.READY.value, ""
 
+    @staticmethod
+    def _normalize_auth(value: str) -> str:
+        return {
+            "oauth": "oauth2", "oauth_2": "oauth2", "oauth2.0": "oauth2",
+            "apikey": "api_key", "api-key": "api_key", "api key": "api_key",
+            "bearer": "bearer_token", "bearer token": "bearer_token",
+            "personal_access_token": "pat", "personal access token": "pat",
+            "service-account": "service_account", "service account": "service_account",
+            "basic_auth": "basic", "basic auth": "basic",
+        }.get(str(value).strip().lower(), str(value).strip().lower())
+
+    @staticmethod
+    def _normalize_api(value: str) -> str:
+        return {
+            "webhook": "webhooks", "web_hook": "webhooks", "web hooks": "webhooks",
+            "rest_api": "rest", "rest api": "rest", "graphql_api": "graphql",
+            "grpc_api": "grpc", "openapi": "rest",
+        }.get(str(value).strip().lower(), str(value).strip().lower())
+
+    @staticmethod
+    def _normalize_credential(value: str) -> str:
+        return {
+            "self serve": "self_serve", "self-serve": "self_serve",
+            "trial": "self_serve_with_trial", "free_trial": "self_serve_with_trial",
+            "paid": "paid_plan_required", "paid plan": "paid_plan_required",
+            "sales": "contact_sales", "contact sales": "contact_sales",
+            "partner": "partner_required", "admin": "admin_approval",
+        }.get(str(value).strip().lower(), str(value).strip().lower())
+
     async def _extract_with_llm(self, prompt: str, field: str):
         """Call the configured LLM with serialized access and 429-aware backoff."""
         provider = type(self.llm).__name__
+        debug = os.getenv("LLM_DEBUG", "0") == "1"
         for attempt in range(self.max_retries + 1):
             try:
                 async with self._llm_semaphore:
@@ -146,15 +177,32 @@ RULES:
                     response = await self.llm.complete_async(prompt, temperature=0.1, max_tokens=2000)
 
                 data = extract_json_from_response(response)
-                if data:
+                if not data:
+                    if debug:
+                        print(f"[{provider}] {field}: JSON parse failed; response={response[:500]!r}")
+                    else:
+                        print(f"[{provider}] {field}: JSON parse failed")
+                    return self._fallback(field)
+
+                try:
                     if field == 'auth':
-                        return AuthExtraction(auth_methods=[AuthMethod(m) for m in data.get('auth_methods', ['unknown'])], confidence=data.get('confidence', 0.0), citations=data.get('citations', []))
+                        values = data.get('auth_methods', ['unknown'])
+                        values = [self._normalize_auth(v) for v in (values if isinstance(values, list) else [values])]
+                        return AuthExtraction(auth_methods=[AuthMethod(v) for v in values], confidence=float(data.get('confidence', 0.0)), citations=data.get('citations', []))
                     if field == 'credential':
-                        return CredentialExtraction(credential_access=CredentialAccess(data.get('credential_access', 'unknown')), confidence=data.get('confidence', 0.0), citations=data.get('citations', []))
+                        value = self._normalize_credential(data.get('credential_access', 'unknown'))
+                        return CredentialExtraction(credential_access=CredentialAccess(value), confidence=float(data.get('confidence', 0.0)), citations=data.get('citations', []))
                     if field == 'api':
-                        return APIExtraction(api_types=[APIType(t) for t in data.get('api_types', ['other'])], api_breadth=data.get('api_breadth', 'unknown'), confidence=data.get('confidence', 0.0), citations=data.get('citations', []))
+                        values = data.get('api_types', ['other'])
+                        values = [self._normalize_api(v) for v in (values if isinstance(values, list) else [values])]
+                        breadth = str(data.get('api_breadth', 'unknown')).strip().lower()
+                        return APIExtraction(api_types=[APIType(v) for v in values], api_breadth=breadth, confidence=float(data.get('confidence', 0.0)), citations=data.get('citations', []))
                     if field == 'mcp':
-                        return MCPExtraction(mcp_public=MCPStatus(data.get('mcp_public', 'unknown')), confidence=data.get('confidence', 0.0), citations=data.get('citations', []))
+                        value = str(data.get('mcp_public', 'unknown')).strip().lower()
+                        return MCPExtraction(mcp_public=MCPStatus(value), confidence=float(data.get('confidence', 0.0)), citations=data.get('citations', []))
+                except (ValueError, TypeError) as exc:
+                    print(f"[{provider}] {field}: invalid structured value: {exc}; data={data if debug else 'hidden'}")
+                    return self._fallback(field)
                 return self._fallback(field)
             except Exception as exc:
                 error = str(exc).lower()
